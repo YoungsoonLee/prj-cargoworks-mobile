@@ -1,0 +1,58 @@
+{
+  "name": "mobile_seed",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "lodash": "^4.17.10",
+    "mobx": "3.6.2",
+    "mobx-react": "4.4.3",
+    "moment": "^2.22.2",
+    "prop-types": "^15.6.2",
+    "react": "16.4.1",
+    "react-native": "0.56.0",
+    "react-native-cached-image": "^1.4.3",
+    "react-native-calendars": "^1.20.0",
+    "react-native-check-box": "^2.1.0",
+    "react-native-image-crop-picker": "^0.20.3",
+    "react-native-meteor": "^1.4.0",
+    "react-native-onesignal": "^3.2.5",
+    "react-native-status-bar-height": "^2.0.0",
+    "react-native-vector-icons": "^5.0.0",
+    "react-navigation": "^2.11.2",
+    "rn-fetch-blob": "^0.10.12",
+    "slap-react-native-accordion": "3.0.4",
+    "slap-react-native-badge": "^3.0.5",
+    "slap-react-native-calendar": "3.0.2",
+    "slap-react-native-image-frame": "3.0.15",
+    "slap-react-native-input": "3.0.8",
+    "slap-react-native-list-item": "3.0.14",
+    "slap-react-native-magnet-view": "3.0.2",
+    "slap-react-native-roles": "3.0.2",
+    "slap-react-native-select": "3.0.8",
+    "slap-react-native-spinner": "^3.0.2",
+    "slap-react-native-swiper": "3.0.9",
+    "slap-react-native-switch": "3.0.6",
+    "slap-react-native-text-area": "3.0.5",
+    "slap-react-native-toggle": "3.0.10",
+    "slap-react-native-toggles": "3.0.15",
+    "slap-react-native-touchable": "3.0.8",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "babel-jest": "23.4.0",
+    "babel-preset-react-native": "5.0.2",
+    "gulp": "^3.9.1",
+    "gulp-coffee": "^3.0.2",
+    "gulp-replace": "^1.0.0",
+    "gulp-watch": "^5.0.1",
+    "jest": "23.4.1",
+    "react-test-renderer": "16.4.1"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
