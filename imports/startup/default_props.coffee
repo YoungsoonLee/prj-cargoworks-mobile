@@ -17,6 +17,11 @@ Button.defaultProps.colors = [
   buttonColor: white
   textColor: lightBlue
   borderColor: lightBlue
+,
+  name: 'black invert'
+  buttonColor: white
+  textColor: '#000000'
+  borderColor: '#000000'
 ]
 
 Button.defaultProps.height = 60
@@ -32,3 +37,5 @@ Input.defaultProps.focusedUnderlineColor = lightBlue
 Input.defaultProps.selectionColor = lightBlue
 
 Checkbox.defaultProps.color = lightBlue
+
+Select.defaultProps.buttonColor = lightBlue
