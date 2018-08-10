@@ -28,7 +28,7 @@ export default observer class VerifyPhoneNumberView extends Component
   onChangeCheckbox: (isChecked, name) =>
     @state.value[name] = isChecked
 
-  onPressNex: =>
+  onPressNext: =>
     Util.go 'Terms'
 
   render: =>
@@ -53,5 +53,5 @@ export default observer class VerifyPhoneNumberView extends Component
         </View>
         <Checkbox onChange={@onChangeCheckbox} name="isPhoneNumberMain" isChecked={@state.value.isPhoneNumberMain} label={<Text>이 번호를 내 대표 연락처로 설정합니다.</Text>} marginTop={20} />
       </View>
-      <Button isDisabled={not @props.validation.isValid} borderRadius={0} height={75} color="light blue" onPress={@onPressNex}>다음</Button>
+      <Button isDisabled={not @props.validation.isValid} borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>다음</Button>
     </Layout>

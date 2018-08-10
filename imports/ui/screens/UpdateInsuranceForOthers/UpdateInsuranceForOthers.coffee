@@ -1,4 +1,4 @@
-import UpdateInsuranceForOthersView from './UpdateInsuranceForOtherView.coffee'
+import UpdateInsuranceForOthersView from './UpdateInsuranceForOthersView.coffee'
 
 getDefaultState = =>
   value:
