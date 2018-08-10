@@ -9,6 +9,10 @@ import Signup from '../../screens/Signup/Signup.coffee'
 import UpdateVehicle from '../../screens/UpdateVehicle/UpdateVehicle.coffee'
 import UpdateInsurance from '../../screens/UpdateInsurance/UpdateInsurance.coffee'
 import UpdateInsuranceForOthers from '../../screens/UpdateInsuranceForOthers/UpdateInsuranceForOthers.coffee'
+import BusinessCert from '../../screens/BusinessCert/BusinessCert.coffee'
+import BankAccount from '../../screens/BankAccount/BankAccount.coffee'
+import Pending from '../../screens/Pending/Pending.coffee'
+import Main from '../../screens/Main/Main.coffee'
 
 export default StackNavigator
   Splash:
@@ -31,5 +35,13 @@ export default StackNavigator
     screen: UpdateInsurance
   UpdateInsuranceForOthers:
     screen: UpdateInsuranceForOthers
+  BusinessCert:
+    screen: BusinessCert
+  BankAccount:
+    screen: BankAccount
+  Pending:
+    screen: Pending
+  Main:
+    screen: Main
 ,
   headerMode: 'none'

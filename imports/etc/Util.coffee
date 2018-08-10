@@ -78,4 +78,4 @@ export default class Util
       Util.reset 'SignupInfo'
 
     else
-      Util.reset 'UpdateInsurance'
+      Util.reset 'Main'
