@@ -19,7 +19,6 @@ import Button from '../ui/components/Button/Button.coffee'
 import Input from 'slap-react-native-input'
 import Checkbox from '../ui/components/Checkbox/Checkbox.coffee'
 import Badge from 'slap-react-native-badge'
-import MainLayout from '../ui/layouts/MainLayout/MainLayout.coffee'
 import Layout from '../ui/layouts/Layout/Layout.coffee'
 import withUser from '../hocs/data/withUser.coffee'
 import withConnection from '../hocs/etc/withConnection.coffee'
@@ -59,7 +58,6 @@ global.Button = Button
 global.Input = Input
 global.Checkbox = Checkbox
 global.Badge = Badge
-global.MainLayout = MainLayout
 global.Layout = Layout
 global.withUser = withUser
 global.withConnection = withConnection
