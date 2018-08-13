@@ -1,11 +1,21 @@
 import { TabNavigator } from 'react-navigation'
-import Tab from '../../components/Tab.coffee'
+import TabMenu from '../../components/TabMenu/TabMenu.coffee'
+import Orders from '../../screens/Orders/Orders.coffee'
+import MyOrders from '../../screens/MyOrders/MyOrders.coffee'
+import OrderSetting from '../../screens/OrderSetting/OrderSetting.coffee'
+import Balances from '../../screens/Balances/Balances.coffee'
 
 export default TabNavigator
-  DailyGoldspoon:
-    screen: TabMain
+  Orders:
+    screen: Orders
+  MyOrders:
+    screen: MyOrders
+  OrderSetting:
+    screen: OrderSetting
+  Balances:
+    screen: Balances
 ,
-  tabBarComponent: Tab
+  tabBarComponent: TabMenu
   tabBarPosition: 'bottom'
   swipeEnabled: false
   animationEnabled: true

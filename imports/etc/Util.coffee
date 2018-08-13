@@ -1,5 +1,5 @@
-import { NavigationActions } from 'react-navigation'
 import stackNavigation from './stack_navigation.coffee'
+import tabNavigation from './tab_navigation.coffee'
 import { Alert } from 'react-native'
 import { Accounts } from 'react-native-meteor'
 import OneSignal from 'react-native-onesignal'
@@ -63,6 +63,9 @@ export default class Util
 
   @go: (routeName, param) =>
     stackNavigation.navigate routeName, param
+
+  @og: (routeName, param) =>
+    tabNavigation.navigate routeName, param
 
   @back: =>
     stackNavigation.back()
