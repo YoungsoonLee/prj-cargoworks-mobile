@@ -13,6 +13,8 @@ import BusinessCert from '../../screens/BusinessCert/BusinessCert.coffee'
 import BankAccount from '../../screens/BankAccount/BankAccount.coffee'
 import Pending from '../../screens/Pending/Pending.coffee'
 import Main from '../../screens/Main/Main.coffee'
+import OrderDetail from '../../screens/OrderDetail/OrderDetail.coffee'
+import MyOrderDetail from '../../screens/MyOrderDetail/MyOrderDetail.coffee'
 
 export default StackNavigator
   Splash:
@@ -43,5 +45,9 @@ export default StackNavigator
     screen: Pending
   Main:
     screen: Main
+  OrderDetail:
+    screen: OrderDetail
+  MyOrderDetail:
+    screen: MyOrderDetail
 ,
   headerMode: 'none'
