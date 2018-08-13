@@ -47,9 +47,9 @@ export default observer class Header extends Component
           </Touchable>
         </View>
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <Touchable onPress={=> @onPressSort 'fee'}>
-            <View style={{ width: 80, height: 30, backgroundColor: (if @state.sort is 'fee' then white else darkBlue), borderRadius: 15, alignItems: 'center', justifyContent: 'center' }}>
-              <Text size={20} color={if @state.sort is 'fee' then darkBlue else white}>운임순</Text>
+          <Touchable onPress={=> @onPressSort 'fare'}>
+            <View style={{ width: 80, height: 30, backgroundColor: (if @state.sort is 'fare' then white else darkBlue), borderRadius: 15, alignItems: 'center', justifyContent: 'center' }}>
+              <Text size={20} color={if @state.sort is 'fare' then darkBlue else white}>운임순</Text>
             </View>
           </Touchable>
         </View>
