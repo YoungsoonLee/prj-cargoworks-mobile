@@ -1,9 +1,13 @@
-import Order from './Order.coffee'
+import Order from '../../components/Order/Order.coffee'
 
 export default observer class OrdersView extends Component
+  onPressOrder: (order) =>
+    Util.go 'OrderDetail',
+      id: order._id
+
   renderOrders: =>
     @props.orders.map (order, index) =>
-      <Order order={order} type={if index % 2 is 0 then 'parcel' else 'frieght'} />
+      <Order key={order._id} onPress={=> @onPressOrder order} order={order} type={if index % 2 is 0 then 'parcel' else 'frieght'} />
 
   render: =>
     <View style={{ flex: 1, backgroundColor: darkBlue }}>
