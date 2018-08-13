@@ -1,5 +1,3 @@
-export default observer class Orders extends Component
-  render: =>
-    <View>
-      <Text>orders</Text>
-    </View>
+import OrdersView from './OrdersView.coffee'
+
+export default Orders = withFind('orders') OrdersView

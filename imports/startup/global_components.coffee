@@ -32,6 +32,7 @@ import withConstant from '../hocs/etc/withConstant.coffee'
 import { CachedImage } from 'react-native-cached-image'
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import EvilIcons from 'react-native-vector-icons/EvilIcons'
 
 global.View = View
 global.Image = Image
@@ -71,3 +72,4 @@ global.withConstant = withConstant
 global.CachedImage = CachedImage
 global.SimpleLineIcons = SimpleLineIcons
 global.Ionicons = Ionicons
+global.EvilIcons = EvilIcons
