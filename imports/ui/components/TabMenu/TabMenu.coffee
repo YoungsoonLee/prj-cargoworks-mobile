@@ -7,7 +7,7 @@ export default observer class TabMenu extends Component
     @state = observable
       isPressed: false
 
-  onPressTab: (screen) =>
+  onPressTab: (screen, index) =>
     if @state.isPressed
       return
 
@@ -16,6 +16,8 @@ export default observer class TabMenu extends Component
     setTimeout =>
       @state.isPressed = false
     , 500
+
+    state.lazyLoadFlags[index] = true
 
     Util.og screen
 
@@ -30,7 +32,7 @@ export default observer class TabMenu extends Component
             </View>
             }
           { @props.navigation.state.index isnt 0 and
-            <TouchableWithoutFeedback onPress={=> @onPressTab 'Orders'}>
+            <TouchableWithoutFeedback onPress={=> @onPressTab 'Orders', 0}>
               <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <Image source={require '../../../../images/tab_menu_item_0.png'} style={{ width: 30, height: 30 }} />
                 <Text bold marginTop={3} color="#a2aabf">주문수신</Text>
@@ -47,7 +49,7 @@ export default observer class TabMenu extends Component
             </View>
             }
           { @props.navigation.state.index isnt 1 and
-            <TouchableWithoutFeedback onPress={=> @onPressTab 'MyOrders'}>
+            <TouchableWithoutFeedback onPress={=> @onPressTab 'MyOrders', 1}>
               <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <Image source={require '../../../../images/tab_menu_item_1.png'} style={{ width: 30, height: 30 }} />
                 <Text bold marginTop={3} color="#a2aabf">내주문</Text>
@@ -64,7 +66,7 @@ export default observer class TabMenu extends Component
             </View>
             }
           { @props.navigation.state.index isnt 2 and
-            <TouchableWithoutFeedback onPress={=> @onPressTab 'OrderSetting'}>
+            <TouchableWithoutFeedback onPress={=> @onPressTab 'OrderSetting', 2}>
               <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <Image source={require '../../../../images/tab_menu_item_2.png'} style={{ width: 30, height: 30 }} />
                 <Text bold marginTop={3} color="#a2aabf">주문설정</Text>
@@ -81,7 +83,7 @@ export default observer class TabMenu extends Component
             </View>
             }
           { @props.navigation.state.index isnt 3 and
-            <TouchableWithoutFeedback onPress={=> @onPressTab 'Balances'}>
+            <TouchableWithoutFeedback onPress={=> @onPressTab 'Balances', 3}>
               <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <Image source={require '../../../../images/tab_menu_item_3.png'} style={{ width: 30, height: 30 }} />
                 <Text bold marginTop={3} color="#a2aabf">입출관리</Text>
