@@ -36,5 +36,5 @@ export default withFind = (collectionName, getSelector = =>, getOption = =>, opt
         Collection = Meteor.collection collectionName
 
       areDocsReady: docsHandle.ready()
-      docs: Collection.find(selector, _option).fetch()
+      docs: Collection.find(selector, _option)
     ) WithFind
