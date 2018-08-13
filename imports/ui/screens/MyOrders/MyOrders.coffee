@@ -1,5 +1,4 @@
-export default observer class MyOrders extends Component
-  render: =>
-    <View>
-      <Text>my orders</Text>
-    </View>
+import MyOrdersView from './MyOrdersView.coffee'
+import withLazyLoad from '../../../hocs/etc/withLazyLoad.coffee'
+
+export default MyOrders = withLazyLoad(0) withFind('orders') MyOrdersView
