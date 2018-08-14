@@ -1,3 +1,5 @@
+import { Linking } from 'react-native'
+
 export default observer class OrderInfo extends Component
   # @propTypes:
   #   order: PropTypes.object
@@ -8,6 +10,12 @@ export default observer class OrderInfo extends Component
     order: {}
     isBorderTopVisible: true
     isBorderBottomVisible: true
+
+  onPressPhone: (phoneNumber) =>
+    phoneNumber = '01042342341'
+
+    Util.confirm "#{phoneNumber}로 전화 하시겠습니까?", =>
+      Linking.openURL "tel:#{phoneNumber}"
 
   render: =>
     <View>
@@ -52,5 +60,10 @@ export default observer class OrderInfo extends Component
         <View style={{ flex: 1, justifyContent: 'center', paddingLeft: 10 }}>
           <Text color={black} bold size={16}>매월 4일, 25일 결제</Text>
         </View>
+      </View>
+      <View style={{ position: 'absolute', bottom: 10, right: 10 }}>
+        <Touchable onPress={@onPressPhone}>
+          <Image source={require '../../../../images/order_phone.png'} style={{ width: 42, height: 42 }} />
+        </Touchable>
       </View>
     </View>
