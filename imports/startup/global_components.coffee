@@ -1,4 +1,4 @@
-import { View, Image, ImageBackground, ScrollView, TouchableWithoutFeedback } from 'react-native'
+import { View, Image, ImageBackground, ScrollView, TouchableWithoutFeedback, Picker } from 'react-native'
 import Toggles from 'slap-react-native-toggles'
 import Toggle from 'slap-react-native-toggle'
 import TextArea from 'slap-react-native-text-area'
@@ -40,6 +40,7 @@ global.Image = Image
 global.ImageBackground = ImageBackground
 global.ScrollView = ScrollView
 global.TouchableWithoutFeedback = TouchableWithoutFeedback
+global.Picker = Picker
 global.Toggles = Toggles
 global.Toggle = Toggle
 global.TextArea = TextArea

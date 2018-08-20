@@ -17,6 +17,9 @@ export default observer class OrderInfo extends Component
     Util.confirm "#{phoneNumber}로 전화 하시겠습니까?", =>
       Linking.openURL "tel:#{phoneNumber}"
 
+  onPressAgent: =>
+    Util.go 'Agent'
+
   render: =>
     <View>
       <View style={{ height: 40, flexDirection: 'row' }}>
@@ -50,7 +53,7 @@ export default observer class OrderInfo extends Component
           <Text color="#444444" bold size={16}>운송주선</Text>
         </View>
         <View style={{ flex: 1, justifyContent: 'center', paddingLeft: 10 }}>
-          <Text color={black} bold size={16}>빠르다로지스</Text>
+          <Text color={black} bold size={16} underline onPress={@onPressAgent}>빠르다로지스</Text>
         </View>
       </View>
       <View style={{ height: 40, flexDirection: 'row' }}>

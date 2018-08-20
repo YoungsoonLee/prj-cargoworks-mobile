@@ -9,6 +9,15 @@ export default observer class MyOrderDetail extends Component
   @defaultProps:
     order: {}
 
+  onPressGetSignature: =>
+    Util.go 'GetSignature'
+
+  onPressUploadFreightCert: =>
+    Util.go 'UploadFreightCert'
+
+  onPressPublishCashReceipt: =>
+    Util.go 'PublishCashReceipt'
+
   render: =>
     <View style={{ flex: 1 }}>
       <OrderDetailLayout order={@props.order} type="my order">
@@ -18,8 +27,8 @@ export default observer class MyOrderDetail extends Component
           <View style={{ borderTopWidth: 1, borderTopColor: black }} />
         </ScrollView>
       </OrderDetailLayout>
-      { 1 is 2 and
-        <Button borderRadius={0} height={75} color="light blue">
+      { 1 is 1 and
+        <Button borderRadius={0} height={75} color="light blue" onPress={@onPressGetSignature}>
           <View style={{ flexDirection: 'row' }}>
             <Image source={require '../../../../images/pencil.png'} style={{ width: 18, height: 18 }} />
             <Text bold marginLeft={5} color={white} size={20}>서명받기</Text>
@@ -34,7 +43,16 @@ export default observer class MyOrderDetail extends Component
           </View>
         </Button>
         }
-      { 1 is 1 and
-        <Button borderRadius={0} height={75} color="light blue">고객 현금영수증 발행</Button>
-        }
+      <View style={{ flexDirection: 'row' }}>
+        { 1 is 2 and
+          <View style={{ flex: 1 }}>
+            <Button borderRadius={0} height={75} color="grey" onPress={@onPressUploadFreightCert}>화물 인수증 업로드</Button>
+          </View>
+          }
+        { 1 is 2 and
+          <View style={{ flex: 1 }}>
+            <Button paddingHorizontal={0} borderRadius={0} height={75} color="light blue" onPress={@onPressPublishCashReceipt}>고객 현금영수증 발행</Button>
+          </View>
+          }
+      </View>
     </View>

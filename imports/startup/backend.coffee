@@ -1,5 +1,4 @@
 if isProduction
-  # global.backendIp = 'cargoworks.cc'
   global.backendIp = 'cargoworks.cc'
 
 else
