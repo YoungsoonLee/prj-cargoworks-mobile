@@ -8,7 +8,7 @@ import Spinner from 'slap-react-native-spinner'
 import MagnetView from 'slap-react-native-magnet-view'
 import Select from 'slap-react-native-select'
 import Roles from 'slap-react-native-roles'
-import ListItem from 'slap-react-native-list-item'
+import ListItem from '../ui/components/ListItem/ListItem.coffee'
 import ImageFrame from 'slap-react-native-image-frame'
 import Calendar from 'slap-react-native-calendar'
 import Accordion from 'slap-react-native-accordion'
@@ -29,6 +29,7 @@ import withState from '../hocs/etc/withState.coffee'
 import withValidation from '../hocs/etc/withValidation.coffee'
 import withRouteParam from '../hocs/etc/withRouteParam.coffee'
 import withConstant from '../hocs/etc/withConstant.coffee'
+import withDefaultObject from '../hocs/etc/withDefaultObject.coffee'
 import { CachedImage } from 'react-native-cached-image'
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
@@ -71,6 +72,7 @@ global.withState = withState
 global.withValidation = withValidation
 global.withRouteParam = withRouteParam
 global.withConstant = withConstant
+global.withDefaultObject = withDefaultObject
 global.CachedImage = CachedImage
 global.SimpleLineIcons = SimpleLineIcons
 global.Ionicons = Ionicons

@@ -53,6 +53,9 @@ export default observer class Header extends Component
   onChangeSearch: (search) =>
     @state.search = search
 
+  onPressSetting: =>
+    Util.go 'Setting'
+
   render: =>
     <View style={{ flexDirection: 'row', height: 50, backgroundColor: darkBlue }}>
       <View style={{ width: 50, justifyContent: 'center', alignItems: 'center' }}>
@@ -116,7 +119,7 @@ export default observer class Header extends Component
         }
       { not @state.isSearchMode and
         <View style={{ width: 50 }}>
-          <Touchable>
+          <Touchable onPress={@onPressSetting}>
             <Image source={require '../../../../images/setting.png'} style={{ width: 50, height: 50 }} />
           </Touchable>
         </View>

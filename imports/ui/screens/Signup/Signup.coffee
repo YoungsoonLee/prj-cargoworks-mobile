@@ -7,4 +7,4 @@ getDefaultState = =>
     password: ''
     passwordConfirm: ''
 
-export default Signup = withState(getDefaultState) withValidation(['username', 'password', 'passwordConfirm']) withHandler SignupView
+export default Signup = withDefaultObject('transporters') withState(getDefaultState) withValidation(['username', 'password', 'passwordConfirm']) withHandler SignupView

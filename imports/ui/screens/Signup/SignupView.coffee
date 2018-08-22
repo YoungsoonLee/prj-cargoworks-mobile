@@ -46,17 +46,19 @@ export default observer class SignupView extends Component
 
   render: =>
     <Layout title="계정 만들기">
-      <View style={{ flex: 1, padding: 20 }}>
-        <View style={{ alignItems: 'center' }}>
-          <Image source={require '../../../../images/phone.png'} style={{ width: 50, height: 74 }} />
+      <MagnetView style={{ flex: 1 }}>
+        <View style={{ flex: 1, padding: 20 }}>
+          <View style={{ alignItems: 'center', marginTop: 20 }}>
+            <Image source={require '../../../../images/phone.png'} style={{ width: 50, height: 74 }} />
+          </View>
+          <Text center size={18} bold marginTop={30}>
+            { state.verifyPhoneNumberValue.name }{'\n'}
+            { state.verifyPhoneNumberValue.phoneNumber }
+          </Text>
+          <Input isRequired placeholder="아이디" marginTop={30} onChange={@onChangeInput} name="username" value={@state.value.username} />
+          <Input isRequired type="password" placeholder="비밀번호" marginTop={10} onChange={@onChangeInput} name="password" value={@state.value.password} />
+          <Input isRequired type="password" placeholder="비밀번호 확인" marginTop={10} onChange={@onChangeInput} name="passwordConfirm" value={@state.value.passwordConfirm} />
         </View>
-        <Text center size={18} bold marginTop={30}>
-          { state.verifyPhoneNumberValue.name }{'\n'}
-          { state.verifyPhoneNumberValue.phoneNumber }
-        </Text>
-        <Input isRequired placeholder="아이디" marginTop={10} onChange={@onChangeInput} name="username" value={@state.value.username} />
-        <Input isRequired type="password" placeholder="비밀번호" marginTop={10} onChange={@onChangeInput} name="password" value={@state.value.password} />
-        <Input isRequired type="password" placeholder="비밀번호 확인" marginTop={10} onChange={@onChangeInput} name="passwordConfirm" value={@state.value.passwordConfirm} />
-      </View>
-      <Button error={@state.error} isDisabled={not @props.validation.isValid} borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>다음</Button>
+        <Button error={@state.error} isDisabled={not @props.validation.isValid} borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>다음</Button>
+      </MagnetView>
     </Layout>

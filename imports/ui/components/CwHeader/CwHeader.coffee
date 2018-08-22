@@ -8,6 +8,6 @@ export default observer class CwHeader extends Component
     isBorderBottomVisible: true
 
   render: =>
-    <View style={{ borderTopWidth: (if @props.isBorderTopVisible then 1 else 0), borderTopColor: black, borderBottomWidth: (if @props.isBorderBottomVisible then 1 else 0), borderBottomColor: black, height: 40, backgroundColor: '#eeeeee', justifyContent: 'center', paddingLeft: 10 }}>
-      <Text bold size={15} color={black}>{ @props.children }</Text>
+    <View style={{ borderTopWidth: (if @props.isBorderTopVisible then 1 else 0), borderTopColor: black, borderBottomWidth: (if @props.isBorderBottomVisible then 1 else 0), borderBottomColor: black, height: 45, backgroundColor: '#eeeeee', justifyContent: 'center', paddingLeft: 15 }}>
+      <Text bold size={18} color={black}>{ @props.children }</Text>
     </View>

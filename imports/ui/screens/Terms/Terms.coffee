@@ -54,7 +54,7 @@ export default observer class Terms extends Component
             <Image source={require '../../../../images/arrow.png'} style={{ width: 8, height: 14, marginLeft: 5 }} />
           </View>
         </View>
-        <View style={{ flexDirection: 'row', marginTop: 12 }}>
+        <View style={{ flexDirection: 'row', marginTop: 25 }}>
           <View style={{ flex: 1 }}>
             <Checkbox onChange={@onChangeCheckbox} name="isPrivacyPolicyChecked" isChecked={@state.isPrivacyPolicyChecked} label={<Text color="#cccccc" size={18}>개인정보 보호정책 (필수)</Text>} />
           </View>
@@ -63,7 +63,7 @@ export default observer class Terms extends Component
             <Image source={require '../../../../images/arrow.png'} style={{ width: 8, height: 14, marginLeft: 5 }} />
           </View>
         </View>
-        <View style={{ flexDirection: 'row', marginTop: 12 }}>
+        <View style={{ flexDirection: 'row', marginTop: 25 }}>
           <View style={{ flex: 1 }}>
             <Checkbox onChange={@onChangeCheckbox} name="isTermsOfLocationInformationChecked" isChecked={@state.isTermsOfLocationInformationChecked} label={<Text color="#cccccc" size={18}>위치기반 서비스 이용약관 (필수)</Text>} />
           </View>

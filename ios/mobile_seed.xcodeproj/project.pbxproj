@@ -339,6 +339,13 @@
 			remoteGlobalIDString = 3400A8081CEB54A6008A0BC7;
 			remoteInfo = imageCropPicker;
 		};
+		607D18D8212A871500665F14 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 67FC7F890FDD429A95795088 /* RSSignatureCapture.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0C53A99E1B56113D004F2642;
+			remoteInfo = RSSignatureCapture;
+		};
 		60F297B32119F22000C6F128 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 41D7D5643BCB4BBC861AF3DC /* RCTOneSignal.xcodeproj */;
@@ -685,6 +692,14 @@
 			path = ImageCropPickerSDK;
 			sourceTree = "<group>";
 		};
+		607D18AC212A871500665F14 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				607D18D9212A871500665F14 /* libRSSignatureCapture.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		60F297B02119F21F00C6F128 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -983,6 +998,10 @@
 					ProductGroup = 6016D9E9211651C500E75A00 /* Products */;
 					ProjectRef = B6E30386393141B1B31D66E2 /* RNVectorIcons.xcodeproj */;
 				},
+				{
+					ProductGroup = 607D18AC212A871500665F14 /* Products */;
+					ProjectRef = 67FC7F890FDD429A95795088 /* RSSignatureCapture.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -1252,6 +1271,13 @@
 			fileType = archive.ar;
 			path = libimageCropPicker.a;
 			remoteRef = 605E6B65211ABCCE0047BACE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		607D18D9212A871500665F14 /* libRSSignatureCapture.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRSSignatureCapture.a;
+			remoteRef = 607D18D8212A871500665F14 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		60F297B42119F22000C6F128 /* libRCTOneSignal.a */ = {

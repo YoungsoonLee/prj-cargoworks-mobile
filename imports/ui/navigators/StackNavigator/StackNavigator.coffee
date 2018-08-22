@@ -9,8 +9,8 @@ import Signup from '../../screens/Signup/Signup.coffee'
 import UpdateVehicle from '../../screens/UpdateVehicle/UpdateVehicle.coffee'
 import UpdateInsurance from '../../screens/UpdateInsurance/UpdateInsurance.coffee'
 import UpdateInsuranceForOthers from '../../screens/UpdateInsuranceForOthers/UpdateInsuranceForOthers.coffee'
-import BusinessCert from '../../screens/BusinessCert/BusinessCert.coffee'
-import BankAccount from '../../screens/BankAccount/BankAccount.coffee'
+import UpdateBusinessCert from '../../screens/UpdateBusinessCert/UpdateBusinessCert.coffee'
+import UpdateBankAccount from '../../screens/UpdateBankAccount/UpdateBankAccount.coffee'
 import Pending from '../../screens/Pending/Pending.coffee'
 import Main from '../../screens/Main/Main.coffee'
 import OrderDetail from '../../screens/OrderDetail/OrderDetail.coffee'
@@ -21,6 +21,9 @@ import PublishCashReceipt from '../../screens/PublishCashReceipt/PublishCashRece
 import Agent from '../../screens/Agent/Agent.coffee'
 import OrderGetSetting from '../../screens/OrderGetSetting/OrderGetSetting.coffee'
 import EmptySetting from '../../screens/EmptySetting/EmptySetting.coffee'
+import Setting from '../../screens/Setting/Setting.coffee'
+import PhoneNumbers from '../../screens/PhoneNumbers/PhoneNumbers.coffee'
+import UpdatePassword from '../../screens/UpdatePassword/UpdatePassword.coffee'
 
 export default StackNavigator
   Splash:
@@ -43,10 +46,10 @@ export default StackNavigator
     screen: UpdateInsurance
   UpdateInsuranceForOthers:
     screen: UpdateInsuranceForOthers
-  BusinessCert:
-    screen: BusinessCert
-  BankAccount:
-    screen: BankAccount
+  UpdateBusinessCert:
+    screen: UpdateBusinessCert
+  UpdateBankAccount:
+    screen: UpdateBankAccount
   Pending:
     screen: Pending
   Main:
@@ -67,5 +70,11 @@ export default StackNavigator
     screen: OrderGetSetting
   EmptySetting:
     screen: EmptySetting
+  Setting:
+    screen: Setting
+  PhoneNumbers:
+    screen: PhoneNumbers
+  UpdatePassword:
+    screen: UpdatePassword
 ,
   headerMode: 'none'

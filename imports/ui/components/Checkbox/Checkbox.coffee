@@ -1,5 +1,6 @@
 import { View } from 'react-native'
 import CheckBox from 'react-native-check-box'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 export default observer class Checkbox extends Component
   # @propTypes:
@@ -11,6 +12,7 @@ export default observer class Checkbox extends Component
   #   marginTop: PropTypes.number
   #   marginLeft: PropTypes.number
   #   isDisabled: PropTypes.bool
+  #   isRadio: PropTypes.bool
 
   @defaultProps:
     isChecked: false
@@ -21,6 +23,7 @@ export default observer class Checkbox extends Component
     marginTop: 0
     marginLeft: 0
     isDisabled: false
+    isRadio: false
 
   constructor: (props) ->
     super props
@@ -28,21 +31,27 @@ export default observer class Checkbox extends Component
     @state = observable
       isChecked: @props.isChecked
 
-  onClick: =>
-    @state.isChecked = not @state.isChecked
+  componentWillUpdate: (nextProps) =>
+    if not _.isEqual @props, nextProps
+      @state.isChecked = nextProps.isChecked
+
+  onPressCheckbox: =>
+    if @props.isRadio
+      @state.isChecked = true
+
+    else
+      @state.isChecked = not @state.isChecked
 
     @props.onChange @state.isChecked, @props.name
 
   render: =>
-    <CheckBox
-      style={{ marginTop: @props.marginTop, marginLeft: @props.marginLeft }}
-      checkBoxColor={@props.color}
-      rightTextView={
-        <View style={{ marginLeft: 10 }}>
-          { @props.label }
+    <View style={{ flexDirection: 'row', marginTop: @props.marginTop, marginLeft: @props.marginLeft }}>
+      <TouchableWithoutFeedback onPress={@onPressCheckbox}>
+        <View style={{ width: 40, alignItems: 'center', justifyContent: 'center' }}>
+          <Ionicons name="ios-checkbox" size={32} color={if @state.isChecked then '#c12d3a' else '#cccccc'} />
         </View>
-      }
-      onClick={@onClick}
-      isChecked={@state.isChecked}
-      disabled={@props.isDisabled}
-    />
+      </TouchableWithoutFeedback>
+      <View style={{ flex: 1, paddingLeft: 10, justifyContent: 'center' }}>
+        { @props.label }
+      </View>
+    </View>

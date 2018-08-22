@@ -14,7 +14,7 @@ export default observer class Login extends Component
         </Text>
         <View style={{ flex: 1 }} />
         <Input placeholder="아이디" />
-        <Input placeholder="비밀번호" />
+        <Input type="password" marginTop={5} placeholder="비밀번호" />
         <Button marginTop={30} color="light blue">로그인</Button>
         <View style={{ alignItems: 'center' }}>
           <Text marginTop={20} size={17}><Text size={17} underline onPress={=>}>아이디 찾기</Text> / <Text size={18} underline onPress={=>}>비밀번호 찾기</Text></Text>

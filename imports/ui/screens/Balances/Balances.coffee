@@ -28,8 +28,8 @@ export default observer class Balances extends Component
   renderBalances: =>
     balances = [0..5]
 
-    balances.map (balance) =>
-      <Touchable>
+    balances.map (balance, index) =>
+      <Touchable key={index}>
         <View style={{ height: 70, borderBottomWidth: 1, borderBottomColor: '#a6a6a6', flexDirection: 'row' }}>
           <View style={{ width: 85, justifyContent: 'center', paddingLeft: 7 }}>
             <Text>

@@ -1,8 +1,13 @@
 import UpdateInsuranceView from './UpdateInsuranceView.coffee'
+import withHandler from './withHandler.coffee'
 
-getDefaultState = =>
+getSelector = (props) =>
+  userId: props.user._id
+
+getDefaultState = (props) =>
+  console.log props.transporter
   value:
-    name: ''
-    idNumber: ''
+    name: props.transporter.cargoInsuranceInsuredName
+    idNumber: props.transporter.residentRegNumber
 
-export default UpdateInsurance = withState(getDefaultState) withValidation(['name', 'idNumber']) UpdateInsuranceView
+export default UpdateInsurance = withUser() withFindOne('transporters', getSelector) withState(getDefaultState) withValidation(['name', 'idNumber']) withHandler UpdateInsuranceView
