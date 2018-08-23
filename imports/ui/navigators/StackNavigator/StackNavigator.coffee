@@ -24,6 +24,7 @@ import EmptySetting from '../../screens/EmptySetting/EmptySetting.coffee'
 import Setting from '../../screens/Setting/Setting.coffee'
 import PhoneNumbers from '../../screens/PhoneNumbers/PhoneNumbers.coffee'
 import UpdatePassword from '../../screens/UpdatePassword/UpdatePassword.coffee'
+import Qnas from '../../screens/Qnas/Qnas.coffee'
 
 export default StackNavigator
   Splash:
@@ -76,5 +77,7 @@ export default StackNavigator
     screen: PhoneNumbers
   UpdatePassword:
     screen: UpdatePassword
+  Qnas:
+    screen: Qnas
 ,
   headerMode: 'none'

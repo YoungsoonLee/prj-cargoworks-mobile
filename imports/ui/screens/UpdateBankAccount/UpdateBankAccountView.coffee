@@ -52,8 +52,8 @@ export default observer class UpdateBankAccountView extends Component
         <Text size={14} marginTop={10}>주문수수료에 대한 현금영수증은 비용 증빙자료로 사용 가능합니다. 수신 내역은 국세청 홈텍스에서 확인할 수 있습니다.</Text>
         <Select marginTop={15} name="method" label="영수증 받는 방법" onChange={@onChangeSelect} value={@state.value.method}>
           <Picker.Item label="수신안함" value="수신안함" />
-          <Picker.Item label="휴대폰 번호" value="휴대폰 번호" />
-          <Picker.Item label="사업자등록 번호" value="사업자등록 번호" />
+          <Picker.Item label="휴대폰 번호" value="휴대폰번호" />
+          <Picker.Item label="사업자 등록번호" value="사업자등록번호" />
         </Select>
         <Input placeholder="번호" onChange={@onChangeInput} name="number" value={@state.value.number} />
       </ScrollView>

@@ -161,7 +161,7 @@ export default class Util
 
   @goToInitialScreen: (user) =>
     if not user._id
-      Util.reset 'UpdateVehicle'
+      Util.reset 'SignupInfo'
 
     else
-      Util.reset 'UpdateVehicle'
+      Util.reset 'Main'

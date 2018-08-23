@@ -22,7 +22,7 @@ export default withHandler = (WrappedComponent) =>
 
           return
 
-        Util.go 'Pending'
+        Util.reset 'Pending'
 
     render: =>
       <WrappedComponent {...@props} onPressNext={@onPressNext} />

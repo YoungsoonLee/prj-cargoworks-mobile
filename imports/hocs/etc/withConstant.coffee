@@ -11,7 +11,7 @@ export default withConstant = (collectionName) =>
       componentWillMount: =>
         Meteor.call "#{collectionName}.getConstant", (error, constant) =>
           if error
-            utils.alert error.reason
+            Util.alert error.reason
 
             return
 

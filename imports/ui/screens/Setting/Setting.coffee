@@ -26,7 +26,7 @@ export default observer class Setting extends Component
         <CwHeader>고객센터</CwHeader>
         <ListItem>공지사항</ListItem>
         <ListItem>자주 묻는 질문</ListItem>
-        <ListItem>문의하기</ListItem>
+        <ListItem onPress={@onPressListItem} name="Qnas">문의하기</ListItem>
         <ListItem>서비스 이용약관</ListItem>
         <ListItem>위치기반 서비스 이용약관</ListItem>
         <ListItem isBorderBottomVisible={false}>어플리케이션 정보</ListItem>
