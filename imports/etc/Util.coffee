@@ -83,11 +83,6 @@ export default class Util
 
     [vehicle, weight]
 
-  @logout: (callback) =>
-    OneSignal.sendTag 'id', ''
-
-    Meteor.logout callback
-
   @getCount: =>
     state.count
 
@@ -105,6 +100,48 @@ export default class Util
       text: '확인',
       onPress: onConfirm
     ]
+
+  @logout: (callback) =>
+    OneSignal.sendTag 'id', ''
+
+    Meteor.logout callback
+
+  @login: (email, password, callback) =>
+    Meteor.loginWithPassword email, password, (error) =>
+      if error
+        if error.reason is 'User not found'
+          error.reason = '존재하지 않는 이메일입니다.'
+
+        else if error.reason is 'Incorrect password'
+          error.reason = '비밀번호가 틀립니다.'
+
+        callback error
+
+        return
+
+      userId = Meteor.userId()
+
+      if not userId
+        error =
+          reason: '로그인에 실패했습니다.'
+
+        @logout =>
+          callback error
+
+      Meteor.call 'users.update',
+        _id: userId
+      ,
+        $set:
+          'profile.appState': 'active'
+      , (error) =>
+        if error
+          callback error
+
+          return
+
+        OneSignal.sendTag 'id', userId
+
+        callback()
 
   @getFormattedPrice: (amount) =>
     parseInt(amount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
@@ -126,23 +163,6 @@ export default class Util
           error.reason = '이미 존재하는 이메일입니다.'
 
       callback error
-
-  @login: (email, password, callback) =>
-    Meteor.loginWithPassword email, password, (error) =>
-      if error
-        if error.reason is 'User not found'
-          error.reason = '존재하지 않는 이메일입니다.'
-
-        else if error.reason is 'Incorrect password'
-          error.reason = '비밀번호가 틀립니다.'
-
-        callback error, Meteor.user()
-
-        return
-
-      OneSignal.sendTag 'id', Meteor.userId()
-
-      callback null, Meteor.user()
 
   @go: (routeName, param) =>
     stackNavigation.navigate routeName, param

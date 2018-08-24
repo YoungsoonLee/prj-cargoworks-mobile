@@ -1,8 +1,17 @@
 import Livechat from 'react-native-livechat'
 
 export default observer class Qnas extends Component
+  constructor: (props) ->
+    super props
+
+    @state = observable
+      isBubblePressed: false
+
   onPressBack: =>
     Util.back()
+
+  componentDidMount: =>
+    @livechatRef.openChat()
 
   render: =>
     <View style={{ flex: 1, backgroundColor: white }}>
@@ -23,5 +32,9 @@ export default observer class Qnas extends Component
           <View style={{ width: 52 }} />
         </View>
       </View>
-      <Livechat license={10047538} bubbleLeft={width / 2 - 30} bubbleTop={height / 2} />
+      <Livechat
+        ref={(ref) => @livechatRef = ref}
+        license={10047538}
+        bubble={<View />}
+      />
     </View>
