@@ -1,3 +1,12 @@
 import SelectVehiclePopupView from './SelectVehiclePopupView.coffee'
 
-export default SelectVehiclePopup = withConstant('transporters') SelectVehiclePopupView
+getDefaultState = =>
+  vehicles: []
+
+getHocs = =>
+  [
+    withState(getDefaultState, 'cState')
+    withConstant('transporters')
+  ]
+
+export default SelectVehiclePopup = withHocs(getHocs) SelectVehiclePopupView

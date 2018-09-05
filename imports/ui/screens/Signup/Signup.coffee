@@ -2,9 +2,35 @@ import SignupView from './SignupView.coffee'
 import withHandler from './withHandler.coffee'
 
 getDefaultState = =>
-  value:
-    username: ''
-    password: ''
-    passwordConfirm: ''
+  id: ''
+  password: ''
+  passwordConfirm: ''
 
-export default Signup = withDefaultObject('transporters') withState(getDefaultState) withValidation(['username', 'password', 'passwordConfirm']) withHandler SignupView
+getItems = (props) =>
+  [
+    path: 'id'
+    validate: 'id'
+    isRequired: true
+  ,
+    path: 'password'
+    validate: 'password'
+    isRequired: true
+  ,
+    path: 'passwordConfirm'
+    validate: (value) =>
+      if value isnt props.state.password
+        return '비밀번호가 같지 않습니다.'
+
+      ''
+    isRequired: true
+  ]
+
+getHocs = =>
+  [
+    withDefaultObject('transporters')
+    withState(getDefaultState)
+    withValidation(getItems)
+    withHandler
+  ]
+
+export default Signup = withHocs(getHocs) SignupView

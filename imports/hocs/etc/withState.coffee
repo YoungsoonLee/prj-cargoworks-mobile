@@ -1,4 +1,4 @@
-export default withState = (getDefaultState = =>) =>
+export default withState = (getDefaultState = =>, propName = 'state') =>
   (WrappedComponent) =>
     observer class WithState extends Component
       constructor: (props) ->
@@ -9,4 +9,7 @@ export default withState = (getDefaultState = =>) =>
         @state = observable defaultState
 
       render: =>
-        <WrappedComponent {...@props} state={@state} />
+        prop =
+          [propName]: @state
+          
+        <WrappedComponent {...@props} {...prop} />

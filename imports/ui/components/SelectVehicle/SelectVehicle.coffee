@@ -1,45 +1,27 @@
 export default observer class SelectVehicle extends Component
   # @propTypes:
   #   isSwitch: PropTypes.bool
-  #   onChange: PropTypes.func
 
   @defaultProps:
     isSwitch: false
-    onChange: =>
-
-  constructor: (props) ->
-    super props
-
-    @state = observable
-      vehicles: @props.vehicles
-
-    reaction(
-      =>
-        @state.vehicles
-    ,
-      =>
-        @props.onChange @state.vehicles
-    )
 
   vehicleItemWidth: (width - 5 * 5) / 4
 
-  componentWillUpdate: (nextProps) =>
-    if not _.isEqual @props, nextProps
-      @state.vehicles = nextProps.vehicles
-
   onPressVehicle: (name) =>
     if @props.isSwitch
-      @state.vehicles = [name]
+      _set @props.state, @props.vehiclesPath, [name]
 
     else
-      if name in @state.vehicles
-        index = @state.vehicles.findIndex (vehicle) =>
+      if name in _get @props.state, @props.vehiclesPath
+        vehicles = _get @props.state, @props.vehiclesPath
+
+        index = vehicles.findIndex (vehicle) =>
           name is vehicle
 
-        @state.vehicles.splice index, 1
+        splice @props.state, @props.vehiclesPath, index, 1
 
       else
-        @state.vehicles.push name
+        push @props.state, @props.vehiclesPath, name
 
   renderVehicles0: =>
     vehicles = [
@@ -50,7 +32,7 @@ export default observer class SelectVehicle extends Component
     ]
 
     vehicles.map (vehicle, index) =>
-      <Button key={index} name={vehicle} onPress={@onPressVehicle} paddingHorizontal={0} textSize={15} color={if vehicle in @state.vehicles then 'blue' else 'white'} width={@vehicleItemWidth} height={45} marginLeft={5} marginTop={5}>{ vehicle }</Button>
+      <Button key={index} name={vehicle} onPress={@onPressVehicle} paddingHorizontal={0} textSize={15} color={if vehicle in _get @props.state, @props.vehiclesPath then 'blue' else 'white'} width={@vehicleItemWidth} height={45} marginLeft={5} marginTop={5}>{ vehicle }</Button>
 
   renderVehicles1: =>
     vehicles = [
@@ -78,7 +60,7 @@ export default observer class SelectVehicle extends Component
       for vehicle in vehicles
         name = "#{weight} #{vehicle}"
 
-        vehicleItems.push <Button key={name} name={name} onPress={@onPressVehicle} paddingHorizontal={0} textSize={15} color={if name in @state.vehicles then 'blue' else 'white'} width={@vehicleItemWidth} height={45} marginLeft={5} marginTop={5}>{ name }</Button>
+        vehicleItems.push <Button key={name} name={name} onPress={@onPressVehicle} paddingHorizontal={0} textSize={15} color={if name in _get @props.state, @props.vehiclesPath then 'blue' else 'white'} width={@vehicleItemWidth} height={45} marginLeft={5} marginTop={5}>{ name }</Button>
 
     vehicleItems
 
@@ -90,7 +72,7 @@ export default observer class SelectVehicle extends Component
           { @renderVehicles1() }
         </View>
         <View style={{ flex: 1, justifyContent: 'flex-end' }}>
-          <Button name="츄레라" onPress={@onPressVehicle} paddingHorizontal={0} textSize={15} color={if '츄레라' in @state.vehicles then 'blue' else 'white'} width={@vehicleItemWidth} height={45} marginLeft={5} marginTop={5}>츄레라</Button>
+          <Button name="츄레라" onPress={@onPressVehicle} paddingHorizontal={0} textSize={15} color={if '츄레라' in _get @props.state, @props.vehiclesPath then 'blue' else 'white'} width={@vehicleItemWidth} height={45} marginLeft={5} marginTop={5}>츄레라</Button>
         </View>
       </View>
     </View>

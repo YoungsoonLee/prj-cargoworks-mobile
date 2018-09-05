@@ -2,7 +2,7 @@ export default withHandler = (WrappedComponent) =>
   observer class WithHandler extends Component
     onPressNext: =>
       WEIGHT = _.find @props.TRANSPORTERS.VEHICLES.PARCEL.WEIGHTS, (WEIGHT) =>
-        WEIGHT.VALUE is @props.state.value.weight
+        WEIGHT.VALUE is @props.state.weight
 
       if WEIGHT
         vehicleType = @props.TRANSPORTERS.VEHICLES.PARCEL.VALUE
@@ -14,18 +14,18 @@ export default withHandler = (WrappedComponent) =>
         _id: @props.user.profile.transporterId
       ,
         $set:
-          vehiclePlateNumbers: @props.state.value.carNumber
-          vehicleRegistrationImageUrl: @props.state.value.carRegisterImageUrl
+          vehiclePlateNumbers: @props.state.carNumber
+          vehicleRegistrationImageUrl: @props.state.carRegisterImageUrl
           vehicleType: vehicleType
-          vehicleWeightCapacity: @props.state.value.weight
-          freightBoxType: @props.state.value.boxType
+          vehicleWeightCapacity: @props.state.weight
+          freightBoxType: @props.state.boxType
       , (error) =>
         if error
           Util.alert error.reason
 
           return
 
-        if @props.state.value.weight is @props.TRANSPORTERS.VEHICLES.PARCEL.WEIGHTS.MOTOR_BIKE.VALUE
+        if @props.state.weight is @props.TRANSPORTERS.VEHICLES.PARCEL.WEIGHTS.MOTOR_BIKE.VALUE
           Util.go 'UpdateInsurance'
 
         else
