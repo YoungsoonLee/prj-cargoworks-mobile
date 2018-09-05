@@ -1,6 +1,8 @@
 export default withHandler = (WrappedComponent) =>
   observer class WithHandler extends Component
     onPressNext: =>
+      console.log 'next'
+
       WEIGHT = _.find @props.TRANSPORTERS.VEHICLES.PARCEL.WEIGHTS, (WEIGHT) =>
         WEIGHT.VALUE is @props.state.weight
 
@@ -25,7 +27,7 @@ export default withHandler = (WrappedComponent) =>
 
           return
 
-        if @props.state.weight is @props.TRANSPORTERS.VEHICLES.PARCEL.WEIGHTS.MOTOR_BIKE.VALUE
+        if @props.state.weight isnt @props.TRANSPORTERS.VEHICLES.PARCEL.WEIGHTS.MOTOR_BIKE.VALUE
           Util.go 'UpdateInsurance'
 
         else

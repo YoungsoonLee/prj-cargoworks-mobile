@@ -5,10 +5,33 @@ getSelector = (props) =>
   userId: props.user._id
 
 getDefaultState = (props) =>
-  value:
-    carNumber: props.transporter.vehiclePlateNumbers
-    weight: props.transporter.vehicleWeightCapacity
-    boxType: props.transporter.freightBoxType
-    carRegisterImageUrl: props.transporter.vehicleRegistrationImageUrl
+  carNumber: props.transporter.vehiclePlateNumbers
+  isSelectVehiclePopupVisible: false
+  weight: props.transporter.vehicleWeightCapacity
+  boxType: props.transporter.freightBoxType
+  vehicle: Util.getVehicle props.transporter.vehicleWeightCapacity, props.transporter.freightBoxType, props.TRANSPORTERS
+  carRegisterImageUrl: props.transporter.vehicleRegistrationImageUrl
 
-export default UpdateVehicle = withUser() withFindOne('transporters', getSelector) withConstant('transporters') withState(getDefaultState) withHandler UpdateVehicleView
+getItems = =>
+  [
+    path: 'carNumber'
+    isRequired: true
+  ,
+    path: 'vehicle'
+    isRequired: true
+  ,
+    path: 'carRegisterImageUrl'
+    isRequired: true
+  ]
+
+getHocs = =>
+  [
+    withUser()
+    withFindOne('transporters', getSelector)
+    withConstant('transporters')
+    withState(getDefaultState)
+    withValidation(getItems)
+    withHandler
+  ]
+
+export default UpdateVehicle = withHocs(getHocs) UpdateVehicleView
