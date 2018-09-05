@@ -1,26 +1,4 @@
 export default observer class UpdateInsuranceForOthersView extends Component
-  constructor: (props) ->
-    super props
-
-    @state = observable
-      value: @props.state.value
-      isAgreeChecked: false
-
-  onChangeInput: (value, isValid, name) =>
-    @state.value[name] = value
-
-    @props.validation[name] = isValid
-
-  onChangeCheckbox: (isChecked, name) =>
-    if name is 'isntAgreeChecked'
-      @state.isAgreeChecked = false
-
-      @state.value.name = ''
-      @state.value.idNumber = ''
-
-    else if name is 'isAgreeChecked'
-      @state.isAgreeChecked = true
-
   onPressNext: =>
     @props.onPressNext()
 
@@ -35,14 +13,14 @@ export default observer class UpdateInsuranceForOthersView extends Component
           {'\n'}
           보상 최고한도 : 5천만원
         </Text>
-        <Checkbox isRadio label={<Text>이미 개인적으로 적재물배상책임보험에 가입되어있습니다.</Text>} marginTop={30} onChange={@onChangeCheckbox} name="isntAgreeChecked" isChecked={not @state.isAgreeChecked} />
-        <Checkbox isRadio label={<Text>카고웍스의 적재물배상책임보험 피보험자 가입에 동의합니다. (선택)</Text>} marginTop={20} onChange={@onChangeCheckbox} name="isAgreeChecked" isChecked={@state.isAgreeChecked} />
-        { @state.isAgreeChecked and
+        <Checkbox isRadio label={<Text>이미 개인적으로 적재물배상책임보험에 가입되어있습니다.</Text>} marginTop={30} state={@props.state} path="isAlreadyRegistered" />
+        <Checkbox isRadio label={<Text>카고웍스의 적재물배상책임보험 피보험자 가입에 동의합니다. (선택)</Text>} marginTop={20} state={@props.state} path="isAgreeChecked" />
+        { @props.state.isAgreeChecked and
           <View>
-            <Input isRequired placeholder="이름(실명)" marginTop={10} onChange={@onChangeInput} name="name" value={@state.value.name} />
-            <Input isRequired placeholder="주민등록번호" marginTop={10} onChange={@onChangeInput} name="idNumber" value={@state.value.idNumber} />
+            <Input isRequired placeholder="이름(실명)" marginTop={10} state={@props.state} path="name" />
+            <Input isRequired placeholder="주민등록번호" marginTop={10} state={@props.state} path="idNumber" />
           </View>
           }
       </ScrollView>
-      <Button isDisabled={not @props.validation.isValid and @state.isAgreeChecked} borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>다음</Button>
+      <Button isDisabled={not @props.validation.isValid and @props.state.isAgreeChecked} borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>다음</Button>
     </Layout>

@@ -1,9 +1,29 @@
 import UpdateInsuranceForOthersView from './UpdateInsuranceForOthersView.coffee'
 import withHandler from './withHandler.coffee'
+import withReaction from './withReaction.coffee'
 
 getDefaultState = =>
-  value:
-    name: ''
-    idNumber: ''
+  name: ''
+  idNumber: ''
+  isAgreeChecked: false
+  isAlreadyRegistered: true
 
-export default UpdateInsuranceForOthers = withUser() withState(getDefaultState) withValidation(['name', 'idNumber']) withHandler UpdateInsuranceForOthersView
+getItems = =>
+  [
+    path: 'name'
+    isRequired: true
+  ,
+    path: 'idNumber'
+    isRequired: true
+  ]
+
+getHocs = =>
+  [
+    withUser()
+    withState(getDefaultState)
+    withValidation(getItems)
+    withReaction
+    withHandler
+  ]
+
+export default UpdateInsuranceForOthers = withHocs(getHocs) UpdateInsuranceForOthersView
