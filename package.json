@@ -1,12 +1,14 @@
 {
   "name": "mobile_seed",
-  "version": "0.0.1",
+  "version": "0.0.2",
+  "build": "2",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
-    "build-android": "cd android && ./gradlew assembleRelease",
-    "bundle-ios": "react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest assets"
+    "patch-version": "node ./js/imports/patch_version.js",
+    "build-android": "npm run patch-version && cd android && ./gradlew assembleRelease",
+    "bundle-ios": "npm run patch-version && react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ./"
   },
   "dependencies": {
     "lodash": "^4.17.10",
@@ -30,7 +32,7 @@
     "react-navigation": "^2.11.2",
     "rn-fetch-blob": "^0.10.12",
     "slap-react-native-accordion": "3.0.4",
-    "slap-react-native-badge": "^3.0.5",
+    "slap-react-native-badge": "3.0.5",
     "slap-react-native-calendar": "3.0.2",
     "slap-react-native-image-frame": "3.0.15",
     "slap-react-native-input": "3.0.8",
@@ -55,7 +57,8 @@
     "gulp-replace": "^1.0.0",
     "gulp-watch": "^5.0.1",
     "jest": "23.4.1",
-    "react-test-renderer": "16.4.1"
+    "react-test-renderer": "16.4.1",
+    "replace-in-file": "^3.4.2"
   },
   "jest": {
     "preset": "react-native"
