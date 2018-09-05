@@ -1,16 +1,18 @@
 import { TextInput, Platform } from 'react-native'
 
 export default observer class Input extends Component
-  @propTypes:
-    placeholder: PropTypes.string
-    marginTop: PropTypes.number
-    maxLength: PropTypes.number
-    onFocus: PropTypes.func
-    onBlur: PropTypes.func
-    isDisabled: PropTypes.bool
-    type: PropTypes.oneOf ['text', 'number', 'password']
-    state: PropTypes.object
-    name: PropTypes.string
+  # @propTypes:
+  #   placeholder: PropTypes.string
+  #   marginTop: PropTypes.number
+  #   maxLength: PropTypes.number
+  #   onFocus: PropTypes.func
+  #   onBlur: PropTypes.func
+  #   isDisabled: PropTypes.bool
+  #   type: PropTypes.oneOf ['text', 'number', 'password']
+  #   state: PropTypes.object
+  #   path: PropTypes.string
+  #   name: PropTypes.string
+  #   returnKeyType: PropTypes.oneOf ['done', 'send']
 
   @defaultProps:
     placeholder: ''
@@ -21,34 +23,47 @@ export default observer class Input extends Component
     isDisabled: false
     type: 'text'
     state: {}
-    # placeholderColor: '#3c4f5e',
-    # underlineColor: '#cfcfcf',
-    # focusedPlaceholderColor: '#cfcfcf',
-    # focusedUnderlineColor: '#4d4d4d',
-    # selectionColor: '#4d4d4d',
-    # errorColor: '#d0021b',
-    # textColor: '#4d4d4d',
+    path: 'path'
     name: ''
+    returnKeyType: 'done'
 
   constructor: (props) ->
     super props
 
+    value = _get @props.state, @props.path
+
     @state = observable
-      value: ''
+      value: value
+      isFocused: if value then true else false
 
     reaction(
       =>
-        @state.
+        @state.value
     ,
       =>
-        @props
+        _set @props.state, @props.path, @state.value
+    )
+
+    reaction(
+      =>
+        _get @props.state, @props.path
+    ,
+      =>
+        @state.value = _get @props.state, @props.path
     )
 
   onFocus: =>
+    @state.isFocused = true
+
     @props.onFocus @props.name
 
   onBlur: =>
+    @state.isFocused = false
+
     @props.onFocus @props.name
+
+  onChange: (value) =>
+    @state.value = value
 
   render: =>
     if @props.type is 'email'
@@ -58,31 +73,24 @@ export default observer class Input extends Component
       keyboardType = 'numeric'
 
     else
-      keyboardType = 'text'
+      keyboardType = 'default'
 
-    <View style={[{ justifyContent: 'flex-end', height: 50, borderBottomWidth: 1, borderBottomColor: this.animatedBorderBottomColor, marginTop: this.props.marginTop }, this.state.overlaidBorderBottomStyle ]}>
-      <View style={{ position: 'absolute', top: 15, transform: [{ translateY: this.animatedTranslateY }], flexDirection: 'row' }}>
-        <Text style={{ fontSize: this.animatedFontSize, color: this.animatedColor, fontFamily: Platform.OS == 'android' ? 'sans-serif' : 'Apple SD Gothic Neo' }}>
-          { this.props.placeholder }
-        </Text>
-        { this.state.error != 'blank' && !!this.state.error &&
-          <Font.H6 fontSize={10} color={this.props.errorColor} marginLeft={5}>{ this.state.error }</Font.H6>
-        }
-      </View>
+    <View style={{ height: 45, borderBottomWidth: 1, borderBottomColor: (if @state.isFocused then @props.color else '#cfcfcf'), marginTop: @props.marginTop }}>
       <TextInput
-        ref={(ref) => { this.textInputRef = ref; }}
-        onFocus={this.onFocus}
-        onBlur={this.onBlur}
-        onChangeText={this.onChangeText}
-        style={{ height: 40, paddingTop: 10, color: this.props.textColor }}
-        maxLength={this.props.max}
+        returnKeyType={@props.returnKeyType}
+        onFocus={@onFocus}
+        onBlur={@onBlur}
+        onChangeText={@onChange}
+        style={{ height: 40 }}
+        placeholder={@props.placeholder}
+        maxLength={@props.maxLength}
         keyboardType={keyboardType}
-        selectionColor={this.props.selectionColor}
-        secureTextEntry={this.props.type == 'password' ? true : this.props.isSecure}
+        selectionColor={@props.color}
+        secureTextEntry={@props.type is 'password'}
         autoCapitalize="none"
         autoCorrect={false}
-        editable={!this.props.isDisabled}
-        value={this.state.text}
+        editable={not @props.isDisabled}
+        value={@state.value}
         underlineColorAndroid="transparent"
       />
     </View>
