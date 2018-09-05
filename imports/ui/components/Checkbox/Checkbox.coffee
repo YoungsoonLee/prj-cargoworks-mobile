@@ -1,57 +1,69 @@
-import { View } from 'react-native'
-import CheckBox from 'react-native-check-box'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
 export default observer class Checkbox extends Component
   # @propTypes:
-  #   isChecked: PropTypes.bool
-  #   onChange: PropTypes.func
-  #   name: PropTypes.string
   #   color: PropTypes.string
-  #   label: PropTypes.element
+  #   label: PropTypes.oneOfType [PropTypes.string, PropTypes.element]
   #   marginTop: PropTypes.number
   #   marginLeft: PropTypes.number
   #   isDisabled: PropTypes.bool
   #   isRadio: PropTypes.bool
+  #   state: PropTypes.object
+  #   path: PropTypes.string
 
   @defaultProps:
-    isChecked: false
-    onChange: =>
-    name: ''
     color: null
-    label: <View />
+    label: ''
     marginTop: 0
     marginLeft: 0
     isDisabled: false
     isRadio: false
+    state: {}
+    path: 'path'
 
   constructor: (props) ->
     super props
 
     @state = observable
-      isChecked: @props.isChecked
+      isChecked: _get @props.state, @props.path
 
-  componentWillUpdate: (nextProps) =>
-    if not _.isEqual @props, nextProps
-      @state.isChecked = nextProps.isChecked
+    reaction(
+      =>
+        @state.isChecked
+    ,
+      =>
+        _set @props.state, @props.path, @state.isChecked
+    )
 
-  onPressCheckbox: =>
+    reaction(
+      =>
+        _get @props.state, @props.path
+    ,
+      =>
+        @state.isChecked = _get @props.state, @props.path
+    )
+
+  onPress: =>
     if @props.isRadio
       @state.isChecked = true
 
     else
       @state.isChecked = not @state.isChecked
 
-    @props.onChange @state.isChecked, @props.name
-
   render: =>
+    if typeof @props.label is 'string'
+      content = <Text>{ @props.label }</Text>
+
+    else
+      content = @props.label
+
     <View style={{ flexDirection: 'row', marginTop: @props.marginTop, marginLeft: @props.marginLeft }}>
-      <TouchableWithoutFeedback onPress={@onPressCheckbox}>
+      <TouchableWithoutFeedback onPress={@onPress}>
         <View style={{ width: 40, alignItems: 'center', justifyContent: 'center' }}>
           <Ionicons name="ios-checkbox" size={32} color={if @state.isChecked then '#c12d3a' else '#cccccc'} />
         </View>
       </TouchableWithoutFeedback>
       <View style={{ flex: 1, paddingLeft: 10, justifyContent: 'center' }}>
-        { @props.label }
+        { content }
       </View>
     </View>
