@@ -6,7 +6,6 @@ import PropTypes from 'prop-types'
 import _ from 'lodash'
 import uuid from 'uuid/v1'
 import moment from 'moment'
-import Util from '../etc/Util.coffee'
 
 global.React = React
 global.Component = Component
@@ -20,4 +19,3 @@ global.PropTypes = PropTypes
 global._ = _
 global.uuid = uuid
 global.moment = moment
-global.Util = Util

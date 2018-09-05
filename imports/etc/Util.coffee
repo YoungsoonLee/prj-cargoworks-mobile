@@ -4,7 +4,31 @@ import { Alert } from 'react-native'
 import { Accounts } from 'react-native-meteor'
 import OneSignal from 'react-native-onesignal'
 
-export default class Util
+export default observer class Util extends Component
+  @getCount: =>
+    state.count
+
+  @get: (state, path) =>
+    console.log 'state', state
+    console.log 'path', path
+    value = ''
+
+    eval "value = state.#{path}"
+
+    value
+
+  @set: (state, path, value) =>
+    eval "state.#{path} = value"
+
+  @push: (state, path, value) =>
+    eval "state.#{path}.push(value)"
+
+  @unshift: (state, path, value) =>
+    eval "state.#{path}.unshift(value)"
+
+  @splice: (state, path, startIndex, endIndex) =>
+    eval "state.#{path}.splice(startIndex, endIndex)"
+
   @getVehicle: (_weight, _vehicle, TRANSPORTERS) =>
     WEIGHT = _.find TRANSPORTERS.VEHICLES.PARCEL.WEIGHTS, (WEIGHT) =>
       WEIGHT.VALUE is _weight
@@ -83,9 +107,6 @@ export default class Util
 
     [vehicle, weight]
 
-  @getCount: =>
-    state.count
-
   @alert: (content, onConfirm = =>) =>
     Alert.alert null, content, [
       text: '확인'
@@ -110,7 +131,7 @@ export default class Util
     Meteor.loginWithPassword email, password, (error) =>
       if error
         if error.reason is 'User not found'
-          error.reason = '존재하지 않는 이메일입니다.'
+          error.reason = '존재하지 않는 아이디입니다.'
 
         else if error.reason is 'Incorrect password'
           error.reason = '비밀번호가 틀립니다.'
@@ -119,17 +140,22 @@ export default class Util
 
         return
 
-      userId = Meteor.userId()
+      user = Meteor.user()
 
-      if not userId
+      if not user
         error =
           reason: '로그인에 실패했습니다.'
 
-        @logout =>
+        @logout (_error) =>
+          if _error
+            callback _error
+
+            return
+
           callback error
 
       Meteor.call 'users.update',
-        _id: userId
+        _id: user._id
       ,
         $set:
           'profile.appState': 'active'
@@ -139,9 +165,9 @@ export default class Util
 
           return
 
-        OneSignal.sendTag 'id', userId
+        OneSignal.sendTag 'id', user._id
 
-        callback()
+        callback error, user
 
   @getFormattedPrice: (amount) =>
     parseInt(amount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
@@ -152,9 +178,6 @@ export default class Util
 
     else
       return moment(date).format('YYYY-MM-DD HH:mm')
-
-  @getAge: (birthYear) =>
-    moment().year() - parseInt(birthYear) + 1
 
   @createUser: (option, callback) =>
     Accounts.createUser option, (error) =>
@@ -181,7 +204,7 @@ export default class Util
 
   @goToInitialScreen: (user) =>
     if not user._id
-      Util.reset 'SignupInfo'
+      Util.reset 'UpdateVehicle'
 
     else
-      Util.reset 'Main'
+      Util.reset 'UpdateVehicle'

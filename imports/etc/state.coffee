@@ -1,6 +1,8 @@
 export default state = observable
   count: 0
-  verifyPhoneNumberValue: {}
+  verifyPhoneNumberValue:
+    name: ''
+    phoneNumber: ''
   header:
     isSimpleMode: false
     title: '주문설정'

@@ -7,5 +7,5 @@ global.state = state
 global.width = Dimensions.get('window').width
 global.height = Dimensions.get('window').height
 
-# global.isProduction = false
-global.isProduction = true
+global.isProduction = false
+# global.isProduction = true

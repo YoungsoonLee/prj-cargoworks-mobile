@@ -1,7 +1,7 @@
 if isProduction
-  global.backendIp = 'cargoworks.cc'
+  global.backendIp = 'test.cargoworks.cc'
 
 else
-  global.backendIp = '192.168.0.36:3000'
+  global.backendIp = 'test.cargoworks.cc'
 
 Meteor.connect "ws://#{backendIp}/websocket"
