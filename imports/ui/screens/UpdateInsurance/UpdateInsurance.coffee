@@ -5,9 +5,29 @@ getSelector = (props) =>
   userId: props.user._id
 
 getDefaultState = (props) =>
-  console.log props.transporter
-  value:
-    name: props.transporter.cargoInsuranceInsuredName
-    idNumber: props.transporter.residentRegNumber
+  name: props.transporter.cargoInsuranceInsuredName
+  idNumber: props.transporter.residentRegNumber
+  isAgreeChecked: false
 
-export default UpdateInsurance = withUser() withFindOne('transporters', getSelector) withState(getDefaultState) withValidation(['name', 'idNumber']) withHandler UpdateInsuranceView
+getItems = =>
+  [
+    path: 'name'
+    isRequired: true
+  ,
+    path: 'idNumber'
+    isRequired: true
+  ,
+    path: 'isAgreeChecked'
+    validate: 'true'
+  ]
+
+getHocs = =>
+  [
+    withUser()
+    withFindOne('transporters', getSelector)
+    withState(getDefaultState)
+    withValidation(getItems)
+    withHandler
+  ]
+
+export default UpdateInsurance = withHocs(getHocs) UpdateInsuranceView

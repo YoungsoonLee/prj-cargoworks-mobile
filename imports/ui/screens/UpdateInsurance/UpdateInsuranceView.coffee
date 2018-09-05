@@ -1,22 +1,4 @@
 export default observer class UpdateInsuranceView extends Component
-  constructor: (props) ->
-    super props
-
-    @state = observable
-      value: @props.state.value
-      isAgreeChecked: if @props.state.value.name then true else false
-
-    @props.validation.name = @state.value.name and true
-    @props.validation.idNumber = @state.value.idNumber and true
-
-  onChangeInput: (value, isValid, name) =>
-    @state.value[name] = value
-
-    @props.validation[name] = isValid
-
-  onChangeCheckbox: (isChecked, name) =>
-    @state[name] = isChecked
-
   onPressNext: =>
     @props.onPressNext()
 
@@ -30,9 +12,9 @@ export default observer class UpdateInsuranceView extends Component
           {'\n'}
           보상 최고한도 : 1천만원
         </Text>
-        <Checkbox label={<Text>카고웍스의 적재물배상책임보험 피보험자 가입에 동의합니다. (필수)</Text>} marginTop={30} onChange={@onChangeCheckbox} name="isAgreeChecked" isChecked={@state.isAgreeChecked} />
-        <Input isRequired placeholder="이름(실명)" marginTop={10} onChange={@onChangeInput} name="name" value={@state.value.name} />
-        <Input isRequired placeholder="주민등록번호" marginTop={10} onChange={@onChangeInput} name="idNumber" value={@state.value.idNumber} />
+        <Checkbox label={<Text>카고웍스의 적재물배상책임보험 피보험자 가입에 동의합니다. (필수)</Text>} marginTop={30} state={@props.state} path="isAgreeChecked" />
+        <Input isRequired placeholder="이름(실명)" marginTop={10} state={@props.state} path="name" />
+        <Input isRequired placeholder="주민등록번호" marginTop={10} state={@props.state} path="idNumber" />
       </View>
-      <Button isDisabled={not @props.validation.isValid or not @state.isAgreeChecked} borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>다음</Button>
+      <Button isDisabled={not @props.validation.isValid} borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>다음</Button>
     </Layout>

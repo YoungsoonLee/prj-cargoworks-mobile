@@ -6,8 +6,8 @@ export default withHandler = (WrappedComponent) =>
       ,
         $set:
           hasAgreedForCargoInsurance: true
-          cargoInsuranceInsuredName: @props.state.value.name
-          residentRegNumber: @props.state.value.idNumber
+          cargoInsuranceInsuredName: @props.state.name
+          residentRegNumber: @props.state.idNumber
       , (error) =>
         if error
           Util.alert error.reason
