@@ -19,7 +19,7 @@ export default withHandler = (WrappedComponent) =>
           regName: @props.state.value.storeName
           ownerName: @props.state.value.name
           address: @props.state.value.address
-          phoneNumber: @props.state.value.contactNumber
+          contactNumber: @props.state.value.contactNumber
       , (error) =>
         if error
           Util.alert error.reason

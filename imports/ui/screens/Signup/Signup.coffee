@@ -17,11 +17,16 @@ getItems = (props) =>
     isRequired: true
   ,
     path: 'passwordConfirm'
-    validate: (value) =>
+    getError: (value) =>
       if value isnt props.state.password
         return '비밀번호가 같지 않습니다.'
 
       ''
+    validate: (value) =>
+      if value isnt props.state.password
+        return false
+
+      true
     isRequired: true
   ]
 

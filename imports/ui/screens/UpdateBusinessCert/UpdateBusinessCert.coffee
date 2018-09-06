@@ -1,5 +1,6 @@
 import UpdateBusinessCertView from './UpdateBusinessCertView.coffee'
 import withHandler from './withHandler.coffee'
+import withReaction from './withReaction.coffee'
 
 getSelector = (props) =>
   _id: props.user.profile.transporterId
@@ -10,11 +11,11 @@ getDefaultState = (props) =>
     storeName: props.transporter.regName
     name: props.transporter.ownerName
     address: props.transporter.address
-    contactNumber: props.transporter.phoneNumber
-  isRegNumberValid: props.transporter.regNumber and true
-  isRegNumberChecked: props.transporter.regNumber and true
+    contactNumber: props.transporter.contactNumber or ''
+  isRegNumberValid: if props.transporter.regNumber then true else false
+  isRegNumberChecked: if props.transporter.regNumber then true else false
 
-getItems = =>
+getItems = (props) =>
   [
     path: 'value.regNumber'
     isRequired: true
@@ -32,14 +33,26 @@ getItems = =>
     isRequired: true
   ,
     path: 'isRegNumberValid'
-    validate: (value) =>
+    getError: (value) =>
+      if not props.state.value.regNumber
+        return ''
+
       if not value
-        '사업자등록번호가 유효하지 않습니다.'
+        return '사업자등록번호가 유효하지 않습니다.'
+
+      ''
+    validate: 'true'
   ,
     path: 'isRegNumberChecked'
-    validate: (value) =>
+    getError: (value) =>
+      if not props.state.value.regNumber
+        return ''
+
       if not value
-        '사업자등록번호를 확인해주세요.'
+        return '사업자등록번호를 확인해주세요.'
+
+      ''
+    validate: 'true'
   ]
 
 getHocs = =>
@@ -49,6 +62,7 @@ getHocs = =>
     withState(getDefaultState)
     withValidation(getItems)
     withHandler
+    withReaction
   ]
 
 export default UpdateBusinessCert = withHocs(getHocs) UpdateBusinessCertView

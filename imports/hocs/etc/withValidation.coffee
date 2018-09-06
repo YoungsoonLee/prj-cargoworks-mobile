@@ -7,7 +7,9 @@ export default withValidation = (getItems) =>
         validation =
           isValid: false
 
-        _.extend validation, @props.state
+        state = _.cloneDeep toJs @props.state
+
+        _.extend validation, state
 
         items = getItems @props
 
@@ -37,42 +39,32 @@ export default withValidation = (getItems) =>
         )
 
       validate: =>
-        state = @props.state
-
-        validation = @state.validation
-
         items = getItems @props
 
         flags = items.map (item) =>
-          value = ''
+          validate = @getValidate item.validate
 
-          eval "value = state.#{item.path}"
+          if item.getError
+            _getError = item.getError
 
-          isValid = false
+          else if item.validate in ['true', 'id', 'password', 'phone number']
+            _getError = item.validate
 
-          error = ''
+          getError = @getGetError _getError
 
-          if value or typeof value is 'boolean'
-            validate = @getValidate item.validate
+          value = _get @props.state, item.path
 
-            eval "error = validate(value)"
+          isValid = validate value
 
-            if error
+          error = getError value
+
+          if item.isRequired
+            if typeof value is 'string' and not value
               isValid = false
 
-            else
-              isValid = true
+          _set @state.validation, "#{item.path}.isValid", isValid
 
-          else
-            if item.isRequired
-              isValid = false
-
-            else
-              isValid = true
-
-          eval "validation.#{item.path}.isValid = isValid"
-
-          eval "validation.#{item.path}.error = error"
+          _set @state.validation, "#{item.path}.error", error
 
           isValid
 
@@ -85,15 +77,58 @@ export default withValidation = (getItems) =>
           if validate is 'true'
             return (value) =>
               if not value
-                return 'false'
+                return false
 
-              ''
+              true
 
           else if validate is 'id'
             return (value) =>
-              if not value
-                return ''
+              if /[^a-z0-9]/.test value
+                return false
 
+              if not (6 <= value.length <= 20)
+                return false
+
+              true
+
+          else if validate is 'password'
+            return (value) =>
+              if not /[^a-zA-Z0-9]/.test value
+                return false
+
+              if not /[1234567890]/.test value
+                return false
+
+              if not /[1234567890]/.test value
+                return false
+
+              if value.length < 8
+                return false
+
+              true
+
+          else if validate is 'phone number'
+            return (value) =>
+              if not (10 <= value.length <= 11)
+                return false
+
+              true
+
+        else if typeof validate is 'function'
+          return validate
+
+        else
+          return =>
+            true
+
+      getGetError: (getError) =>
+        if typeof getError is 'string'
+          if getError is 'true'
+            return =>
+              ''
+
+          else if getError is 'id'
+            return (value) =>
               if /[^a-z0-9]/.test value
                 return '아이디는 영문 소문자, 숫자만 사용 가능합니다.'
 
@@ -102,11 +137,8 @@ export default withValidation = (getItems) =>
 
               ''
 
-          else if validate is 'password'
+          else if getError is 'password'
             return (value) =>
-              if not value
-                return ''
-
               if not /[^a-zA-Z0-9]/.test value
                 return '비밀번호는 특수문자를 포함해야 합니다.'
 
@@ -121,21 +153,18 @@ export default withValidation = (getItems) =>
 
               ''
 
-          else if validate is 'phone number'
+          else if getError is 'phone number'
             return (value) =>
-              if not value
-                return ''
-
               if not (10 <= value.length <= 11)
                 return '핸드폰 번호 형식에 맞지 않습니다.'
 
               ''
 
-        else if typeof validate is 'function'
-          return validate
+        else if typeof getError is 'function'
+          return getError
 
         else
-          return () =>
+          return =>
             ''
 
       render: =>

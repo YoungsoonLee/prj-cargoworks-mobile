@@ -5,7 +5,7 @@ export default observer class UpdateBusinessCertView extends Component
   onPressCheckRegNumber: =>
     @props.state.isRegNumberChecked = true
 
-    Meteor.call 'checkRegNumber', @props.state.regNumber, (error, result) =>
+    Meteor.call 'checkRegNumber', @props.state.value.regNumber, (error, result) =>
       if error or result.type isnt '1'
         if not isProduction
           @props.state.isRegNumberValid = true
@@ -42,17 +42,20 @@ export default observer class UpdateBusinessCertView extends Component
             3. 현금영수증 발행여부는{'\n'}
                별도로 국세청 홈텍스에서 확인 가능합니다.{'\n'}
           </Text>
-          <View style={{ marginTop: 10 }}>
-            <Input placeholder="사업자 등록번호" state={@props.state} path="value.regNumber" />
-            <View style={{ position: 'absolute', right: 0, top: 4 }}>
-              <Button textSize={14} height={35} color="light blue invert" onPress={@onPressCheckRegNumber}>사업자 인증</Button>
+          <View style={{ height: 10 }} />
+          <Error error={@props.validation.isRegNumberChecked.error or @props.validation.isRegNumberValid.error}>
+            <View>
+              <Input placeholder="사업자 등록번호" state={@props.state} path="value.regNumber" />
+              <View style={{ position: 'absolute', right: 0, top: 4 }}>
+                <Button textSize={14} height={35} color="light blue invert" onPress={@onPressCheckRegNumber}>사업자 인증</Button>
+              </View>
             </View>
-          </View>
+          </Error>
           <Input placeholder="상호" state={@props.state} path="value.storeName" />
           <Input placeholder="대표자명" state={@props.state} path="value.name" />
           <Input placeholder="주소" state={@props.state} path="value.address" />
           <Input placeholder="연락처" state={@props.state} path="value.contactNumber" />
         </View>
       </ScrollView>
-      <Button borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>다음</Button>
+      <Button isDisabled={not @props.validation.isValid} borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>다음</Button>
     </Layout>

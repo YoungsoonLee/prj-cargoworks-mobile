@@ -1,8 +1,6 @@
 export default withHandler = (WrappedComponent) =>
   observer class WithHandler extends Component
     onPressNext: =>
-      console.log 'next'
-
       WEIGHT = _.find @props.TRANSPORTERS.VEHICLES.PARCEL.WEIGHTS, (WEIGHT) =>
         WEIGHT.VALUE is @props.state.weight
 

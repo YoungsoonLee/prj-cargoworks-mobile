@@ -5,7 +5,7 @@ export default withHandler = (WrappedComponent) =>
         _id: @props.user.profile.transporterId
       ,
         $set:
-          hasAgreedForCargoInsurance: true
+          hasAgreedForCargoInsurance: @props.state.isAgreeChecked
           cargoInsuranceInsuredName: @props.state.name
           residentRegNumber: @props.state.idNumber
       , (error) =>
