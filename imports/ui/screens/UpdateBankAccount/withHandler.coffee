@@ -1,7 +1,7 @@
 export default withHandler = (WrappedComponent) =>
   observer class WithHandler extends Component
     onPressNext: =>
-      if @props.state.value.method is '선택안함'
+      if @props.state.value.method is '수신안함'
         method = ''
 
       else

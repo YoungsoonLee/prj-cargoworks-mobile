@@ -52,9 +52,13 @@ export default observer class UpdateBusinessCertView extends Component
             </View>
           </Error>
           <Input placeholder="상호" state={@props.state} path="value.storeName" />
+          <View style={{ height: 15 }} />
           <Input placeholder="대표자명" state={@props.state} path="value.name" />
+          <View style={{ height: 15 }} />
           <Input placeholder="주소" state={@props.state} path="value.address" />
+          <View style={{ height: 15 }} />
           <Input placeholder="연락처" state={@props.state} path="value.contactNumber" />
+          <View style={{ height: 15 }} />
         </View>
       </ScrollView>
       <Button isDisabled={not @props.validation.isValid} borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>다음</Button>

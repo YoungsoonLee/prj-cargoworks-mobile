@@ -1,16 +1,6 @@
 export default withHandler = (WrappedComponent) =>
   observer class WithHandler extends Component
     onPressNext: =>
-      if not @props.state.isRegNumberChecked
-        Util.alert '사업자 등록번호를 확인해주시기 바랍니다'
-
-        return
-
-      if not @props.state.isRegNumberValid
-        Util.alert '사업자 등록번호가 유효하지 않습니다'
-
-        return
-
       Meteor.call 'transporters.update',
         _id: @props.user.profile.transporterId
       ,

@@ -9,7 +9,35 @@ getDefaultState = (props) =>
     bank: props.transporter.withdrawalAccount.bank
     accountNumber: props.transporter.withdrawalAccount.accountNumber
     holderName: props.transporter.withdrawalAccount.holderName
-    method: props.transporter.taxationMethod
+    method: props.transporter.taxationMethod or '수신안함'
     number: props.transporter.taxationRegistrationNumber
 
-export default UpdateBankAccount = withConstant('transporters') withUser() withFindOne('transporters', getSelector) withState(getDefaultState) withConstant('accounts') withHandler UpdateBankAccountView
+getItems = (props) =>
+  [
+    path: 'value.accountNumber'
+    isRequired: true
+  ,
+    path: 'value.holderName'
+    isRequired: true
+  ,
+    path: 'value.number'
+    validate: (value) =>
+      if props.state.value.method isnt '수신안함'
+        if not value
+          return false
+
+      true
+  ]
+
+getHocs = =>
+  [
+    withConstant('transporters')
+    withUser()
+    withFindOne('transporters', getSelector)
+    withState(getDefaultState)
+    withConstant('accounts')
+    withValidation(getItems)
+    withHandler
+  ]
+
+export default UpdateBankAccount = withHocs(getHocs) UpdateBankAccountView
