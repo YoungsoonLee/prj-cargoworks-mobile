@@ -8,6 +8,113 @@ export default observer class Util extends Component
   @getCount: =>
     state.count
 
+  @getShortPickUpScheduledAt: (_pickUpScheduledAt) =>
+    pickUpScheduledAt = moment _pickUpScheduledAt
+
+    date = ''
+
+    if pickUpScheduledAt.format('YYYY-MM') is moment().format('YYYY-MM')
+      if pickUpScheduledAt.format('DD') is moment().format('DD')
+        date = '오늘'
+
+      else if pickUpScheduledAt.date() is moment().date() + 1
+        date = '내일'
+
+      else
+        date = pickUpScheduledAt.format('MM/DD')
+
+    else
+      date = pickUpScheduledAt.format('MM/DD')
+
+    time = pickUpScheduledAt.format('A h:mm')
+
+    "#{date} #{time}"
+
+  @getShortDischargeScheduleAt: (dischargeScheduleAt) =>
+    moment(dischargeScheduleAt).format('MM/DD A h:mm')
+
+  @getShortVehicleType: (vehicleWeightCapacity, freightBoxType, TRANSPORTERS) =>
+    WEIGHTS = TRANSPORTERS.VEHICLES.PARCEL.WEIGHTS
+
+    BOX_TYPES = TRANSPORTERS.VEHICLES.FREIGHT.BOX_TYPES
+
+    if vehicleWeightCapacity in [WEIGHTS.MOTOR_BIKE.VALUE, WEIGHTS.LABOR.VALUE, WEIGHTS.DAMAS.VALUE, WEIGHTS.BEN.VALUE]
+      if vehicleWeightCapacity is WEIGHTS.MOTOR_BIKE.VALUE
+        return '오'
+
+      else if vehicleWeightCapacity is WEIGHTS.LABOR.VALUE
+        return '라'
+
+      else if vehicleWeightCapacity is WEIGHTS.DAMAS.VALUE
+        return '다'
+
+      else if vehicleWeightCapacity is WEIGHTS.BEN.VALUE
+        return '밴'
+
+      else if vehicleWeightCapacity is WEIGHTS.TRAILER.VALUE
+        return '추'
+
+    else if freightBoxType in [BOX_TYPES.CARGO.VALUE, BOX_TYPES.TOP.VALUE, BOX_TYPES.FREEZER.VALUE]
+      if freightBoxType is BOX_TYPES.CARGO.VALUE
+        return '카'
+
+      else if freightBoxType is BOX_TYPES.TOP.VALUE
+        return '탑'
+
+      else if freightBoxType is BOX_TYPES.FREEZER.VALUE
+        return '냉'
+
+    ''
+
+  @getShortWeight: (vehicleWeightCapacity, freightBoxType, TRANSPORTERS) =>
+    WEIGHTS = TRANSPORTERS.VEHICLES.FREIGHT.WEIGHTS
+
+    if vehicleWeightCapacity is WEIGHTS.ONE.VALUE
+      return '1'
+
+    else if vehicleWeightCapacity is WEIGHTS.ONE_FOUR.VALUE
+      return '1.4'
+
+    else if vehicleWeightCapacity is WEIGHTS.TWO_FIVE.VALUE
+      return '2.5'
+
+    else if vehicleWeightCapacity is WEIGHTS.THREE_FIVE.VALUE
+      return '3.5'
+
+    else if vehicleWeightCapacity is WEIGHTS.FIVE.VALUE
+      return '5'
+
+    else if vehicleWeightCapacity is WEIGHTS.EIGHT.VALUE
+      return '8'
+
+    else if vehicleWeightCapacity is WEIGHTS.ELEVEN.VALUE
+      return '11'
+
+    else if vehicleWeightCapacity is WEIGHTS.EIGHTTEEN.VALUE
+      return '18'
+
+    else if vehicleWeightCapacity is WEIGHTS.TWENTYFIVE.VALUE
+      return '25'
+
+    ''
+
+  @getShortPrice: (price, fiexed = 1) =>
+    (price / 1000).toFixed(fiexed)
+
+  @convertMetersToKilos: (meters, fiexed = 1) =>
+    (meters / 1000).toFixed(fiexed)
+
+  @convertSecondsToHoursAndMinutes: (seconds) =>
+    hour = parseInt(seconds / 3600)
+
+    min = parseInt((seconds % 3600) / 60)
+
+    if hour > 0
+      return "#{hour}시간 #{min}분"
+
+    else
+      return "#{min}분"
+
   @get: (state, path) =>
     value = ''
 
@@ -202,7 +309,7 @@ export default observer class Util extends Component
 
   @goToInitialScreen: (user) =>
     if not user._id
-      Util.reset 'UpdateVehicle'
+      Util.reset 'Main'
 
     else
-      Util.reset 'UpdateVehicle'
+      Util.reset 'Main'

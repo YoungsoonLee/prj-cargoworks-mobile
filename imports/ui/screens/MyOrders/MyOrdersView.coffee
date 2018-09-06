@@ -13,7 +13,7 @@ export default observer class MyOrdersView extends Component
       <Order key={order._id} onPress={=> @onPressOrder order} order={order} type={if index % 2 is 0 then 'parcel' else 'frieght'} />
 
   render: =>
-    <View style={{ flex: 1, backgroundColor: darkBlue }}>
+    {###<View style={{ flex: 1, backgroundColor: darkBlue }}>
       <ScrollView style={{ paddingRight: 5, paddingLeft: 5 }}>
         <Text marginTop={13} size={18} bold color={white}>배송/하차중 ({ 1 })</Text>
         <View style={{ height: 13 }} />
@@ -22,4 +22,5 @@ export default observer class MyOrdersView extends Component
         <View style={{ height: 13 }} />
         { @renderOrders() }
       </ScrollView>
-    </View>
+    </View>###}
+    <View />
