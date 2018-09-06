@@ -50,7 +50,7 @@ export default observer class Layout extends Component
               }
           </View>
         </View>
-        <View style={{ flex: 1, backgroundColor: '#ffffff' }}>
+        <View style={{ zIndex: -1, flex: 1, backgroundColor: '#ffffff' }}>
           { @props.children }
         </View>
       </View>

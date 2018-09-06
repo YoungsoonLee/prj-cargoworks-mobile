@@ -16,7 +16,8 @@ import StatusBar from '../ui/components/StatusBar/StatusBar.coffee'
 import Touchable from 'slap-react-native-touchable'
 import Text from '../ui/components/Text/Text.coffee'
 import Button from '../ui/components/Button/Button.coffee'
-import Input from 'slap-react-native-input'
+import Error from '../ui/components/Error/Error.coffee'
+import Input from '../ui/components/Input/Input.coffee'
 import Checkbox from '../ui/components/Checkbox/Checkbox.coffee'
 import Badge from 'slap-react-native-badge'
 import Layout from '../ui/layouts/Layout/Layout.coffee'
@@ -35,6 +36,7 @@ import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import EvilIcons from 'react-native-vector-icons/EvilIcons'
 import Feather from 'react-native-vector-icons/Feather'
+import Util from '../etc/Util.coffee'
 
 global.View = View
 global.Image = Image
@@ -59,6 +61,7 @@ global.StatusBar = StatusBar
 global.Touchable = Touchable
 global.Text = Text
 global.Button = Button
+global.Error = Error
 global.Input = Input
 global.Checkbox = Checkbox
 global.Badge = Badge
@@ -78,3 +81,9 @@ global.SimpleLineIcons = SimpleLineIcons
 global.Ionicons = Ionicons
 global.EvilIcons = EvilIcons
 global.Feather = Feather
+global.Util = Util
+global._get = Util.get
+global._set = Util.set
+global.push = Util.push
+global.unshift = Util.unshift
+global.splice = Util.splice
