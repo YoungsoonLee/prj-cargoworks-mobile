@@ -23,9 +23,6 @@ export default observer class UpdateBusinessCertView extends Component
 
       Util.alert '유효한 사업자 등록번호입니다'
 
-  onChangeInput: (value, isValid, name) =>
-    @props.state.value[name] = value
-
   render: =>
     <Layout title="사업자 등록증">
       <ScrollView>
@@ -46,15 +43,15 @@ export default observer class UpdateBusinessCertView extends Component
                별도로 국세청 홈텍스에서 확인 가능합니다.{'\n'}
           </Text>
           <View style={{ marginTop: 10 }}>
-            <Input placeholder="사업자 등록번호" onChange={@onChangeInput} name="regNumber" value={@props.state.value.regNumber} />
+            <Input placeholder="사업자 등록번호" state={@props.state} path="value.regNumber" />
             <View style={{ position: 'absolute', right: 0, top: 4 }}>
               <Button textSize={14} height={35} color="light blue invert" onPress={@onPressCheckRegNumber}>사업자 인증</Button>
             </View>
           </View>
-          <Input placeholder="상호" onChange={@onChangeInput} name="storeName" value={@props.state.value.storeName} />
-          <Input placeholder="대표자명" onChange={@onChangeInput} name="name" value={@props.state.value.name} />
-          <Input placeholder="주소" onChange={@onChangeInput} name="address" value={@props.state.value.address} />
-          <Input placeholder="연락처" onChange={@onChangeInput} name="contactNumber" value={@props.state.value.contactNumber} />
+          <Input placeholder="상호" state={@props.state} path="value.storeName" />
+          <Input placeholder="대표자명" state={@props.state} path="value.name" />
+          <Input placeholder="주소" state={@props.state} path="value.address" />
+          <Input placeholder="연락처" state={@props.state} path="value.contactNumber" />
         </View>
       </ScrollView>
       <Button borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>다음</Button>
