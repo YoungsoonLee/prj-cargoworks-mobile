@@ -9,8 +9,6 @@ export default observer class Util extends Component
     state.count
 
   @get: (state, path) =>
-    console.log 'state', state
-    console.log 'path', path
     value = ''
 
     eval "value = state.#{path}"
