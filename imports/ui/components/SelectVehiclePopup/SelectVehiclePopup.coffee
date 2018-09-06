@@ -1,7 +1,7 @@
 import SelectVehiclePopupView from './SelectVehiclePopupView.coffee'
 
-getDefaultState = =>
-  vehicles: []
+getDefaultState = (props) =>
+  vehicles: [_get props.state, props.vehiclePath]
 
 getHocs = =>
   [
