@@ -7,7 +7,7 @@ export default observer class OrdersView extends Component
 
   renderOrders: =>
     @props.orders.map (order) =>
-      <Order key={order._id} onPress={=> @onPressOrder order} order={order} TRANSPORTERS={@props.TRANSPORTERS} ORDERS={@props.ORDERS} />
+      <Order key={order._id} onPress={=> @onPressOrder order} order={order} TRANSPORTERS={@props.TRANSPORTERS} ORDERS={@props.ORDERS} transporter={@props.transporter} />
 
   render: =>
     <View style={{ flex: 1, backgroundColor: darkBlue }}>

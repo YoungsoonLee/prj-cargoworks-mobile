@@ -17,7 +17,9 @@ export default observer class Order extends Component
     else if @props.order.vehicleType is @props.TRANSPORTERS.VEHICLES.FREIGHT.VALUE
       type = 'frieght'
 
-    distance = Util.convertMetersToKilos @props.order.waypoints.distance, 0
+    _distance = Util.getDistance @props.transporter.currentGeoLocation.longitude, @props.transporter.currentGeoLocation.latitude, @props.order.waypoints.addresses[0].tmap.longitude, @props.order.waypoints.addresses[0].tmap.latitude
+
+    distance = Util.convertMetersToKilos _distance, 0
 
     isImmediate = @props.order.waypoints.pickUpSchedule is @props.ORDERS.PICKUP_SCHEDULE.IMMEDIATE.VALUE
 
@@ -84,7 +86,7 @@ export default observer class Order extends Component
       return (
         <Touchable onPress={@onPress}>
           <View style={{ flexDirection: 'row', height: 50, backgroundColor: backgroundColor, borderRadius: 3, marginTop: 1 }}>
-            <View style={{ overflow: 'hidden', borderRightWidth: 1, borderRightColor: '#cccccc', width: 37, justifyContent: 'center', paddingLeft: 8 }}>
+            <View style={{ overflow: 'hidden', borderRightWidth: 1, borderRightColor: '#cccccc', width: 40, justifyContent: 'center', paddingLeft: 8 }}>
               <Text bold size={20} color={black}>{ distance }</Text>
             </View>
             <View style={{ flexDirection: 'row', borderRightWidth: 1, borderRightColor: '#cccccc', flex: 1, alignItems: 'center', paddingLeft: 5 }}>
@@ -116,7 +118,7 @@ export default observer class Order extends Component
       return (
         <Touchable onPress={@onPress}>
           <View style={{ flexDirection: 'row', height: 100, backgroundColor: backgroundColor, borderRadius: 3, marginTop: 1 }}>
-            <View style={{ overflow: 'hidden', borderRightWidth: 1, borderRightColor: '#cccccc', width: 37, paddingTop: 8, paddingLeft: 8 }}>
+            <View style={{ overflow: 'hidden', borderRightWidth: 1, borderRightColor: '#cccccc', width: 40, paddingTop: 8, paddingLeft: 8 }}>
               <Text bold size={20} color={black}>{ distance }</Text>
             </View>
             <View style={{ flex: 1 }}>

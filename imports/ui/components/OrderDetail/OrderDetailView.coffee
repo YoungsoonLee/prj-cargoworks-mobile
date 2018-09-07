@@ -22,7 +22,7 @@ export default observer class OrderDetailView extends Component
       <OrderDetailLayout order={@props.order} type="order">
         <ScrollView>
           <WayPoints type="order" order={@props.order} transporter={@props.transporter} ORDERS={@props.ORDERS} TRANSPORTERS={@props.TRANSPORTERS} />
-          <OrderInfo order={@props.order} />
+          <OrderInfo order={@props.order} TRANSPORTERS={@props.TRANSPORTERS} ORDERS={@props.ORDERS} />
           <View style={{ borderTopWidth: 1, borderTopColor: black }} />
         </ScrollView>
       </OrderDetailLayout>

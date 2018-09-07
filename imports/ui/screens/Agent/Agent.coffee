@@ -2,22 +2,22 @@ export default observer class Agent extends Component
   renderInfos: =>
     infos = [
       label: '운송 주선'
-      content: '빠르다 로지스'
+      content: state.agent.agent.name
     ,
       label: '사업자'
-      content: '00-0000-0000'
+      content: state.agent.agent.regNumber
     ,
       label: '대표자명'
-      content: '홍길동'
+      content: state.agent.agent.ownerName
     ,
       label: '사업장'
-      content: '서울시 강남구 신사동 520-5'
+      content: state.agent.agent.address
     ,
       label: '대표번호'
-      content: '02-0000-0000'
+      content: state.agent.agent.phoneNumber
     ,
       label: '이메일'
-      content: 'asdf@asdf.com'
+      content: state.agent.agent.taxationEmail
     ]
 
     infos.map (info, index) =>

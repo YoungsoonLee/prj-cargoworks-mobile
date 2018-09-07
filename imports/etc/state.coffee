@@ -10,3 +10,5 @@ export default state = observable
     sort: 'recent' # one of 'recent', 'distance', 'fare'
     search: ''
   lazyLoadFlags: [true, false, false, false]
+  agent:
+    agent: {}

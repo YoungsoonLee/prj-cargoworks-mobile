@@ -54,7 +54,7 @@ export default observer class OrderDetailLayoutView extends Component
           <Text marginLeft={8} bold size={15} color={yellow}>{ Util.convertMetersToKilos @props.order.waypoints.distance } km</Text>
           <Text marginLeft={8} bold size={15} color="#8987ce">|</Text>
           <Text marginLeft={8} bold size={15} color={white}>예상운행시간</Text>
-          <Text marginLeft={8} bold size={15} color={yellow}>{ Util.convertSecondsToHoursAndMinutes @props.order.waypoints.estimatedTime }</Text>
+          <Text marginLeft={8} bold size={15} color={yellow}>{ parseInt(@props.order.waypoints.estimatedTime / 60) }분</Text>
         </View>
         <View style={{ width: 120, justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
           <Button paddingHorizontal={0} buttonColor={white} width={if @props.type is 'order' then 85 else 50} height={35}>
