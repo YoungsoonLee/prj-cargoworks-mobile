@@ -1,5 +1,4 @@
 import '../../../startup/index.coffee'
-import Geolocation from 'react-native-geolocation-service'
 
 export default observer class SplashView extends Component
   constructor: (props) ->
@@ -9,18 +8,6 @@ export default observer class SplashView extends Component
       inInitialized: false
 
   componentDidMount: =>
-    Geolocation.getCurrentPosition(
-      (position) =>
-        console.log position
-    ,
-      (error) =>
-        console.log error.code, error.message
-    ,
-        enableHighAccuracy: true
-        timeout: 15000
-        maximumAge: 10000
-    )
-
     if @props.isConnected and not @state.inInitialized
       @init()
 
@@ -32,7 +19,7 @@ export default observer class SplashView extends Component
     @state.inInitialized = true
 
     setTimeout =>
-      Util.goToInitialScreen @props.user
+      Util.goToInitialScreen @props.user, @props.transporter, @props.TRANSPORTERS
     , 2000
 
   render: =>

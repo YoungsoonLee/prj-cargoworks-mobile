@@ -11,8 +11,6 @@ export default observer class Order extends Component
     @props.onPress()
 
   render: =>
-    console.log @props.order
-
     if @props.order.vehicleType is @props.TRANSPORTERS.VEHICLES.PARCEL.VALUE
       type = 'parcel'
 
@@ -36,6 +34,8 @@ export default observer class Order extends Component
     weight = Util.getShortWeight @props.order.vehicleWeightCapacity, @props.order.freightBoxType, @props.TRANSPORTERS
 
     fare = Util.getShortPrice @props.order.agentFare.final, 0
+
+    fee = Util.getShortPrice @props.order.agentFare.agentFee, 0
 
     if @props.order.waypoints.pickUpSchedule is @props.ORDERS.PICKUP_SCHEDULE.IMMEDIATE.VALUE
       pickUpScheduledAt = '즉시'
@@ -71,10 +71,19 @@ export default observer class Order extends Component
 
       paymentMethodColor = '#2a9160'
 
+    if @props.order.dispatchType is @props.ORDERS.DISPATCH_TYPES.IN_HOUSE.VALUE
+      backgroundColor = lightYellow
+
+    else if @props.order.dispatchType is @props.ORDERS.DISPATCH_TYPES.EXCLUSIVE.VALUE
+      backgroundColor = '#eafcfe'
+
+    else
+      backgroundColor = white
+
     if type is 'parcel'
       return (
         <Touchable onPress={@onPress}>
-          <View style={{ flexDirection: 'row', height: 50, backgroundColor: white, borderRadius: 3, marginTop: 1 }}>
+          <View style={{ flexDirection: 'row', height: 50, backgroundColor: backgroundColor, borderRadius: 3, marginTop: 1 }}>
             <View style={{ overflow: 'hidden', borderRightWidth: 1, borderRightColor: '#cccccc', width: 37, justifyContent: 'center', paddingLeft: 8 }}>
               <Text bold size={20} color={black}>{ distance }</Text>
             </View>
@@ -106,7 +115,7 @@ export default observer class Order extends Component
     else if type is 'frieght'
       return (
         <Touchable onPress={@onPress}>
-          <View style={{ flexDirection: 'row', height: 100, backgroundColor: white, borderRadius: 3, marginTop: 1 }}>
+          <View style={{ flexDirection: 'row', height: 100, backgroundColor: backgroundColor, borderRadius: 3, marginTop: 1 }}>
             <View style={{ overflow: 'hidden', borderRightWidth: 1, borderRightColor: '#cccccc', width: 37, paddingTop: 8, paddingLeft: 8 }}>
               <Text bold size={20} color={black}>{ distance }</Text>
             </View>
@@ -132,7 +141,7 @@ export default observer class Order extends Component
                 </View>
                 <View style={{ width: 47, alignItems: 'flex-end', justifyContent: 'center', paddingRight: 6 }}>
                   <Text bold size={20} color={darkRed}>{ fare }</Text>
-                  <Text size={17} color={black} marginTop={5}>(1)</Text>
+                  <Text size={17} color={black} marginTop={5}>({ fee })</Text>
                 </View>
               </View>
               <View style={{ height: 34, flexDirection: 'row', borderTopWidth: 1, borderTopColor: '#cccccc' }}>

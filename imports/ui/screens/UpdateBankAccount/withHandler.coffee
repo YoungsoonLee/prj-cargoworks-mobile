@@ -16,6 +16,7 @@ export default withHandler = (WrappedComponent) =>
           'withdrawalAccount.holderName': @props.state.value.holderName
           taxationMethod: method
           taxationRegistrationNumber: @props.state.value.number
+          adminApprovalStatus: @props.TRANSPORTERS.ADMIN_APPROVAL_STATUS.REQUESTED.VALUE
       , (error) =>
         if error
           Util.alert error.reason

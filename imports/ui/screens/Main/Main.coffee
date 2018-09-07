@@ -1,10 +1,6 @@
-import MainLayout from '../../layouts/MainLayout/MainLayout.coffee'
-import TabNavigator from '../../navigators/TabNavigator/TabNavigator.coffee'
-import tabNavigation from '../../../etc/tab_navigation.coffee'
-import OneSignal from 'react-native-onesignal'
+import MainView from './MainView.coffee'
 
-export default observer class Main extends Component
-  render: =>
-    <MainLayout>
-      <TabNavigator ref={(ref) => tabNavigation.setRef ref} />
-    </MainLayout>
+getSelector = (props) =>
+  _id: props.user.profile.transporterId
+
+export default Main = withUser() withFindOne('transporters', getSelector) MainView

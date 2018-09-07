@@ -3,10 +3,21 @@ import tabNavigation from './tab_navigation.coffee'
 import { Alert } from 'react-native'
 import { Accounts } from 'react-native-meteor'
 import OneSignal from 'react-native-onesignal'
+import geolib from 'geolib'
 
 export default observer class Util extends Component
   @getCount: =>
     state.count
+
+  @getDistance: (fromLongitude, fromLatitude, toLongitude, toLatitude) =>
+    distance = geolib.getDistance
+      longitude: fromLongitude
+      latitude: fromLatitude
+    ,
+      longitude: toLongitude
+      latitude: toLatitude
+
+    distance
 
   @getShortPickUpScheduledAt: (_pickUpScheduledAt) =>
     pickUpScheduledAt = moment _pickUpScheduledAt
@@ -307,9 +318,15 @@ export default observer class Util extends Component
   @replace: (routeName, param) =>
     stackNavigation.replace routeName, param
 
-  @goToInitialScreen: (user) =>
+  @goToInitialScreen: (user, transporter, TRANSPORTERS) =>
     if not user._id
-      Util.reset 'Main'
+      Util.reset 'SignupInfo'
+
+    else if transporter.adminApprovalStatus is TRANSPORTERS.ADMIN_APPROVAL_STATUS.IN_PROGRESS.VALUE
+      Util.reset 'UpdateVehicle'
+
+    else if transporter.adminApprovalStatus is TRANSPORTERS.ADMIN_APPROVAL_STATUS.REQUESTED.VALUE
+      Util.reset 'Pending'
 
     else
       Util.reset 'Main'

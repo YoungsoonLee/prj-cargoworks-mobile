@@ -1,18 +1,18 @@
 export default observer class PendingView extends Component
-  constructor: (props) ->
-    super props
-
-    @state = observable
-      state: 'complete'
-
   onPressStart: =>
-    Util.reset 'Main'
+    @props.onPressStart()
 
   render: =>
+    if @props.transporter.adminApprovalStatus is @props.TRANSPORTERS.ADMIN_APPROVAL_STATUS.REQUESTED.VALUE
+      state = 'requested'
+
+    else if @props.transporter.adminApprovalStatus is @props.TRANSPORTERS.ADMIN_APPROVAL_STATUS.APPROVED.VALUE
+      state = 'approved'
+
     <Layout>
       <View style={{ flex: 1, padding: 20, alignItems: 'center' }}>
         <Image source={require '../../../../images/check.png'} style={{ marginTop: 50, width: 40 * 1.2, height: 30 * 1.2 }} />
-        { @state.state is 'pending' and
+        { state is 'requested' and
           <View>
             <Text bold center size={18} marginTop={50}>계정이 생성되었습니다.</Text>
             <Text bold center marginTop={30}>
@@ -22,7 +22,7 @@ export default observer class PendingView extends Component
             </Text>
           </View>
           }
-        { @state.state is 'complete' and
+        { state is 'approved' and
           <View>
             <Text bold center size={18} marginTop={50}>가입승인이 완료되었습니다!</Text>
             <Text bold center marginTop={30}>
@@ -35,10 +35,12 @@ export default observer class PendingView extends Component
           </View>
           }
       </View>
-      { @state.state is 'pending' and
+      { state is 'requested' and
         <View style={{ height: 50, backgroundColor: '#edf1fc', justifyContent: 'center', alignItems: 'center' }}>
           <Text color={blue}>카고웍스에서 가입심사 중입니다.</Text>
         </View>
         }
-      <Button borderRadius={0} height={75} color="light blue" onPress={@onPressStart}>카고웍스 시작하기</Button>
+      { state isnt 'approved' and
+        <Button borderRadius={0} height={75} color="light blue" onPress={@onPressStart}>카고웍스 시작하기</Button>
+        }
     </Layout>

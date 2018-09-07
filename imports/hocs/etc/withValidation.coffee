@@ -58,11 +58,15 @@ export default withValidation = (getItems) =>
 
           error = getError value
 
-          if item.isRequired
-            if typeof value is 'string' and not value
-              isValid = false
+          # process isValid
+          if typeof value is 'string' and item.isRequired and not value
+            isValid = false
 
           _set @state.validation, "#{item.path}.isValid", isValid
+
+          # process error
+          if typeof value is 'string' and not value
+            error = ''
 
           _set @state.validation, "#{item.path}.error", error
 
