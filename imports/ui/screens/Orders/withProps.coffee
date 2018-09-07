@@ -9,10 +9,12 @@ export default withProps = (WrappedComponent) =>
 
       else if state.header.sort is 'distance'
         orders = _.sortBy orders, (order) =>
-          order.waypoints.distance
+          distance = Util.getDistance @props.transporter.currentGeoLocation.longitude, @props.transporter.currentGeoLocation.latitude, order.waypoints.addresses[0].tmap.longitude, order.waypoints.addresses[0].tmap.latitude
+
+          distance
 
       else if state.header.sort is 'fare'
         orders = _.sortBy orders, (order) =>
           -order.agentFare.final
-          
+
       <WrappedComponent {...@props} orders={orders} />
