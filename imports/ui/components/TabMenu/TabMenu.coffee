@@ -19,6 +19,8 @@ export default observer class TabMenu extends Component
 
     state.lazyLoadFlags[index] = true
 
+    state.tab.screen = screen
+
     if screen is 'OrderSetting'
       state.header.title = '주문설정'
       state.header.isSimpleMode = true
@@ -28,6 +30,7 @@ export default observer class TabMenu extends Component
     else if screen is 'Balances'
       state.header.title = '입출관리'
       state.header.isSimpleMode = true
+      state.header.isSearchMode = false
       state.header.search = ''
 
     else

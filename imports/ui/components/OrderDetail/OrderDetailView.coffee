@@ -10,12 +10,7 @@ export default observer class OrderDetailView extends Component
     order: {}
 
   onPressOk: =>
-    Util.confirm '이 주문을 받겠습니까?', =>
-      Util.back()
-
-      setTimeout =>
-        Util.og 'MyOrders'
-      , 500
+    @props.onPressOk()
 
   render: =>
     <View style={{ flex: 1 }}>

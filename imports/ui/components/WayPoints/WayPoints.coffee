@@ -4,6 +4,9 @@ export default observer class WayPoints extends Component
   # @propTypes:
   #   type: PropTypes.oneOf ['order', 'my order']
   #   order: PropTypes.object
+  #   ORDERS: PropTypes.object
+  #   transporter: PropTypes.object
+  #   TRANSPORTERS: PropTypes.object
   #   orderInfo: PropTypes.element
   #
   # to David: orderInfo는 주문정보를 뜻하는데 웨이 포인트가 서명을 받을 때마다
@@ -12,6 +15,9 @@ export default observer class WayPoints extends Component
   @defaultProps:
     type: ''
     order: {}
+    ORDERS: {}
+    transporter: {}
+    TRANSPORTERS: {}
     orderInfo: <View />
 
   onPressPhone: (phoneNumber) =>

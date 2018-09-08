@@ -2,56 +2,25 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import { TextInput } from 'react-native'
 
 export default observer class Header extends Component
-  constructor: (props) ->
-    super props
+  onPressOrdersSort: (sort) =>
+    state.header.ordersSort = sort
 
-    @state = observable
-      isSimpleMode: state.header.isSimpleMode
-      title: state.header.title
-      isSearchMode: false
-      sort: state.header.sort
-      search: state.header.search
-
-    reaction(
-      =>
-        @state.isSimpleMode + @state.title + @state.isSearchMode + @state.sort + @state.search
-    ,
-      =>
-        state.header.isSimpleMode = @state.isSimpleMode
-        state.header.title = @state.title
-        state.header.isSearchMode = @state.isSearchMode
-        state.header.sort = @state.sort
-        state.header.search = @state.search
-    )
-
-    reaction(
-      =>
-        state.header.isSimpleMode + state.header.title + state.header.isSearchMode + state.header.sort + state.header.search
-    ,
-      =>
-        @state.isSimpleMode = state.header.isSimpleMode
-        @state.title = state.header.title
-        @state.isSearchMode = state.header.isSearchMode
-        @state.sort = state.header.sort
-        @state.search = state.header.search
-    )
-
-  onPressSort: (sort) =>
-    @state.sort = sort
+  onPressMyOrdersSort: (sort) =>
+    state.header.myOrdersSort = sort
 
   onPressSearch: =>
-    @state.isSearchMode = true
+    state.header.isSearchMode = true
 
   onPressBack: =>
-    @state.search = ''
+    state.header.search = ''
 
-    @state.isSearchMode = false
+    state.header.isSearchMode = false
 
   onPressReset: =>
-    @state.search = ''
+    state.header.search = ''
 
   onChangeSearch: (search) =>
-    @state.search = search
+    state.header.search = search
 
   onPressSetting: =>
     Util.go 'Setting'
@@ -59,24 +28,24 @@ export default observer class Header extends Component
   render: =>
     <View style={{ flexDirection: 'row', height: 50, backgroundColor: darkBlue }}>
       <View style={{ width: 50, justifyContent: 'center', alignItems: 'center' }}>
-        { not @state.isSearchMode and not @state.isSimpleMode and
+        { if not state.header.isSearchMode and not state.header.isSimpleMode
           <Touchable onPress={@onPressSearch}>
             <Image source={require '../../../../images/search.png'} style={{ width: 50, height: 50 }} />
           </Touchable>
-          }
-        { @state.isSearchMode and not @state.isSimpleMode and
+        }
+        { if state.header.isSearchMode and not state.header.isSimpleMode
           <Touchable onPress={@onPressBack}>
             <Ionicons name="ios-arrow-back" color="#cccccc" size={25} />
           </Touchable>
-          }
+        }
       </View>
-      { @state.isSearchMode and not @state.isSimpleMode and
+      { if state.header.isSearchMode and not state.header.isSimpleMode
         <View style={{ flex: 1, flexDirection: 'row' }}>
           <View style={{ width: 50, alignItems: 'center', justifyContent: 'center' }}>
             <Image source={require '../../../../images/search.png'} style={{ width: 50, height: 50 }} />
           </View>
           <View style={{ flex: 1, paddingRight: 16, justifyContent: 'center' }}>
-            <TextInput value={@state.search} onChangeText={@onChangeSearch} style={{ height: 35, backgroundColor: white, paddingHorizontal: 10 }} placeholder="검색하기" />
+            <TextInput value={state.header.search} onChangeText={@onChangeSearch} style={{ height: 35, backgroundColor: white, paddingHorizontal: 10 }} placeholder="검색하기" />
             <View style={{ position: 'absolute', top: 0, right: 8 }}>
               <Touchable onPress={@onPressReset}>
                 <View style={{ width: 50, height: 50, alignItems: 'center', justifyContent: 'center' }}>
@@ -86,42 +55,67 @@ export default observer class Header extends Component
             </View>
           </View>
         </View>
-        }
-      { not @state.isSearchMode and not @state.isSimpleMode and
+      }
+      { if not state.header.isSearchMode and not state.header.isSimpleMode and state.tab.screen is 'Orders'
         <View style={{ flex: 1, flexDirection: 'row' }}>
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Touchable onPress={=> @onPressSort 'recent'}>
-              <View style={{ width: 80, height: 30, backgroundColor: (if @state.sort is 'recent' then white else darkBlue), borderRadius: 15, alignItems: 'center', justifyContent: 'center' }}>
-                <Text size={20} color={if @state.sort is 'recent' then darkBlue else white}>최신순</Text>
+            <Touchable onPress={=> @onPressOrdersSort 'recent'}>
+              <View style={{ width: 80, height: 30, backgroundColor: (if state.header.ordersSort is 'recent' then white else darkBlue), borderRadius: 15, alignItems: 'center', justifyContent: 'center' }}>
+                <Text size={20} color={if state.header.ordersSort is 'recent' then darkBlue else white}>최신순</Text>
               </View>
             </Touchable>
           </View>
           <View style={{ flex: 1.2, justifyContent: 'center', alignItems: 'center' }}>
-            <Touchable onPress={=> @onPressSort 'distance'}>
-              <View style={{ width: 90, height: 30, backgroundColor: (if @state.sort is 'distance' then white else darkBlue), borderRadius: 15, alignItems: 'center', justifyContent: 'center' }}>
-                <Text size={20} color={if @state.sort is 'distance' then darkBlue else white}>근거리순</Text>
+            <Touchable onPress={=> @onPressOrdersSort 'distance'}>
+              <View style={{ width: 90, height: 30, backgroundColor: (if state.header.ordersSort is 'distance' then white else darkBlue), borderRadius: 15, alignItems: 'center', justifyContent: 'center' }}>
+                <Text size={20} color={if state.header.ordersSort is 'distance' then darkBlue else white}>근거리순</Text>
               </View>
             </Touchable>
           </View>
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Touchable onPress={=> @onPressSort 'fare'}>
-              <View style={{ width: 80, height: 30, backgroundColor: (if @state.sort is 'fare' then white else darkBlue), borderRadius: 15, alignItems: 'center', justifyContent: 'center' }}>
-                <Text size={20} color={if @state.sort is 'fare' then darkBlue else white}>운임순</Text>
+            <Touchable onPress={=> @onPressOrdersSort 'fare'}>
+              <View style={{ width: 80, height: 30, backgroundColor: (if state.header.ordersSort is 'fare' then white else darkBlue), borderRadius: 15, alignItems: 'center', justifyContent: 'center' }}>
+                <Text size={20} color={if state.header.ordersSort is 'fare' then darkBlue else white}>운임순</Text>
               </View>
             </Touchable>
           </View>
         </View>
-        }
-      { @state.isSimpleMode and
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <Text color={white} size={20} bold>{ @state.title }</Text>
+      }
+      { if not state.header.isSearchMode and not state.header.isSimpleMode and state.tab.screen is 'MyOrders'
+        <View style={{ flex: 1, flexDirection: 'row' }}>
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <Touchable onPress={=> @onPressMyOrdersSort 'in progress'}>
+              <View style={{ width: 80, height: 30, backgroundColor: (if state.header.myOrdersSort is 'in progress' then white else darkBlue), borderRadius: 15, alignItems: 'center', justifyContent: 'center' }}>
+                <Text size={20} color={if state.header.myOrdersSort is 'in progress' then darkBlue else white}>운행중</Text>
+              </View>
+            </Touchable>
+          </View>
+          <View style={{ flex: 1.2, justifyContent: 'center', alignItems: 'center' }}>
+            <Touchable onPress={=> @onPressMyOrdersSort 'today'}>
+              <View style={{ width: 90, height: 30, backgroundColor: (if state.header.myOrdersSort is 'today' then white else darkBlue), borderRadius: 15, alignItems: 'center', justifyContent: 'center' }}>
+                <Text size={20} color={if state.header.myOrdersSort is 'today' then darkBlue else white}>오늘주문</Text>
+              </View>
+            </Touchable>
+          </View>
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <Touchable onPress={=> @onPressMyOrdersSort 'last'}>
+              <View style={{ width: 80, height: 30, backgroundColor: (if state.header.myOrdersSort is 'last' then white else darkBlue), borderRadius: 15, alignItems: 'center', justifyContent: 'center' }}>
+                <Text size={20} color={if state.header.myOrdersSort is 'last' then darkBlue else white}>지난주문</Text>
+              </View>
+            </Touchable>
+          </View>
         </View>
-        }
-      { not @state.isSearchMode and
+      }
+      { if state.header.isSimpleMode
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <Text color={white} size={20} bold>{ state.header.title }</Text>
+        </View>
+      }
+      { if not state.header.isSearchMode
         <View style={{ width: 50 }}>
           <Touchable onPress={@onPressSetting}>
             <Image source={require '../../../../images/setting.png'} style={{ width: 50, height: 50 }} />
           </Touchable>
         </View>
-        }
+      }
     </View>

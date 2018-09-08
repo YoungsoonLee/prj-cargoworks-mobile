@@ -3,11 +3,15 @@ import { Linking } from 'react-native'
 export default observer class OrderInfo extends Component
   # @propTypes:
   #   order: PropTypes.object
+  #   ORDERS: PropTypes.object
+  #   TRANSPORTERS: PropTypes.object
   #   isBorderTopVisible: PropTypes.object
   #   isBorderBottomVisible: PropTypes.object
 
   @defaultProps:
     order: {}
+    ORDERS: {}
+    TRANSPORTERS: {}
     isBorderTopVisible: true
     isBorderBottomVisible: true
 

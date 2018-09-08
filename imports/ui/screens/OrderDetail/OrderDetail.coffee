@@ -3,7 +3,6 @@ import OrderDetailView from './OrderDetailView.coffee'
 getSelector = (props) =>
   _id: props.routeParam.id
 
-
 getHocs = =>
   [
     withRouteParam
