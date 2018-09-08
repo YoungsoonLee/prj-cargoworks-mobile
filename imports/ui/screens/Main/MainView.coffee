@@ -14,6 +14,18 @@ export default observer class MainView extends Component
           $set:
             'currentGeoLocation.longitude': position.coords.longitude
             'currentGeoLocation.latitude': position.coords.latitude
+        , (error) =>
+          if error
+            Util.alert error.reason
+
+            return
+
+          Meteor.call 'orders.updateOrderAddressStatus', position.coords.longitude, position.coords.latitude, (error) =>
+            if error
+              Util.alert error.reason
+
+              return
+
       ,
         (error) =>
           console.log error.code, error.message

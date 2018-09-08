@@ -8,9 +8,6 @@ export default observer class WayPoints extends Component
   #   transporter: PropTypes.object
   #   TRANSPORTERS: PropTypes.object
   #   orderInfo: PropTypes.element
-  #
-  # to David: orderInfo는 주문정보를 뜻하는데 웨이 포인트가 서명을 받을 때마다
-  # 다음 단계로 넘어가면서 주문 정보가 바로 밑에 렌더링 되게 하기 위해 orderInfo elemnet를 받는다
 
   @defaultProps:
     type: ''
@@ -26,7 +23,7 @@ export default observer class WayPoints extends Component
     Util.confirm "#{phoneNumber}로 전화 하시겠습니까?", =>
       Linking.openURL "tel:#{phoneNumber}"
 
-  renderWayPoints: =>
+  renderWaypoints: =>
     waypoints = @props.order.waypoints.addresses
 
     if @props.order.waypoints.pickUpSchedule is @props.ORDERS.PICKUP_SCHEDULE.IMMEDIATE.VALUE
@@ -64,59 +61,93 @@ export default observer class WayPoints extends Component
 
       currentGeoLocation = @props.transporter.currentGeoLocation
 
-      if index is 0
-        distance = Util.getDistance currentGeoLocation.longitude, currentGeoLocation.latitude, waypoint.tmap.longitude, waypoint.tmap.latitude
-
-      else
-        distance = waypoint.distance
-
       if @props.type is 'order'
-        return (
-          <View key={waypoint.id} style={{ height: 65, flexDirection: 'row', borderTopWidth: 1, borderTopColor: black, borderBottomWidth: (if index is waypoints.length - 1 then 1 else 0), borderBottomColor: black }}>
-            <View style={{ width: 85, borderRightWidth: 1, borderRightColor: '#a2aabf', justifyContent: 'center', paddingLeft: 10 }}>
-              <Text color="#444444" bold size={22}>{ label }</Text>
-              <Text color="#444444" size={17}>{ Util.convertMetersToKilos distance }km</Text>
-            </View>
-            <View style={{ flex: 1, justifyContent: 'center', paddingLeft: 10 }}>
-              <Text bold size={20} color={black}>{ waypoint.daum.autoJibunAddress or waypoint.daum.address }</Text>
-              { if index is 0 and not not pickUpSchedule
-                <Text marginTop={3} bold size={17} color="#375ab5">{ pickUpSchedule }</Text>
-              }
-              { if index is waypoints.length - 1 and not not dischargeSchedule
-                <Text marginTop={3} bold size={17} color="#375ab5">{ dischargeSchedule }</Text>
-              }
-            </View>
-          </View>
-        )
+        if index is 0
+          distance = Util.getDistance currentGeoLocation.longitude, currentGeoLocation.latitude, waypoint.tmap.longitude, waypoint.tmap.latitude
+
+        else
+          distance = waypoint.distance
 
       else if @props.type is 'my order'
-        return (
-          <View key={index}>
-            <View style={{ flexDirection: 'row', borderBottomWidth: (if index is waypoints.length - 1 or waypoint.isActive = true then 1 else 0), borderBottomColor: black, borderTopWidth: 1, borderTopColor: black }}>
-              <View style={{ width: 85, borderRightWidth: 1, borderRightColor: '#a2aabf', paddingTop: 12, paddingLeft: 10 }}>
-                <Text color="#444444" bold size={22}>출발</Text>
-                <Text color="#444444" size={17}>3.7km</Text>
+        distance = Util.getDistance currentGeoLocation.longitude, currentGeoLocation.latitude, waypoint.tmap.longitude, waypoint.tmap.latitude
+
+      isActive = waypoint.isActive
+
+      if @props.type is 'order'
+        backgroundColor = white
+
+      else if @props.type is 'my order'
+        if isActive
+          backgroundColor = '#fffae1'
+
+        else
+          backgroundColor = '#e5e5e5'
+
+      if index is waypoints.length - 1
+        isLastWaypoint = true
+
+      else
+        isLastWaypoint = false
+
+      <View key={waypoint.id}>
+        <View style={{ backgroundColor: backgroundColor, flexDirection: 'row', borderTopWidth: 1, borderTopColor: black, borderBottomWidth: (if index is waypoints.length - 1 then 1 else 0), borderBottomColor: black }}>
+          <View style={{ width: 85, borderRightWidth: 1, borderRightColor: '#a2aabf', justifyContent: 'center', paddingLeft: 10 }}>
+            <Text color="#444444" bold size={22}>{ label }</Text>
+            { if @props.type is 'order' or @props.type is 'my order' and isActive
+              <Text color="#444444" size={17}>{ Util.convertMetersToKilos distance }km</Text>
+            }
+          </View>
+          <View style={{ minHeight: 65, paddingTop: 10, paddingBottom: 10, flex: 1, justifyContent: 'center', paddingLeft: 10 }}>
+            <Text bold size={20} color={black}>{ waypoint.daum.autoJibunAddress or waypoint.daum.address }</Text>
+            { if @props.type is 'order'
+              <View>
+                { if index is 0 and not not pickUpSchedule
+                  <Text marginTop={3} bold size={17} color="#375ab5">{ pickUpSchedule }</Text>
+                }
+                { if index is waypoints.length - 1 and not not dischargeSchedule
+                  <Text marginTop={3} bold size={17} color="#375ab5">{ dischargeSchedule }</Text>
+                }
               </View>
-              <View style={{ flex: 1, padding: 10 }}>
-                <Text bold size={20} color={black}>경기도 성남시 분당구 삼평동 544</Text>
-                <Text bold size={20} color={black}>김배달</Text>
-                <Text bold size={17} color={black} marginTop={10}>박스 3개만 전달</Text>
-                <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10 }}>
-                  <Button paddingHorizontal={0} color="blue" width={50} height={25} textSize={14}>서명</Button>
-                  <Text color={blue} size={14} bold marginLeft={10}>14:20</Text>
-                </View>
+            }
+            { if @props.type is 'my order'
+              <View>
+                <Text bold size={20} color={black}>{ waypoint.contactName }</Text>
+                { if waypoint.unloadDetail
+                  <Text bold size={17} color={black} marginTop={10}>{ waypoint.unloadDetail }</Text>
+                }
+                { if waypoint.isSignedOff
+                  <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10 }}>
+                    <Button paddingHorizontal={0} color="blue" width={50} height={25} textSize={14}>서명</Button>
+                    <Text color={blue} size={14} bold marginLeft={10}>{ moment(waypoint.signedOffAt).format('HH:mm') }</Text>
+                  </View>
+                }
               </View>
-              <View style={{ width: 60, justifyContent: 'flex-end', paddingBottom: 10, alignItems: 'center' }}>
-                <Touchable onPress={@onPressPhone}>
+            }
+          </View>
+          { if @props.type is 'my order'
+            <View style={{ width: 60, justifyContent: 'flex-end', paddingBottom: 10, alignItems: 'center' }}>
+              { if isActive or waypoint.isSignedOff
+                <Touchable onPress={=> @onPressPhone waypoint.contactPhoneNumber}>
                   <Image source={require '../../../../images/order_phone.png'} style={{ width: 42, height: 42 }} />
                 </Touchable>
-              </View>
+              else
+                <Image source={require '../../../../images/order_phone_grey.png'} style={{ width: 42, height: 42 }} />
+              }
             </View>
-            { waypoint.isActive = true and @props.orderInfo }
-          </View>
-        )
+          }
+        </View>
+        { if @props.type is 'my order' and isActive
+          <View style={{ borderTopWidth: 1, borderTopColor: black }} />
+        }
+        { if @props.type is 'my order' and (isActive or isLastWaypoint)
+          @props.orderInfo
+        }
+        { if @props.type is 'my order' and isLastWaypoint
+          <View style={{ borderTopWidth: 1, borderTopColor: black }} />
+        }
+      </View>
 
   render: =>
     <View>
-      { @renderWayPoints() }
+      { @renderWaypoints() }
     </View>

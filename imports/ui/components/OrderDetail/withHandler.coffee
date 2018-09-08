@@ -13,6 +13,7 @@ export default withHandler = (WrappedComponent) =>
         $set:
           transporter: @props.transporter
           status: status
+          'waypoints.addresses.0.isActive': true
       , (error) =>
         if error
           Util.alert error.reason

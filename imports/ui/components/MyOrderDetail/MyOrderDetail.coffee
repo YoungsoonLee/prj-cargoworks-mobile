@@ -1,58 +1,16 @@
-import OrderDetailLayout from '../../layouts/OrderDetailLayout/OrderDetailLayout.coffee'
-import OrderInfo from '../../components/OrderInfo/OrderInfo.coffee'
-import WayPoints from '../../components/WayPoints/WayPoints.coffee'
+import MyOrderDetailView from './MyOrderDetailView.coffee'
+import withHandler from './withHandler.coffee'
 
-export default observer class MyOrderDetail extends Component
-  # @propTypes:
-  #   order: PropTypes.object
+getSelector = (props) =>
+  _id: props.user.profile.transporterId
 
-  @defaultProps:
-    order: {}
+getHocs = =>
+  [
+    withUser()
+    withFindOne('transporters', getSelector)
+    withConstant('orders')
+    withConstant('transporters')
+    withHandler
+  ]
 
-  onPressGetSignature: =>
-    Util.go 'GetSignature'
-
-  onPressUploadFreightCert: =>
-    Util.go 'UploadFreightCert'
-
-  onPressPublishCashReceipt: =>
-    Util.go 'PublishCashReceipt'
-
-  render: =>
-    <View style={{ flex: 1 }}>
-      <OrderDetailLayout order={@props.order} type="my order">
-        <ScrollView>
-          {### wayPoints or 필요에 따라서 order 객체를 넘겨야 한다 ###}
-          <WayPoints type="my order" orderInfo={<OrderInfo order={@props.order} />} />
-          <View style={{ borderTopWidth: 1, borderTopColor: black }} />
-        </ScrollView>
-      </OrderDetailLayout>
-      { 1 is 1 and
-        <Button borderRadius={0} height={75} color="light blue" onPress={@onPressGetSignature}>
-          <View style={{ flexDirection: 'row' }}>
-            <Image source={require '../../../../images/pencil.png'} style={{ width: 18, height: 18 }} />
-            <Text bold marginLeft={5} color={white} size={20}>서명받기</Text>
-          </View>
-        </Button>
-        }
-      { 1 is 2 and
-        <Button isDisabled={true} borderRadius={0} height={75} color="light blue">
-          <View style={{ flexDirection: 'row' }}>
-            <Image source={require '../../../../images/pencil.png'} style={{ width: 18, height: 18 }} />
-            <Text bold marginLeft={5} color={white} size={20}>서명받기 (픽업지로 이동하세요)</Text>
-          </View>
-        </Button>
-        }
-      <View style={{ flexDirection: 'row' }}>
-        { 1 is 2 and
-          <View style={{ flex: 1 }}>
-            <Button borderRadius={0} height={75} color="grey" onPress={@onPressUploadFreightCert}>화물 인수증 업로드</Button>
-          </View>
-          }
-        { 1 is 2 and
-          <View style={{ flex: 1 }}>
-            <Button paddingHorizontal={0} borderRadius={0} height={75} color="light blue" onPress={@onPressPublishCashReceipt}>고객 현금영수증 발행</Button>
-          </View>
-          }
-      </View>
-    </View>
+export default MyOrderDetail = withHocs(getHocs) MyOrderDetailView
