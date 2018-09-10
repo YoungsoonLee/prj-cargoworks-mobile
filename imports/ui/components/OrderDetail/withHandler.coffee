@@ -14,11 +14,17 @@ export default withHandler = (WrappedComponent) =>
           transporter: @props.transporter
           status: status
           'waypoints.addresses.0.isActive': true
+          dispatchedAt: new Date()
+
       , (error) =>
         if error
           Util.alert error.reason
 
           return
+
+        state.lazyLoadFlags[1] = true
+
+        state.tab.screen = 'MyOrders'
 
         Util.back()
 
