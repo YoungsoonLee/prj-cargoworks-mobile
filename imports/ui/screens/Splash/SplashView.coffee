@@ -5,18 +5,18 @@ export default observer class SplashView extends Component
     super props
 
     @state = observable
-      inInitialized: false
+      isInitialized: false
 
   componentDidMount: =>
-    if @props.isConnected and not @state.inInitialized
+    if @props.isConnected and not @state.isInitialized
       @init()
 
   componentDidUpdate: =>
-    if @props.isConnected and not @state.inInitialized
+    if @props.isConnected and not @state.isInitialized
       @init()
 
   init: =>
-    @state.inInitialized = true
+    @state.isInitialized = true
 
     setTimeout =>
       Util.goToInitialScreen @props.user, @props.transporter, @props.TRANSPORTERS
