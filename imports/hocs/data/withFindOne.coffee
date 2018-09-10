@@ -12,7 +12,7 @@ export default withFindOne = (collectionName, getSelector = =>, getOption = =>, 
       render: =>
         _.defaults option,
           isReadyNeeded: true
-          isDocNeeded: false
+          isDocNeeded: true
           spinner: <Spinner />
 
         if option.isReadyNeeded and not @props.isDocReady
