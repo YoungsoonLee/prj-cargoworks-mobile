@@ -136,13 +136,13 @@ export default observer class WayPoints extends Component
             </View>
           }
         </View>
-        { if @props.type is 'my order' and isActive
+        { if @props.type is 'my order' and isActive and not isLastWaypoint
           <View style={{ borderTopWidth: 1, borderTopColor: black }} />
         }
-        { if @props.type is 'my order' and (isActive or isLastWaypoint)
+        { if @props.type is 'my order' and isActive
           @props.orderInfo
         }
-        { if @props.type is 'my order' and isLastWaypoint
+        { if @props.type is 'my order' and isActive and isLastWaypoint
           <View style={{ borderTopWidth: 1, borderTopColor: black }} />
         }
       </View>
