@@ -12,12 +12,6 @@ export default observer class MyOrderDetailView extends Component
   onPressGetSignature: =>
     @props.onPressGetSignature()
 
-  onPressUploadFreightCert: =>
-    Util.go 'UploadFreightCert'
-
-  onPressPublishCashReceipt: =>
-    Util.go 'PublishCashReceipt'
-
   render: =>
     if @props.order.status isnt @props.ORDERS.STATUS.COMPLETED.VALUE
       isCompleted = false
@@ -31,7 +25,6 @@ export default observer class MyOrderDetailView extends Component
     else
       isCompleted = false
 
-
     <View style={{ flex: 1 }}>
       <OrderDetailLayout order={@props.order} type="my order">
         <ScrollView>
@@ -41,7 +34,7 @@ export default observer class MyOrderDetailView extends Component
       </OrderDetailLayout>
       { if not isCompleted
         <View>
-          { if activeWaypoint.isTransporterIn
+          { if not activeWaypoint?.isTransporterIn
             <Button borderRadius={0} height={75} color="light blue" onPress={@onPressGetSignature}>
               <View style={{ flexDirection: 'row' }}>
                 <Image source={require '../../../../images/pencil.png'} style={{ width: 18, height: 18 }} />
@@ -49,7 +42,7 @@ export default observer class MyOrderDetailView extends Component
               </View>
             </Button>
           }
-          { if not activeWaypoint.isTransporterIn
+          { if activeWaypoint?.isTransporterIn
             <Button isDisabled={true} borderRadius={0} height={75} color="light blue">
               <View style={{ flexDirection: 'row' }}>
                 <Image source={require '../../../../images/pencil.png'} style={{ width: 18, height: 18 }} />

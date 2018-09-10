@@ -25,6 +25,7 @@ import Setting from '../../screens/Setting/Setting.coffee'
 import PhoneNumbers from '../../screens/PhoneNumbers/PhoneNumbers.coffee'
 import UpdatePassword from '../../screens/UpdatePassword/UpdatePassword.coffee'
 import Qnas from '../../screens/Qnas/Qnas.coffee'
+import Signature from '../../screens/Signature/Signature.coffee'
 
 export default StackNavigator
   Splash:
@@ -79,5 +80,7 @@ export default StackNavigator
     screen: UpdatePassword
   Qnas:
     screen: Qnas
+  Signature:
+    screen: Signature
 ,
   headerMode: 'none'
