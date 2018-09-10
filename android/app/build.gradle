@@ -112,8 +112,8 @@ android {
         applicationId "com.mobile_seed"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 2
-        versionName "0.0.2"
+        versionCode 4
+        versionName "0.0.4"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -149,6 +149,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-background-task')
     compile project(':react-native-signature-capture')
     compile project(':react-native-image-crop-picker')
     compile project(':react-native-onesignal')
