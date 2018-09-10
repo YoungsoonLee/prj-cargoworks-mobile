@@ -1,3 +1,9 @@
 import GetSignatureView from './GetSignatureView.coffee'
 
-export default GetSignature = withRouteParam GetSignatureView
+getHocs = (props) =>
+  [
+    withRouteParam
+    withConstant('orders')
+  ]
+
+export default GetSignature = withHocs(getHocs) GetSignatureView

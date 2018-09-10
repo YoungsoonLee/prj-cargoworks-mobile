@@ -22,6 +22,11 @@ export default observer class GetSignatureView extends Component
         _.extend modifier.$set,
           "waypoints.addresses.#{@props.routeParam.addressIndex + 1}.isActive": true
 
+      else
+        _.extend modifier.$set,
+          'waypoints.dischargedAt': new Date()
+          status: @props.ORDERS.STATUS.COMPLETED.VALUE
+
       Meteor.call 'orders.update',
         _id: @props.routeParam.orderId
       , modifier, (error) =>
