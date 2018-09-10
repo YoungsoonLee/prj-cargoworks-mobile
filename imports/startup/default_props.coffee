@@ -22,6 +22,10 @@ Button.defaultProps.colors = [
   buttonColor: white
   textColor: '#000000'
   borderColor: '#000000'
+,
+  name: 'dark grey'
+  buttonColor: '#626262'
+  textColor: white
 ]
 
 Button.defaultProps.height = 60
