@@ -122,20 +122,25 @@ export default observer class OrderInfo extends Component
           <Text color={black} bold size={16}>매월 4일, 25일 결제</Text>
         </View>
       </View>
+      <View style={{ height: 10, flexDirection: 'row' }}>
+        <View style={{ width: 85, borderRightWidth: 1, borderRightColor: '#a2aabf' }} />
+      </View>
       { if @props.type is 'my order'
         <View>
-          <View style={{ height: 32, flexDirection: 'row' }}>
+          <View style={{ height: 43, flexDirection: 'row' }}>
             <View style={{ width: 85, borderRightWidth: 1, borderRightColor: '#a2aabf' }} />
-            <View style={{ flex: 1, justifyContent: 'center', paddingLeft: 10 }}>
-
+            <View style={{ flex: 1, paddingLeft: 10 }}>
+              <Button width={170} height={32} textStyle={{ fontSize: 16 }} color="blue">고객 현금영수증 발행</Button>
             </View>
           </View>
-          <View style={{ height: 32, flexDirection: 'row' }}>
-            <View style={{ width: 85, borderRightWidth: 1, borderRightColor: '#a2aabf' }} />
-            <View style={{ flex: 1, justifyContent: 'center', paddingLeft: 10 }}>
-
+          { if @props.order.status is @props.ORDERS.STATUS.COMPLETED.VALUE
+            <View style={{ height: 43, flexDirection: 'row' }}>
+              <View style={{ width: 85, borderRightWidth: 1, borderRightColor: '#a2aabf' }} />
+              <View style={{ flex: 1, paddingLeft: 10 }}>
+                <Button width={170} height={32} textStyle={{ fontSize: 16 }} color="dark grey">화물 인수증 업로드</Button>
+              </View>
             </View>
-          </View>
+          }
           <View style={{ position: 'absolute', bottom: 10, right: 10 }}>
             <Touchable onPress={@onPressPhone}>
               <Image source={require '../../../../images/order_phone.png'} style={{ width: 42, height: 42 }} />
