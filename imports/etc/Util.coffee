@@ -9,6 +9,22 @@ export default observer class Util extends Component
   @getCount: =>
     state.count
 
+  @getVehicleType = (orderOrTransporter, TRANSPORTERS) ->
+    vehicleType =
+      if orderOrTransporter.vehicleType is TRANSPORTERS.VEHICLES.PARCEL.VALUE
+        if orderOrTransporter.vehicleWeightCapacity is TRANSPORTERS.VEHICLES.PARCEL.WEIGHTS.MOTOR_BIKE.VALUE
+          "#{orderOrTransporter.vehicleType}_#{orderOrTransporter.vehicleWeightCapacity}"
+        else
+          "PARCEL_NON_MOTOR_BIKE"
+      else
+        if orderOrTransporter.vehicleWeightCapacity is TRANSPORTERS.VEHICLES.FREIGHT.WEIGHTS.TRAILER.VALUE
+          "#{orderOrTransporter.vehicleType}_#{orderOrTransporter.vehicleWeightCapacity}"
+        else
+          "#{orderOrTransporter.vehicleType}_#{orderOrTransporter.vehicleWeightCapacity}_#{orderOrTransporter.freightBoxType}"
+
+    # console.log 'vehicleType: ', vehicleType
+    return vehicleType
+
   @getDistance: (fromLongitude, fromLatitude, toLongitude, toLatitude) =>
     distance = geolib.getDistance
       longitude: fromLongitude
@@ -150,14 +166,11 @@ export default observer class Util extends Component
       WEIGHT.VALUE is _weight
 
     if WEIGHT # 퀵인 경우
-      if WEIGHT.TEXT is '벤'
-        WEIGHT.TEXT = '밴'
-
       vehicle = WEIGHT.TEXT
 
     else # 화물인 경우
-      if _weight is TRANSPORTERS.VEHICLES.FREIGHT.WEIGHTS.TRAILER.VALUE # 츄레라인 경우
-        vehicle = '츄레라'
+      if _weight is TRANSPORTERS.VEHICLES.FREIGHT.WEIGHTS.TRAILER.VALUE # 추레라인 경우
+        vehicle = TRANSPORTERS.VEHICLES.FREIGHT.WEIGHTS.TRAILER.TEXT
 
       else
         if not _weight or not _vehicle
@@ -174,7 +187,9 @@ export default observer class Util extends Component
         if BOX_TYPE.VALUE is 'FREEZER'
           BOX_TYPE.TEXT = '냉탑'
 
-        vehicle = "#{weight} #{BOX_TYPE.TEXT}"
+        boxType = BOX_TYPE.TEXT
+
+        vehicle = "#{weight} #{boxType}"
 
     vehicle
 
@@ -183,8 +198,8 @@ export default observer class Util extends Component
 
     weight = ''
 
-    if /[0-9]|츄레라/.test _vehicle # 화물인 경우
-      if /츄레라/.test _vehicle # 츄레라인 경우
+    if /[0-9]|추레라/.test _vehicle # 화물인 경우
+      if /추레라/.test _vehicle # 추레라인 경우
         weight = TRANSPORTERS.VEHICLES.FREIGHT.WEIGHTS.TRAILER.VALUE
 
       else # 톤수가 있는 경우
