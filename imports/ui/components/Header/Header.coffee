@@ -35,7 +35,9 @@ export default observer class Header extends Component
         }
         { if state.header.isSearchMode and not state.header.isSimpleMode
           <Touchable onPress={@onPressBack}>
-            <Ionicons name="ios-arrow-back" color="#cccccc" size={25} />
+            <View style={{ width: 50, height: 50, justifyContent: 'center', alignItems: 'center' }}>
+              <Ionicons name="ios-arrow-back" color="#cccccc" size={25} />
+            </View>
           </Touchable>
         }
       </View>
