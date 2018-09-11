@@ -19,8 +19,6 @@ export default withHandler = (WrappedComponent) =>
           return
 
         if @props.routeParam.type is 'update'
-          Util.alert '저장되었습니다.'
-
           Util.back()
 
         else

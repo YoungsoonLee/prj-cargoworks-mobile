@@ -31,6 +31,7 @@ getItems = (props) =>
 
 getHocs = =>
   [
+    withRouteParam
     withConstant('transporters')
     withUser()
     withFindOne('transporters', getSelector)

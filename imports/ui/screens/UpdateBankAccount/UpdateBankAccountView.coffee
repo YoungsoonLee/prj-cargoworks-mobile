@@ -30,5 +30,5 @@ export default observer class UpdateBankAccountView extends Component
         </Select>
         <Input placeholder="방법을 선택 후 번호를 입력해 주세요" state={@props.state} path="value.number" />
       </ScrollView>
-      <Button isDisabled={not @props.validation.isValid} borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>다음</Button>
+      <Button isDisabled={not @props.validation.isValid} borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>{ if @props.routeParam.type is 'update' then '저장' else '다음' }</Button>
     </Layout>
