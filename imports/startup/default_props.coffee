@@ -34,7 +34,7 @@ Button.defaultProps.isTextBold = true
 
 Input.defaultProps.color = lightBlue
 
-Text.defaultProps.color = '#666666'
+Text.defaultProps.color = '#333333'
 Text.defaultProps.size = 16
 
 Input.defaultProps.focusedUnderlineColor = lightBlue
