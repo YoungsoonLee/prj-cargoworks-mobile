@@ -16,8 +16,8 @@ export default observer class Setting extends Component
         <CwHeader>개인정보설정</CwHeader>
         <ListItem onPress={@onPressListItem} name="PhoneNumbers" subTitle="01042322232">휴대폰 번호 관리</ListItem>
         <ListItem onPress={@onPressListItem} name="UpdatePassword">비밀번호 변경</ListItem>
-        <ListItem>내 차량정보 설정</ListItem>
-        <ListItem>사업자등록 설정</ListItem>
+        <ListItem onPress={@onPressListItem} name="UpdateVehicle">내 차량정보 설정</ListItem>
+        <ListItem onPress={@onPressListItem} name="UpdateBusinessCert">사업자등록 설정</ListItem>
         <ListItem>환급계좌 및 현금영수증 설정</ListItem>
         <ListItem isBorderBottomVisible={false}>소속 운송사 설정</ListItem>
         <CwHeader>프로모션</CwHeader>
