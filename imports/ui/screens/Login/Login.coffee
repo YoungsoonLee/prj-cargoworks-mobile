@@ -16,4 +16,12 @@ getItems = =>
     isRequired: true
   ]
 
-export default Login = withState(getDefaultState) withValidation(getItems) withHandler LoginView
+getHocs = =>
+  [
+    withState(getDefaultState)
+    withValidation(getItems)
+    withConstant('transporters')
+    withHandler
+  ]
+
+export default Login = withHocs(getHocs) LoginView
