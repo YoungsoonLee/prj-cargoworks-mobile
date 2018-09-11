@@ -5,6 +5,9 @@ export default withProps = (WrappedComponent) =>
     render: =>
       orders = _.cloneDeep @props.orders
 
+      if @props.transporter.operationStatus is @props.TRANSPORTERS.OPERATION_STATUS.OUT.VALUE
+        orders = []
+
       # 주문 수신설정에 의한 필터
       deviceId =  deviceInfo.getUniqueID()
 
