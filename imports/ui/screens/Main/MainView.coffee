@@ -42,7 +42,7 @@ export default observer class MainView extends Component
     , 10 * 1000
 
   componentWillUnmount: =>
-    clearInterval @intervalId
+    backgroundTimer.stopBackgroundTimer()
 
   render: =>
     <MainLayout>
