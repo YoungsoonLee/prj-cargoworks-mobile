@@ -14,7 +14,7 @@ export default withHandler = (WrappedComponent) =>
 
           return
 
-        Util.go 'UpdateBusinessCert'
+        Util.go 'UpdateBankAccount'
 
     render: =>
       <WrappedComponent {...@props} onPressNext={@onPressNext} />
