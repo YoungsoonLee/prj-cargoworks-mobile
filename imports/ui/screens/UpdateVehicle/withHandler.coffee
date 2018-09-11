@@ -26,12 +26,18 @@ export default withHandler = (WrappedComponent) =>
 
           return
 
-        # 오토바이이면 UpdateInsurance 나머지는 UpdateInsuranceForOthers로 간다
-        if @props.state.weight is @props.TRANSPORTERS.VEHICLES.PARCEL.WEIGHTS.MOTOR_BIKE.VALUE
-          Util.go 'UpdateInsurance'
+        if @props.routeParam.type is 'update'
+          Util.alert '저장되었습니다.'
+
+          Util.back()
 
         else
-          Util.go 'UpdateInsuranceForOthers'
+          # 오토바이이면 UpdateInsurance 나머지는 UpdateInsuranceForOthers로 간다
+          if @props.state.weight is @props.TRANSPORTERS.VEHICLES.PARCEL.WEIGHTS.MOTOR_BIKE.VALUE
+            Util.go 'UpdateInsurance'
+
+          else
+            Util.go 'UpdateInsuranceForOthers'
 
     render: =>
       <WrappedComponent {...@props} onPressNext={@onPressNext} />

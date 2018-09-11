@@ -8,7 +8,8 @@ export default observer class Setting extends Component
           Util.reset 'Login'
 
     else
-      Util.go name
+      Util.go name,
+        type: 'update'
 
   render: =>
     <Layout title="설정">
