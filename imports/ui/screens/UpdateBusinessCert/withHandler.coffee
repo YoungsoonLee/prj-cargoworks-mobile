@@ -18,7 +18,13 @@ export default withHandler = (WrappedComponent) =>
 
           return
 
-        Util.go 'UpdateBankAccount'
+        if @props.routeParam.type is 'update'
+          Util.alert '저장되었습니다.'
+
+          Util.back()
+
+        else
+          Util.go 'UpdateBankAccount'
 
     onPressCheckRegNumber: =>
       @props.state.isRegNumberChecked = true
