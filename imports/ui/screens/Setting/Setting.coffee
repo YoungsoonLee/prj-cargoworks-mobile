@@ -1,15 +1,18 @@
 import CwHeader from '../../components/CwHeader/CwHeader.coffee'
 
 export default observer class Setting extends Component
-  onPressListItem: (name) =>
-    if name is 'logout'
-      Util.confirm '로그아웃 하시겠습니까?', =>
-        Util.logout =>
-          Util.reset 'Login'
+  onPressLogout: =>
+    Util.confirm '로그아웃 하시겠습니까?', =>
+      Util.logout =>
+        Util.reset 'Login'
 
-    else
-      Util.go name,
-        type: 'update'
+  onPressListItem: (name) =>
+    Util.go name,
+      type: 'update'
+
+  onPressTerm: (name) =>
+    Util.go 'Term',
+      name: name
 
   render: =>
     <Layout title="설정">
@@ -27,12 +30,13 @@ export default observer class Setting extends Component
         <CwHeader>고객센터</CwHeader>
         <ListItem>공지사항</ListItem>
         <ListItem>자주 묻는 질문</ListItem>
-        <ListItem onPress={@onPressListItem} name="Qnas">문의하기</ListItem>
-        <ListItem>서비스 이용약관</ListItem>
-        <ListItem>위치기반 서비스 이용약관</ListItem>
+        <ListItem>문의하기</ListItem>
+        <ListItem onPress={@onPressTerm} name="transporterApp terms of service">서비스 이용약관</ListItem>
+        <ListItem onPress={@onPressTerm} name="transporterApp privacy policy">개인정보 보호정책</ListItem>
+        <ListItem onPress={@onPressTerm} name="transporterApp gps service terms">위치기반 서비스 이용약관</ListItem>
         <ListItem isBorderBottomVisible={false}>어플리케이션 정보</ListItem>
         <CwHeader>계정</CwHeader>
-        <ListItem onPress={@onPressListItem} name="logout">로그아웃</ListItem>
+        <ListItem onPress={@onPressLogout}>로그아웃</ListItem>
         <ListItem>탈퇴</ListItem>
       </ScrollView>
     </Layout>
