@@ -3,6 +3,11 @@ export default withHandler = (WrappedComponent) =>
     onPressNext: =>
       transportersDefaultObject = _.cloneDeep @props.transportersDefaultObject
 
+      transportersDefaultObject.mobileNumbers[0].number = state.verifyPhoneNumberValue.phoneNumber
+      transportersDefaultObject.mobileNumbers[0].isVerified = true
+      transportersDefaultObject.mobileNumbers[0].isPrimary = true
+      transportersDefaultObject.mobileNumbers[0].isTakenOverByOthers = false
+
       Meteor.call 'transporters.insert', transportersDefaultObject, (error, transporterId) =>
         if error
           Util.alert error.reason
@@ -38,7 +43,7 @@ export default withHandler = (WrappedComponent) =>
 
                 return
 
-              Util.go 'UpdateVehicle'
+              Util.reset 'UpdateVehicle'
 
     render: =>
       <WrappedComponent {...@props} onPressNext={@onPressNext} />
