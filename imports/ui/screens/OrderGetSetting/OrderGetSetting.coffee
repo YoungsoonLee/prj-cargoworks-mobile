@@ -23,9 +23,6 @@ getDefaultState = (props) =>
   _vehicles = orderFilterConfiguration.vehicles.map (vehicle) =>
     Util.getVehicleFromConstant vehicle, props.RECRUITMENTS
 
-  console.log orderFilterConfiguration.vehicles
-  console.log _vehicles
-
   distance: orderFilterConfiguration.distance
   vehicles: _vehicles
   isOnlyMyAgentOrder: orderFilterConfiguration.isOnlyMyAgentOrder
