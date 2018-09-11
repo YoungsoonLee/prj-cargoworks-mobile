@@ -16,7 +16,7 @@ export default observer class _Text extends Component
   #   style: PropTypes.object
 
   @defaultProps:
-    color: '#4d4d4d'
+    color: '#333333'
     size: 13
     marginTop: 0
     marginLeft: 0
