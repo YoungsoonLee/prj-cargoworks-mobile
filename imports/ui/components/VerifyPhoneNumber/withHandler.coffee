@@ -5,38 +5,32 @@ export default withHandler = (WrappedComponent) =>
 
       reaction(
         =>
-          @props.state.phoneNumber
+          @props.cState.phoneNumber
       ,
         =>
-          @props.state.secretNumber = ''
-          @props.state.internalSecretNumber = ''
-          @props.state.isSecretNumberValid = false
-          @props.state.secretNumberError = ''
+          @props.cState.secretNumber = ''
+          @props.cState.internalSecretNumber = ''
+          @props.cState.isSecretNumberValid = false
+          @props.cState.secretNumberError = ''
       )
 
       reaction(
         =>
-          @props.state.isSecretNumberValid
+          @props.cState.isSecretNumberValid
       ,
         =>
-          pState = @props.pState
-
-          path = @props.path
-
-          state = @props.state
-
-          if @props.state.isSecretNumberValid
-            eval "pState.#{path} = state.phoneNumber"
-
+          if @props.cState.isSecretNumberValid
+            _set @props.state, @props.path, @props.cState.phoneNumber
+            
           else
-            eval "pState.#{path} = ''"
+            _set @props.state, @props.path, ''
       )
 
     onPressSendSecretNumber: =>
-      @props.state.internalSecretNumber = _.random(1000, 9999).toString()
+      @props.cState.internalSecretNumber = _.random(1000, 9999).toString()
 
       if isProduction
-        Meteor.call 'sendSms', @props.state.phoneNumber, "[카고웍스] 인증번호는 #{@props.state.internalSecretNumber} 입니다.", (error) =>
+        Meteor.call 'sendSms', @props.cState.phoneNumber, "[카고웍스] 인증번호는 #{@props.cState.internalSecretNumber} 입니다.", (error) =>
           if error
             Util.alert error.reason
 
@@ -45,18 +39,18 @@ export default withHandler = (WrappedComponent) =>
           Util.alert '인증번호를 전송했습니다.'
 
       else
-        Util.alert "[카고웍스] 인증번호는 #{@props.state.internalSecretNumber} 입니다."
+        Util.alert "[카고웍스] 인증번호는 #{@props.cState.internalSecretNumber} 입니다."
 
     onPressConfirmSecretNumber: =>
-      if @props.state.secretNumber isnt @props.state.internalSecretNumber
-        @props.state.secretNumberError = '인증번호가 일치하지 않습니다.'
+      if @props.cState.secretNumber isnt @props.cState.internalSecretNumber
+        @props.cState.secretNumberError = '인증번호가 일치하지 않습니다.'
 
-        @props.state.isSecretNumberValid = false
+        @props.cState.isSecretNumberValid = false
 
       else
-        @props.state.secretNumberError = ''
+        @props.cState.secretNumberError = ''
 
-        @props.state.isSecretNumberValid = true
+        @props.cState.isSecretNumberValid = true
 
         Util.alert '인증되었습니다.'
 

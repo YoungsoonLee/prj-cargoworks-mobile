@@ -15,4 +15,4 @@ getItems = =>
     isRequired: true
   ]
 
-export default VerifyPhoneNumber = withState(getDefaultState) withValidation(getItems) withHandler VerifyPhoneNumberView
+export default VerifyPhoneNumber = withState(getDefaultState, 'cState') withValidation(getItems) withHandler VerifyPhoneNumberView
