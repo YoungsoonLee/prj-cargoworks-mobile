@@ -6,6 +6,8 @@ export default observer class SelectVehiclePopupView extends Component
     _set @props.state, @props.isVisiblePath, false
 
   onPressSelect: =>
+    # Util.getVehicleWeight는 db schema와 상관없이 만든 SelectVehicle의 string 형식을 db schema대로 만들어준다
+    # return value인 vehicleWeight는 array값으로 index 1가 weight이고 index 0이 boxType이다
     vehicleWeight = Util.getVehicleWeight @props.cState.vehicles[0], @props.TRANSPORTERS
 
     _set @props.state, @props.weightPath, vehicleWeight[1]
