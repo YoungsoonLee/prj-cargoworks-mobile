@@ -1,22 +1,38 @@
 import OrderGetSettingView from './OrderGetSettingView.coffee'
 import withHandler from './withHandler.coffee'
+import deviceInfo from 'react-native-device-info'
 
 getSelector = (props) =>
   _id: props.user.profile.transporterId
 
 getDefaultState = (props) =>
-  vehicleTypes = props.transporter.orderFilterConfigurations.vehicleTypes
+  deviceId =  deviceInfo.getUniqueID()
 
-  vehicles = vehicleTypes.map (vehicleType) =>
-    vehicle = Util.getVehicle vehicleType.weight, vehicleType.boxType, props.TRANSPORTER
+  _orderFilterConfiguration = props.transporter.orderFilterConfigurations.find (orderFilterConfiguration) =>
+    orderFilterConfiguration.deviceId is deviceId
 
-    vehicle
+  if _orderFilterConfiguration
+    orderFilterConfiguration = _orderFilterConfiguration
 
-  distance: '설정안함'
-  vehicles: vehicles
+  else
+    orderFilterConfigurationsDefaultObject = _.cloneDeep props.orderFilterConfigurationsDefaultObject
+
+    orderFilterConfiguration = orderFilterConfigurationsDefaultObject
+
+  # Util.getVehicleFromConstant은 constant의 value를 ui에서 쓰는 value로 바꿔준다.
+  _vehicles = orderFilterConfiguration.vehicles.map (vehicle) =>
+    Util.getVehicleFromConstant vehicle, props.RECRUITMENTS
+
+  console.log orderFilterConfiguration.vehicles
+  console.log _vehicles
+
+  distance: orderFilterConfiguration.distance
+  vehicles: _vehicles
+  isOnlyMyAgentOrder: orderFilterConfiguration.isOnlyMyAgentOrder
 
 getHocs = =>
   [
+    withConstant('recruitments')
     withDefaultObject('orderFilterConfigurations')
     withConstant('transporters')
     withUser()

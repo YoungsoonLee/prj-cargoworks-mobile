@@ -9,6 +9,222 @@ export default observer class Util extends Component
   @getCount: =>
     state.count
 
+  @getVehicleConstantFromVehicle: (vehicle, RECRUITMENTS) =>
+    if vehicle is '오토바이'
+      vehicleConstant = RECRUITMENTS.VEHICLES.PARCEL_MOTOR_BIKE.VALUE
+
+    else if vehicle is '다마스'
+      vehicleConstant = RECRUITMENTS.VEHICLES.PARCEL_DAMAS.VALUE
+
+    else if vehicle is '라보'
+      vehicleConstant = RECRUITMENTS.VEHICLES.PARCEL_LABOR.VALUE
+
+    else if vehicle is '밴'
+      vehicleConstant = RECRUITMENTS.VEHICLES.PARCEL_BEN.VALUE
+
+    else if vehicle is '1톤 카고'
+      vehicleConstant = RECRUITMENTS.VEHICLES.FREIGHT_ONE_CARGO.VALUE
+
+    else if vehicle is '1톤 탑'
+      vehicleConstant = RECRUITMENTS.VEHICLES.FREIGHT_ONE_TOP.VALUE
+
+    else if vehicle is '1톤 냉탑'
+      vehicleConstant = RECRUITMENTS.VEHICLES.FREIGHT_ONE_FREEZER.VALUE
+
+    else if vehicle is '1.4톤 카고'
+      vehicleConstant = RECRUITMENTS.VEHICLES.FREIGHT_ONE_FOUR_CARGO.VALUE
+
+    else if vehicle is '1.4톤 탑'
+      vehicleConstant = RECRUITMENTS.VEHICLES.FREIGHT_ONE_FOUR_TOP.VALUE
+
+    else if vehicle is '1.4톤 냉탑'
+      vehicleConstant = RECRUITMENTS.VEHICLES.FREIGHT_ONE_FOUR_FREEZER.VALUE
+
+    else if vehicle is '2.5톤 카고'
+      vehicleConstant = RECRUITMENTS.VEHICLES.FREIGHT_TWO_FIVE_CARGO.VALUE
+
+    else if vehicle is '2.5톤 탑'
+      vehicleConstant = RECRUITMENTS.VEHICLES.FREIGHT_TWO_FIVE_TOP.VALUE
+
+    else if vehicle is '2.5톤 냉탑'
+      vehicleConstant = RECRUITMENTS.VEHICLES.FREIGHT_TWO_FIVE_FREEZER.VALUE
+
+    else if vehicle is '3.5톤 카고'
+      vehicleConstant = RECRUITMENTS.VEHICLES.FREIGHT_THREE_FIVE_CARGO.VALUE
+
+    else if vehicle is '3.5톤 탑'
+      vehicleConstant = RECRUITMENTS.VEHICLES.FREIGHT_THREE_FIVE_TOP.VALUE
+
+    else if vehicle is '3.5톤 냉탑'
+      vehicleConstant = RECRUITMENTS.VEHICLES.FREIGHT_THREE_FIVE_FREEZER.VALUE
+
+    else if vehicle is '5톤 카고'
+      vehicleConstant = RECRUITMENTS.VEHICLES.FREIGHT_FIVE_CARGO.VALUE
+
+    else if vehicle is '5톤 탑'
+      vehicleConstant = RECRUITMENTS.VEHICLES.FREIGHT_FIVE_TOP.VALUE
+
+    else if vehicle is '5톤 냉탑'
+      vehicleConstant = RECRUITMENTS.VEHICLES.FREIGHT_FIVE_FREEZER.VALUE
+
+    else if vehicle is '5톤축 카고'
+      vehicleConstant = RECRUITMENTS.VEHICLES.FREIGHT_FIVE_LONG_CARGO.VALUE
+
+    else if vehicle is '5톤축 탑'
+      vehicleConstant = RECRUITMENTS.VEHICLES.FREIGHT_FIVE_LONG_TOP.VALUE
+
+    else if vehicle is '5톤축 냉탑'
+      vehicleConstant = RECRUITMENTS.VEHICLES.FREIGHT_FIVE_LONG_FREEZER.VALUE
+
+    else if vehicle is '8톤 카고'
+      vehicleConstant = RECRUITMENTS.VEHICLES.FREIGHT_EIGHT_CARGO.VALUE
+
+    else if vehicle is '8톤 탑'
+      vehicleConstant = RECRUITMENTS.VEHICLES.FREIGHT_EIGHT_TOP.VALUE
+
+    else if vehicle is '8톤 냉탑'
+      vehicleConstant = RECRUITMENTS.VEHICLES.FREIGHT_EIGHT_FREEZER.VALUE
+
+    else if vehicle is '11톤 카고'
+      vehicleConstant = RECRUITMENTS.VEHICLES.FREIGHT_ELEVEN_CARGO.VALUE
+
+    else if vehicle is '11톤 탑'
+      vehicleConstant = RECRUITMENTS.VEHICLES.FREIGHT_ELEVEN_TOP.VALUE
+
+    else if vehicle is '11톤 냉탑'
+      vehicleConstant = RECRUITMENTS.VEHICLES.FREIGHT_ELEVEN_FREEZER.VALUE
+
+    else if vehicle is '18톤 카고'
+      vehicleConstant = RECRUITMENTS.VEHICLES.FREIGHT_EIGHTTEEN_CARGO.VALUE
+
+    else if vehicle is '18톤 탑'
+      vehicleConstant = RECRUITMENTS.VEHICLES.FREIGHT_EIGHTTEEN_TOP.VALUE
+
+    else if vehicle is '18톤 냉탑'
+      vehicleConstant = RECRUITMENTS.VEHICLES.FREIGHT_EIGHTTEEN_FREEZER.VALUE
+
+    else if vehicle is '25톤 카고'
+      vehicleConstant = RECRUITMENTS.VEHICLES.FREIGHT_TWENTYFIVE_CARGO.VALUE
+
+    else if vehicle is '25톤 탑'
+      vehicleConstant = RECRUITMENTS.VEHICLES.FREIGHT_TWENTYFIVE_TOP.VALUE
+
+    else if vehicle is '25톤 냉탑'
+      vehicleConstant = RECRUITMENTS.VEHICLES.FREIGHT_TWENTYFIVE_FREEZER.VALUE
+
+    else if vehicle is '추레라'
+      vehicleConstant = RECRUITMENTS.VEHICLES.FREIGHT_TRAILER.VALUE
+
+    vehicleConstant
+
+  @getVehicleFromConstant: (vehicleConstant, RECRUITMENTS) =>
+    if vehicleConstant is RECRUITMENTS.VEHICLES.PARCEL_MOTOR_BIKE.VALUE
+      vehicle = '오토바이'
+
+    else if vehicleConstant is RECRUITMENTS.VEHICLES.PARCEL_DAMAS.VALUE
+      vehicle = '다마스'
+
+    else if vehicleConstant is RECRUITMENTS.VEHICLES.PARCEL_LABOR.VALUE
+      vehicle = '라보'
+
+    else if vehicleConstant is RECRUITMENTS.VEHICLES.PARCEL_BEN.VALUE
+      vehicle = '밴'
+
+    else if vehicleConstant is RECRUITMENTS.VEHICLES.FREIGHT_ONE_CARGO.VALUE
+      vehicle = '1톤 카고'
+
+    else if vehicleConstant is RECRUITMENTS.VEHICLES.FREIGHT_ONE_TOP.VALUE
+      vehicle = '1톤 탑'
+
+    else if vehicleConstant is RECRUITMENTS.VEHICLES.FREIGHT_ONE_FREEZER.VALUE
+      vehicle = '1톤 냉탑'
+
+    else if vehicleConstant is RECRUITMENTS.VEHICLES.FREIGHT_ONE_FOUR_CARGO.VALUE
+      vehicle = '1.4톤 카고'
+
+    else if vehicleConstant is RECRUITMENTS.VEHICLES.FREIGHT_ONE_FOUR_TOP.VALUE
+      vehicle = '1.4톤 탑'
+
+    else if vehicleConstant is RECRUITMENTS.VEHICLES.FREIGHT_ONE_FOUR_FREEZER.VALUE
+      vehicle = '1.4톤 냉탑'
+
+    else if vehicleConstant is RECRUITMENTS.VEHICLES.FREIGHT_TWO_FIVE_CARGO.VALUE
+      vehicle = '2.5톤 카고'
+
+    else if vehicleConstant is RECRUITMENTS.VEHICLES.FREIGHT_TWO_FIVE_TOP.VALUE
+      vehicle = '2.5톤 탑'
+
+    else if vehicleConstant is RECRUITMENTS.VEHICLES.FREIGHT_TWO_FIVE_FREEZER.VALUE
+      vehicle = '2.5톤 냉탑'
+
+    else if vehicleConstant is RECRUITMENTS.VEHICLES.FREIGHT_THREE_FIVE_CARGO.VALUE
+      vehicle = '3.5톤 카고'
+
+    else if vehicleConstant is RECRUITMENTS.VEHICLES.FREIGHT_THREE_FIVE_TOP.VALUE
+      vehicle = '3.5톤 탑'
+
+    else if vehicleConstant is RECRUITMENTS.VEHICLES.FREIGHT_THREE_FIVE_FREEZER.VALUE
+      vehicle = '3.5톤 냉탑'
+
+    else if vehicleConstant is RECRUITMENTS.VEHICLES.FREIGHT_FIVE_CARGO.VALUE
+      vehicle = '5톤 카고'
+
+    else if vehicleConstant is RECRUITMENTS.VEHICLES.FREIGHT_FIVE_TOP.VALUE
+      vehicle = '5톤 탑'
+
+    else if vehicleConstant is RECRUITMENTS.VEHICLES.FREIGHT_FIVE_FREEZER.VALUE
+      vehicle = '5톤 냉탑'
+
+    else if vehicleConstant is RECRUITMENTS.VEHICLES.FREIGHT_FIVE_LONG_CARGO.VALUE
+      vehicle = '5톤축 카고'
+
+    else if vehicleConstant is RECRUITMENTS.VEHICLES.FREIGHT_FIVE_LONG_TOP.VALUE
+      vehicle = '5톤축 탑'
+
+    else if vehicleConstant is RECRUITMENTS.VEHICLES.FREIGHT_FIVE_LONG_FREEZER.VALUE
+      vehicle = '5톤축 냉탑'
+
+    else if vehicleConstant is RECRUITMENTS.VEHICLES.FREIGHT_EIGHT_CARGO.VALUE
+      vehicle = '8톤 카고'
+
+    else if vehicleConstant is RECRUITMENTS.VEHICLES.FREIGHT_EIGHT_TOP.VALUE
+      vehicle = '8톤 탑'
+
+    else if vehicleConstant is RECRUITMENTS.VEHICLES.FREIGHT_EIGHT_FREEZER.VALUE
+      vehicle = '8톤 냉탑'
+
+    else if vehicleConstant is RECRUITMENTS.VEHICLES.FREIGHT_ELEVEN_CARGO.VALUE
+      vehicle = '11톤 카고'
+
+    else if vehicleConstant is RECRUITMENTS.VEHICLES.FREIGHT_ELEVEN_TOP.VALUE
+      vehicle = '11톤 탑'
+
+    else if vehicleConstant is RECRUITMENTS.VEHICLES.FREIGHT_ELEVEN_FREEZER.VALUE
+      vehicle = '11톤 냉탑'
+
+    else if vehicleConstant is RECRUITMENTS.VEHICLES.FREIGHT_EIGHTTEEN_CARGO.VALUE
+      vehicle = '18톤 카고'
+
+    else if vehicleConstant is RECRUITMENTS.VEHICLES.FREIGHT_EIGHTTEEN_TOP.VALUE
+      vehicle = '18톤 탑'
+
+    else if vehicleConstant is RECRUITMENTS.VEHICLES.FREIGHT_EIGHTTEEN_FREEZER.VALUE
+      vehicle = '18톤 냉탑'
+
+    else if vehicleConstant is RECRUITMENTS.VEHICLES.FREIGHT_TWENTYFIVE_CARGO.VALUE
+      vehicle = '25톤 카고'
+
+    else if vehicleConstant is RECRUITMENTS.VEHICLES.FREIGHT_TWENTYFIVE_TOP.VALUE
+      vehicle = '25톤 탑'
+
+    else if vehicleConstant is RECRUITMENTS.VEHICLES.FREIGHT_TWENTYFIVE_FREEZER.VALUE
+      vehicle = '25톤 냉탑'
+
+    else if vehicleConstant is RECRUITMENTS.VEHICLES.FREIGHT_TRAILER.VALUE
+      vehicle = '추레라'
+
+    vehicle
+
   @getVehicleType = (orderOrTransporter, TRANSPORTERS) ->
     vehicleType =
       if orderOrTransporter.vehicleType is TRANSPORTERS.VEHICLES.PARCEL.VALUE

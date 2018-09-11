@@ -1,35 +1,58 @@
+import deviceInfo from 'react-native-device-info'
+
 export default withHandler = (WrappedComponent) =>
   observer class WithHandler extends Component
     onPressSave: =>
-      weightBoxTypes = @props.state.vehicles.map (vehicle) =>
-        vehicleWeight = Util.getVehicleWeight vehicle, @props.TRANSPORTERS
+      vehicleConstatns = @props.state.vehicles.map (vehicle) =>
+        Util.getVehicleConstantFromVehicle vehicle, @props.RECRUITMENTS
 
-        weight = vehicleWeight[1]
+      deviceId =  deviceInfo.getUniqueID()
 
-        boxType = vehicleWeight[0]
+      _orderFilterConfiguration = @props.transporter.orderFilterConfigurations.find (orderFilterConfiguration) =>
+        orderFilterConfiguration.deviceId is deviceId
 
-        WEIGHT = _.find @props.TRANSPORTERS.VEHICLES.PARCEL.WEIGHTS, (WEIGHT) =>
-          WEIGHT.VALUE is @props.state.weight
+      if _orderFilterConfiguration
+        Meteor.call 'transporters.update',
+          _id: @props.transporter._id
+          'orderFilterConfigurations.deviceId': deviceId
+        ,
+          $set:
+            'orderFilterConfigurations.$.distance': @props.state.distance
+            'orderFilterConfigurations.$.vehicles': vehicleConstatns
+            'orderFilterConfigurations.$.isOnlyMyAgentOrder': @props.state.isOnlyMyAgentOrder
+        , (error) =>
+          if error
+            Util.alert error.reason
 
-        if WEIGHT
-          vehicleType = @props.TRANSPORTERS.VEHICLES.PARCEL.VALUE
+            return
 
-        else
-          vehicleType = @props.TRANSPORTERS.VEHICLES.FREIGHT.VALUE
+          Util.back()
 
-        vehicleType: vehicleType
-        weight: weight
-        boxType: boxType
+          Util.alert '저장되었습니다.'
 
-      console.log weightBoxTypes
+      else
+        orderFilterConfigurationsDefaultObject = _.cloneDeep @props.orderFilterConfigurationsDefaultObject
 
-      console.log @props.state.distance
+        orderFilterConfigurationsDefaultObject.deviceId = deviceInfo.getUniqueID()
 
-      # Meteor.call 'transporters.update',
-      #   _id: @props.transporter._id
-      # ,
-      #   $set:
+        orderFilterConfigurationsDefaultObject.distance = @props.state.distance
+        orderFilterConfigurationsDefaultObject.vehicles = vehicleConstatns
+        orderFilterConfigurationsDefaultObject.isOnlyMyAgentOrder = @props.state.isOnlyMyAgentOrder
 
+        Meteor.call 'transporters.update',
+          _id: @props.transporter._id
+        ,
+          $push:
+            orderFilterConfigurations: orderFilterConfigurationsDefaultObject
+        , (error) =>
+          if error
+            Util.alert error.reason
+
+            return
+
+          Util.back()
+
+          Util.alert '저장되었습니다.'
 
     render: =>
       <WrappedComponent {...@props} onPressSave={@onPressSave} />

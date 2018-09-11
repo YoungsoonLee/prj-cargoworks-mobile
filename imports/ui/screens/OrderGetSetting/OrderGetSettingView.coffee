@@ -3,9 +3,9 @@ export default observer class OrderGetSettingView extends Component
 
   renderDistances: =>
     distances = [1..500].map (distance) =>
-      <Picker.Item key={distance} value="#{distance}" label="#{distance} km" />
+      <Picker.Item key={distance} value={distance} label="#{distance} km" />
 
-    distances.unshift <Picker.Item key={0} value="설정안함" label="설정안함" />
+    distances.unshift <Picker.Item key={0} value={-1} label="설정안함" />
 
     distances
 
@@ -66,6 +66,9 @@ export default observer class OrderGetSettingView extends Component
   onPressSave: =>
     @props.onPressSave()
 
+  onChangeSwitch: (isOn, name) =>
+    @props.state[name] = isOn
+
   render: =>
     <Layout title="수문수신 설정">
       <ScrollView>
@@ -98,7 +101,7 @@ export default observer class OrderGetSettingView extends Component
         </View>
         <View style={{ borderTopWidth: 1, borderTopColor: black, flexDirection: 'row', height: 55 }}>
           <View style={{ width: 70, alignItems: 'center', justifyContent: 'center' }}>
-            <Switch />
+            <Switch onChange={@onChangeSwitch} isOn={@props.state.isOnlyMyAgentOrder} name="isOnlyMyAgentOrder" />
           </View>
           <View style={{ flex: 1, justifyContent: 'center' }}>
             <Text size={13}>
