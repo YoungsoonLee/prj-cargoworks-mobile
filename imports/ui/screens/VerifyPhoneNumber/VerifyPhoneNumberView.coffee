@@ -14,8 +14,7 @@ export default observer class VerifyPhoneNumberView extends Component
           <Text center size={18} bold marginTop={30}>휴대폰번호를 인증하세요</Text>
           <Input placeholder="이름" marginTop={30} state={@props.state} path="name" />
           <View style={{ height: 10 }} />
-          <VerifyPhoneNumber pState={@props.state} path="phoneNumber" />
-          <Checkbox state={@props.state} path="isPhoneNumberMain" label="이 번호를 내 대표 연락처로 설정합니다." marginTop={20} />
+          <VerifyPhoneNumber state={@props.state} path="phoneNumber" />
         </View>
         <Button isDisabled={not @props.validation.isValid} borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>다음</Button>
       </MagnetView>

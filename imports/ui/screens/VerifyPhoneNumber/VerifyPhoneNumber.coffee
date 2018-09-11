@@ -5,7 +5,6 @@ import withReaction from './withReaction.coffee'
 getDefaultState = =>
   name: ''
   phoneNumber: ''
-  isPhoneNumberMain: false
 
 getItems = =>
   [
