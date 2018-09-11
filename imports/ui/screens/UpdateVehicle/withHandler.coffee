@@ -1,6 +1,7 @@
 export default withHandler = (WrappedComponent) =>
   observer class WithHandler extends Component
     onPressNext: =>
+      # WEIGHT만으로는 PARCEL인지 FREIGHT인지 알수 없기 때문에 @props.state.weight가 PARCEL.WEIGHTS에 있으면 PARCEL이고 이 값을 vehicleType에 update한다
       WEIGHT = _.find @props.TRANSPORTERS.VEHICLES.PARCEL.WEIGHTS, (WEIGHT) =>
         WEIGHT.VALUE is @props.state.weight
 
@@ -25,7 +26,8 @@ export default withHandler = (WrappedComponent) =>
 
           return
 
-        if @props.state.weight isnt @props.TRANSPORTERS.VEHICLES.PARCEL.WEIGHTS.MOTOR_BIKE.VALUE
+        # 오토바이이면 UpdateInsurance 나머지는 UpdateInsuranceForOthers로 간다
+        if @props.state.weight is @props.TRANSPORTERS.VEHICLES.PARCEL.WEIGHTS.MOTOR_BIKE.VALUE
           Util.go 'UpdateInsurance'
 
         else
