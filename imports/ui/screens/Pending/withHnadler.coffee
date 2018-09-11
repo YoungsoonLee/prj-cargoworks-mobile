@@ -14,5 +14,8 @@ export default withHandler = (WrappedComponent) =>
 
         Util.reset 'Main'
 
+    onPressUsage: =>
+      Util.go 'Usage'
+
     render: =>
-      <WrappedComponent {...@props} onPressStart={@onPressStart} />
+      <WrappedComponent {...@props} onPressStart={@onPressStart} onPressUsage={@onPressUsage} />
