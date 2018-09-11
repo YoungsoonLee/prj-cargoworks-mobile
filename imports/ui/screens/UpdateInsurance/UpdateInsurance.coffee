@@ -24,6 +24,7 @@ getItems = =>
 getHocs = =>
   [
     withUser()
+    withFindOne('insurances')
     withFindOne('transporters', getSelector)
     withState(getDefaultState)
     withValidation(getItems)

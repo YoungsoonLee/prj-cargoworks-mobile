@@ -1,6 +1,7 @@
 import UpdateInsuranceForOthersView from './UpdateInsuranceForOthersView.coffee'
 import withHandler from './withHandler.coffee'
 import withReaction from './withReaction.coffee'
+import withProps from './withProps.coffee'
 
 getDefaultState = =>
   name: ''
@@ -17,12 +18,19 @@ getItems = =>
     isRequired: true
   ]
 
+getSelector = (props) =>
+  _id: props.user.profile.transporterId
+
 getHocs = =>
   [
+    withFindOne('insurances')
     withUser()
+    withFindOne('transporters', getSelector)
     withState(getDefaultState)
     withValidation(getItems)
+    withConstant('transporters')
     withReaction
+    withProps
     withHandler
   ]
 
