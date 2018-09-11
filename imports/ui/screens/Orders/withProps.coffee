@@ -17,4 +17,12 @@ export default withProps = (WrappedComponent) =>
         orders = _.sortBy orders, (order) =>
           -order.agentFare.final
 
+      if state.header.search
+        orders = orders.filter (order) =>
+          orderString = JSON.stringify order
+
+          regExp = new RegExp state.header.search
+
+          regExp.test orderString
+
       <WrappedComponent {...@props} orders={orders} />
