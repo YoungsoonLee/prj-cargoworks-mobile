@@ -11,7 +11,6 @@ export default observer class UpdateVehicleView extends Component
     @props.state.carRegisterImageUrl = url
 
   render: =>
-    # console.log @props.navigation.state
     <Layout title="차량정보">
       <SelectVehiclePopup state={@props.state} isVisiblePath="isSelectVehiclePopupVisible" weightPath="weight" boxTypePath="boxType" vehiclePath="vehicle" />
       <ScrollView style={{ padding: 20 }}>
@@ -26,5 +25,5 @@ export default observer class UpdateVehicleView extends Component
         <ImageFrame url={@props.state.carRegisterImageUrl} onChange={@onChangeImageFrame} />
         <View style={{ height: 50 }} />
       </ScrollView>
-      <Button isDisabled={not @props.validation.isValid} borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>{ if @props.routeParam?.type is 'update' then '저장' else '다음' }</Button>
+      <Button isDisabled={not @props.validation.isValid} borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>{ if @props.routeParam.type is 'update' then '저장' else '다음' }</Button>
     </Layout>
