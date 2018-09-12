@@ -3,7 +3,7 @@ import withLazyLoad from '../../../hocs/etc/withLazyLoad.coffee'
 import withProps from './withProps.coffee'
 
 getOrdersSelector = (props) =>
-  # status: props.ORDERS.STATUS.DISPATCHING.VALUE
+  status: props.ORDERS.STATUS.DISPATCHING.VALUE
 
 getTransportersSelector = (props) =>
   _id: props.user.profile.transporterId
