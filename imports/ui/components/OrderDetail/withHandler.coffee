@@ -1,22 +1,7 @@
 export default withHandler = (WrappedComponent) =>
   observer class WithHandler extends Component
     onPressOk: =>
-      if @props.order.waypoints.pickUpSchedule is @props.ORDERS.PICKUP_SCHEDULE.IMMEDIATE.VALUE
-        status = @props.ORDERS.STATUS.PICKINGUP.VALUE
-
-      else if @props.order.waypoints.pickUpSchedule is @props.ORDERS.PICKUP_SCHEDULE.RESERVED.VALUE
-        status = @props.ORDERS.STATUS.BEFORE_PICKUP.VALUE
-
-      Meteor.call 'orders.update',
-        _id: @props.order._id
-      ,
-        $set:
-          transporter: @props.transporter
-          status: status
-          'waypoints.addresses.0.isActive': true
-          dispatchedAt: new Date()
-
-      , (error) =>
+      Meteor.call 'orders.update.transporter.dispatched', @props.order._id, @props.transporter._id, (error) =>
         if error
           Util.alert error.reason
 
