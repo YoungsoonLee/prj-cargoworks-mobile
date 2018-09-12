@@ -20,16 +20,15 @@ getDefaultState = (props) =>
     orderFilterConfiguration = orderFilterConfigurationsDefaultObject
 
   # Util.getVehicleFromConstant은 constant의 value를 ui에서 쓰는 value로 바꿔준다.
-  _vehicles = orderFilterConfiguration.vehicles.map (vehicle) =>
-    Util.getVehicleFromConstant vehicle, props.RECRUITMENTS
+  vehicles = orderFilterConfiguration.vehicles.map (vehicle) =>
+    Util.getVehicle vehicle.weight, vehicle.boxType, props.TRANSPORTERS
 
   distance: orderFilterConfiguration.distance
-  vehicles: _vehicles
+  vehicles: vehicles
   isOnlyMyAgentOrder: orderFilterConfiguration.isOnlyMyAgentOrder
 
 getHocs = =>
   [
-    withConstant('recruitments')
     withDefaultObject('orderFilterConfigurations')
     withConstant('transporters')
     withUser()

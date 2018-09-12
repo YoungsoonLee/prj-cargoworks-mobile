@@ -3,8 +3,11 @@ import deviceInfo from 'react-native-device-info'
 export default withHandler = (WrappedComponent) =>
   observer class WithHandler extends Component
     onPressSave: =>
-      vehicleConstatns = @props.state.vehicles.map (vehicle) =>
-        Util.getVehicleConstantFromVehicle vehicle, @props.RECRUITMENTS
+      vehicles = @props.state.vehicles.map (vehicle) =>
+        vehicleWeight = Util.getVehicleWeight vehicle, @props.TRANSPORTERS
+
+        weight: vehicleWeight[1]
+        boxType: vehicleWeight[0]
 
       deviceId =  deviceInfo.getUniqueID()
 
@@ -18,7 +21,7 @@ export default withHandler = (WrappedComponent) =>
         ,
           $set:
             'orderFilterConfigurations.$.distance': @props.state.distance
-            'orderFilterConfigurations.$.vehicles': vehicleConstatns
+            'orderFilterConfigurations.$.vehicles': vehicles
             'orderFilterConfigurations.$.isOnlyMyAgentOrder': @props.state.isOnlyMyAgentOrder
         , (error) =>
           if error
@@ -36,7 +39,7 @@ export default withHandler = (WrappedComponent) =>
         orderFilterConfigurationsDefaultObject.deviceId = deviceInfo.getUniqueID()
 
         orderFilterConfigurationsDefaultObject.distance = @props.state.distance
-        orderFilterConfigurationsDefaultObject.vehicles = vehicleConstatns
+        orderFilterConfigurationsDefaultObject.vehicles = vehicles
         orderFilterConfigurationsDefaultObject.isOnlyMyAgentOrder = @props.state.isOnlyMyAgentOrder
 
         Meteor.call 'transporters.update',
