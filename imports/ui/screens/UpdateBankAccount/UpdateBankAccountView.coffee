@@ -29,6 +29,7 @@ export default observer class UpdateBankAccountView extends Component
           <Picker.Item label="사업자등록번호" value="사업자등록번호" />
         </Select>
         <Input placeholder="방법을 선택 후 번호를 입력해 주세요" state={@props.state} path="value.number" />
+        <View style={{ height: 500 }} />
       </ScrollView>
       <Button isDisabled={not @props.validation.isValid} borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>{ if @props.routeParam?.type is 'update' then '저장' else '다음' }</Button>
     </Layout>

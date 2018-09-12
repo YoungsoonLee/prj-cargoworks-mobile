@@ -20,6 +20,7 @@ export default observer class UpdateInsuranceForOthersView extends Component
             <Input isRequired placeholder="주민등록번호" marginTop={10} state={@props.state} path="idNumber" />
           </View>
           }
+        <View style={{ height: 200 }} />
       </ScrollView>
       <Button isDisabled={not @props.validation.isValid and @props.state.isAgreeChecked} borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>다음</Button>
     </Layout>
