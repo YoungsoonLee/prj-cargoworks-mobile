@@ -34,7 +34,7 @@ export default observer class MyOrderDetailView extends Component
       </OrderDetailLayout>
       { if not isCompleted
         <View>
-          { if not activeWaypoint?.isTransporterIn
+          { if activeWaypoint?.isTransporterIn
             <Button borderRadius={0} height={75} color="light blue" onPress={@onPressGetSignature}>
               <View style={{ flexDirection: 'row' }}>
                 <Image source={require '../../../../images/pencil.png'} style={{ width: 18, height: 18 }} />
@@ -42,7 +42,7 @@ export default observer class MyOrderDetailView extends Component
               </View>
             </Button>
           }
-          { if activeWaypoint?.isTransporterIn
+          { if not activeWaypoint?.isTransporterIn
             <Button isDisabled={true} borderRadius={0} height={75} color="light blue">
               <View style={{ flexDirection: 'row' }}>
                 <Image source={require '../../../../images/pencil.png'} style={{ width: 18, height: 18 }} />
