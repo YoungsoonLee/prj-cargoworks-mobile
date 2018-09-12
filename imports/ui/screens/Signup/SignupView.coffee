@@ -3,9 +3,9 @@ export default observer class SignupView extends Component
     @props.onPressNext()
 
   render: =>
-    <Layout title="계정 만들기" isKeyboardDismissable>
-      <MagnetView style={{ flex: 1 }} offsetOnIos={100}>
-        <View style={{ flex: 1, padding: 20 }}>
+    <Layout title="계정 만들기">
+      <ScrollView>
+        <View style={{ padding: 20 }}>
           <View style={{ alignItems: 'center', marginTop: 20 }}>
             <Image source={require '../../../../images/phone.png'} style={{ width: 50, height: 74 }} />
           </View>
@@ -23,6 +23,7 @@ export default observer class SignupView extends Component
             <Input type="password" placeholder="비밀번호 확인" marginTop={10} state={@props.state} path="passwordConfirm" />
           </Error>
         </View>
-        <Button isDisabled={not @props.validation.isValid} borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>다음</Button>
-      </MagnetView>
+        <View style={{ height: 300 }} />
+      </ScrollView>
+      <Button isDisabled={not @props.validation.isValid} borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>다음</Button>
     </Layout>

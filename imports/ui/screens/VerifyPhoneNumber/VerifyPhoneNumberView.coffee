@@ -5,8 +5,8 @@ export default observer class VerifyPhoneNumberView extends Component
     @props.onPressNext()
 
   render: =>
-    <Layout title="휴대폰 인증" isKeyboardDismissable>
-      <MagnetView style={{ flex: 1 }} offsetOnIos={100}>
+    <Layout title="휴대폰 인증">
+      <ScrollView>
         <View style={{ flex: 1, padding: 20 }}>
           <View style={{ alignItems: 'center', marginTop: 20 }}>
             <Image source={require '../../../../images/phone.png'} style={{ width: 50, height: 74 }} />
@@ -16,6 +16,7 @@ export default observer class VerifyPhoneNumberView extends Component
           <View style={{ height: 10 }} />
           <VerifyPhoneNumber state={@props.state} path="phoneNumber" />
         </View>
-        <Button isDisabled={not @props.validation.isValid} borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>다음</Button>
-      </MagnetView>
+        <View style={{ height: 300 }} />
+      </ScrollView>
+      <Button isDisabled={not @props.validation.isValid} borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>다음</Button>
     </Layout>

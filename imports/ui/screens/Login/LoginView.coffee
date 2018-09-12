@@ -6,8 +6,8 @@ export default observer class LoginView extends Component
     @props.onPressSignup()
 
   render: =>
-    <Layout title="로그인" isKeyboardDismissable>
-      <MagnetView style={{ flex: 1, padding: 20 }} offsetOnIos={100}>
+    <Layout title="로그인">
+      <ScrollView style={{ padding: 20 }}>
         <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
           <Image source={require '../../../../images/splash.png'} style={{ width: 180, height: 180 }} />
         </View>
@@ -22,5 +22,6 @@ export default observer class LoginView extends Component
           <Text marginTop={20} size={17}><Text size={17} underline onPress={=>}>아이디 찾기</Text> / <Text size={18} underline onPress={=>}>비밀번호 찾기</Text></Text>
         </View>
         <Button marginTop={48} color="light blue invert" onPress={@onPressSignup}>회원가입</Button>
-      </MagnetView>
+        <View style={{ height: 300 }} />
+      </ScrollView>
     </Layout>

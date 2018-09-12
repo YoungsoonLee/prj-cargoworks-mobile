@@ -14,13 +14,13 @@ export default observer class UpdateInsuranceForOthersView extends Component
         </Text>
         <Checkbox isRadio label={<Text>이미 개인적으로 적재물배상책임보험에 가입되어있습니다.</Text>} marginTop={30} state={@props.state} path="isAlreadyRegistered" />
         <Checkbox isRadio label={<Text>카고웍스의 적재물배상책임보험 피보험자 가입에 동의합니다. (선택)</Text>} marginTop={20} state={@props.state} path="isAgreeChecked" />
-        { @props.state.isAgreeChecked and
+        { if @props.state.isAgreeChecked
           <View>
             <Input isRequired placeholder="이름(실명)" marginTop={10} state={@props.state} path="name" />
             <Input isRequired placeholder="주민등록번호" marginTop={10} state={@props.state} path="idNumber" />
           </View>
-          }
-        <View style={{ height: 200 }} />
+        }
+        <View style={{ height: 300 }} />
       </ScrollView>
       <Button isDisabled={not @props.validation.isValid and @props.state.isAgreeChecked} borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>다음</Button>
     </Layout>
