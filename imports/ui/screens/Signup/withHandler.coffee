@@ -37,6 +37,7 @@ export default withHandler = (WrappedComponent) =>
             ,
               $set:
                 userId: user._id
+                name: state.verifyPhoneNumberValue.name
             , (error) =>
               if error
                 Util.alert error.reason
