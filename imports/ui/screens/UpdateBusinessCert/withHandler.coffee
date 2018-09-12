@@ -5,8 +5,7 @@ export default withHandler = (WrappedComponent) =>
         _id: @props.user.profile.transporterId
       ,
         $set:
-          canIssueTaxInvoiceViaPopbill: true
-          isNormalTax: @props.state.isNormalTax
+          taxType: @props.state.taxType
           regNumber: @props.state.value.regNumber
           regName: @props.state.value.storeName
           ownerName: @props.state.value.name
@@ -42,18 +41,18 @@ export default withHandler = (WrappedComponent) =>
             Util.alert '유효하지 않은 사업자 등록번호입니다'
 
           # 간이과세자
-          else if result.type isnt '0'
+          else if result.type is '0'
             @props.state.isRegNumberValid = true
 
-            @props.state.isNormalTax = false
+            @props.state.taxType = 0
 
             Util.alert '유효한 사업자 등록번호입니다(간이과세자)'
 
           # 일반과세자
-          else if result.type isnt '1'
+          else if result.type is '1'
             @props.state.isRegNumberValid = false
 
-            @props.state.isNormalTax = true
+            @props.state.taxType = 1
 
             Util.alert '유효한 사업자 등록번호입니다(일반과세자)'
 

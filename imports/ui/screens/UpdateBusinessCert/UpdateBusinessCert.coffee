@@ -7,7 +7,7 @@ getSelector = (props) =>
 
 getDefaultState = (props) =>
   value:
-    isNormalTax: props.transporter.isNormalTax
+    taxType: props.transporter.taxType
     regNumber: props.transporter.regNumber
     storeName: props.transporter.regName
     name: props.transporter.ownerName
