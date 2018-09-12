@@ -15,7 +15,7 @@ export default withHandler = (WrappedComponent) =>
           taxationMethod: method
           taxationRegistrationNumber: @props.state.value.number
 
-      if @props.routeParam.type isnt 'update'
+      if @props.routeParam?.type isnt 'update'
         _.extend modifier.$set,
           adminApprovalStatus: @props.TRANSPORTERS.ADMIN_APPROVAL_STATUS.REQUESTED.VALUE
 
@@ -27,7 +27,7 @@ export default withHandler = (WrappedComponent) =>
 
           return
 
-        if @props.routeParam.type is 'update'
+        if @props.routeParam?.type is 'update'
           Util.back()
 
         else

@@ -7,7 +7,7 @@ getSelector = (props) =>
 getDefaultState = (props) =>
   name: props.transporter.cargoInsuranceInsuredName
   idNumber: props.transporter.residentRegNumber
-  isAgreeChecked: false
+  isAgreeChecked: props.transporter.hasAgreedForCargoInsurance
 
 getItems = =>
   [

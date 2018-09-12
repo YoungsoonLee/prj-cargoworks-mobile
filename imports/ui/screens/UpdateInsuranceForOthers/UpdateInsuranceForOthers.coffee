@@ -3,11 +3,11 @@ import withHandler from './withHandler.coffee'
 import withReaction from './withReaction.coffee'
 import withProps from './withProps.coffee'
 
-getDefaultState = =>
-  name: ''
-  idNumber: ''
-  isAgreeChecked: false
-  isAlreadyRegistered: true
+getDefaultState = (props) =>
+  name: props.transporter.cargoInsuranceInsuredName
+  idNumber: props.transporter.residentRegNumber
+  isAgreeChecked: props.transporter.hasAgreedForCargoInsurance
+  isAlreadyRegistered: not props.transporter.hasAgreedForCargoInsurance
 
 getItems = =>
   [

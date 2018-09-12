@@ -26,7 +26,7 @@ export default withHandler = (WrappedComponent) =>
 
           return
 
-        if @props.routeParam.type is 'update'
+        if @props.routeParam?.type is 'update'
           Util.back()
 
         else

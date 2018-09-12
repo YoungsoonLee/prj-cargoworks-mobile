@@ -395,7 +395,11 @@ export default observer class Util extends Component
         WEIGHT = _.find TRANSPORTERS.VEHICLES.FREIGHT.WEIGHTS, (WEIGHT) =>
           WEIGHT.VALUE is _weight
 
-        weight = WEIGHT.TEXT
+        if WEIGHT.TEXT is '5톤 축'
+          weight = '5톤축'
+
+        else
+          weight = WEIGHT.TEXT
 
         BOX_TYPE = _.find TRANSPORTERS.VEHICLES.FREIGHT.BOX_TYPES, (BOX_TYPE) =>
           BOX_TYPE.VALUE is _vehicle
@@ -419,14 +423,18 @@ export default observer class Util extends Component
         weight = TRANSPORTERS.VEHICLES.FREIGHT.WEIGHTS.TRAILER.VALUE
 
       else # 톤수가 있는 경우
-        exec = /(.+톤) (.+)/.exec _vehicle
+        exec = /(.+톤.*) (.+)/.exec _vehicle
 
         _weight = exec[1]
 
         _vehicle = exec[2]
 
         WEIGHT = _.find TRANSPORTERS.VEHICLES.FREIGHT.WEIGHTS, (WEIGHT) =>
-          WEIGHT.TEXT is _weight
+          if _weight is '5톤축'
+            return WEIGHT.TEXT is '5톤 축'
+
+          else
+            return WEIGHT.TEXT is _weight
 
         weight = WEIGHT.VALUE
 
