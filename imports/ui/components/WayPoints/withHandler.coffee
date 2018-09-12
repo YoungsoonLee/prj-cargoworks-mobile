@@ -1,3 +1,5 @@
+import { Linking } from 'react-native'
+
 export default withHandler = (WrappedComponent) =>
   observer class WithHandler extends Component
     onPressPhone: (phoneNumber) =>

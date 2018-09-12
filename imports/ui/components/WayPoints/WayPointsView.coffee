@@ -1,5 +1,3 @@
-import { Linking } from 'react-native'
-
 export default observer class WayPointsView extends Component
   # @propTypes:
   #   type: PropTypes.oneOf ['order', 'my order']

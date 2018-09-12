@@ -1,5 +1,3 @@
-import { Linking } from 'react-native'
-
 export default observer class OrderInfoView extends Component
   # @propTypes:
   #   order: PropTypes.object
