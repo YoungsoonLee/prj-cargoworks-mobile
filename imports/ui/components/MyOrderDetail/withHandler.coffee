@@ -12,6 +12,7 @@ export default withHandler = (WrappedComponent) =>
 
       Util.go 'GetSignature',
         orderId: @props.order._id
+        transporterId: @props.transporter._id
         addressIndex: index
         isLastAddress: isLastAddress
 

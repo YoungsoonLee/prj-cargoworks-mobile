@@ -5,39 +5,7 @@ export default observer class GetSignatureView extends Component
     @signatureCaptureRef.saveImage()
 
   onSave: (result) =>
-    Meteor.call 'uploadImage', result.encoded, (error, url) =>
-      if error
-        Util.alert error.reason
-
-        return
-
-      modifier =
-        $set:
-          "waypoints.addresses.#{@props.routeParam.addressIndex}.signatureImageUrl": url
-          "waypoints.addresses.#{@props.routeParam.addressIndex}.isSignedOff": true
-          "waypoints.addresses.#{@props.routeParam.addressIndex}.signedOffAt": new Date()
-          "waypoints.addresses.#{@props.routeParam.addressIndex}.isActive": false
-
-      if not @props.routeParam.isLastAddress
-        _.extend modifier.$set,
-          "waypoints.addresses.#{@props.routeParam.addressIndex + 1}.isActive": true
-
-      else
-        _.extend modifier.$set,
-          'waypoints.dischargedAt': new Date()
-          status: @props.ORDERS.STATUS.COMPLETED.VALUE
-
-      Meteor.call 'orders.update',
-        _id: @props.routeParam.orderId
-      , modifier, (error) =>
-        if error
-          Util.alert error.reason
-
-          return
-
-        Util.back()
-
-        Util.alert '서명을 저장했습니다.'
+    @props.onSave result
 
   render: =>
     <Layout title="서명">
