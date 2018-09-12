@@ -5,17 +5,21 @@ import withProps from './withProps.coffee'
 getOrdersSelector = (props) =>
   status: props.ORDERS.STATUS.DISPATCHING.VALUE
 
+getOrdersOption = =>
+  sort:
+    createdAt: -1
+
 getTransportersSelector = (props) =>
   _id: props.user.profile.transporterId
 
 getHocs = =>
   [
     withLazyLoad(0)
-    withConstant('orders')
-    withFind('orders', getOrdersSelector)
     withConstant('transporters')
     withUser()
     withFindOne('transporters', getTransportersSelector)
+    withConstant('orders')
+    withFind('orders', getOrdersSelector, getOrdersOption)
     withProps
   ]
 
