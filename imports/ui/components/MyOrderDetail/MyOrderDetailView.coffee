@@ -23,7 +23,7 @@ export default observer class MyOrderDetailView extends Component
           break
 
     else
-      isCompleted = false
+      isCompleted = true
 
     <View style={{ flex: 1 }}>
       <OrderDetailLayout order={@props.order} type="my order">
