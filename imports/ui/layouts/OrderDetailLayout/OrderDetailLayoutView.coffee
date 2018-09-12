@@ -57,9 +57,9 @@ export default observer class OrderDetailLayoutView extends Component
           <Text marginLeft={8} bold size={15} color={yellow}>{ parseInt(@props.order.waypoints.estimatedTime / 60) }분</Text>
         </View>
         <View style={{ width: 120, justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
-          <Button paddingHorizontal={0} buttonColor={white} width={if @props.type is 'order' then 85 else 50} height={35}>
+          <Button paddingHorizontal={0} buttonColor={white} width={85} height={35}>
             <View style={{ flexDirection: 'row' }}>
-              <Text size={15} color={black}>{ if @props.type is 'order' then '지도보기' else '지도' }</Text>
+              <Text size={15} color={black}>지도보기</Text>
               <Image source={require '../../../../images/marker.png'} style={{ marginLeft: 3, width: 10, height: 14 }} />
             </View>
           </Button>
