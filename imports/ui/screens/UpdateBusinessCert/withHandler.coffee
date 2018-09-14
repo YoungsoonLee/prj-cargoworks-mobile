@@ -30,7 +30,7 @@ export default withHandler = (WrappedComponent) =>
         if not isProduction
           @props.state.isRegNumberValid = true
 
-          @props.state.isNormalTax = true
+          @props.state.taxType = 1
 
           Util.alert '유효한 사업자 등록번호입니다(일반과세자)(디버깅 모드)'
 
@@ -50,7 +50,7 @@ export default withHandler = (WrappedComponent) =>
 
           # 일반과세자
           else if result.type is '1'
-            @props.state.isRegNumberValid = false
+            @props.state.isRegNumberValid = true
 
             @props.state.taxType = 1
 
