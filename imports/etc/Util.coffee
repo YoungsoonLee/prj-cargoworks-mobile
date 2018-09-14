@@ -564,7 +564,7 @@ export default observer class Util extends Component
     else if transporter.adminApprovalStatus is TRANSPORTERS.ADMIN_APPROVAL_STATUS.IN_PROGRESS.VALUE
       Util.reset 'UpdateVehicle'
 
-    else if transporter.adminApprovalStatus is TRANSPORTERS.ADMIN_APPROVAL_STATUS.REQUESTED.VALUE
+    else if transporter.adminApprovalStatus in [TRANSPORTERS.ADMIN_APPROVAL_STATUS.REQUESTED.VALUE, TRANSPORTERS.ADMIN_APPROVAL_STATUS.APPROVED.VALUE]
       Util.reset 'Pending'
 
     else

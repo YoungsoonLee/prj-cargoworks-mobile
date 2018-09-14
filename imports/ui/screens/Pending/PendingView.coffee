@@ -27,7 +27,7 @@ export default observer class PendingView extends Component
               기사님은 사용방법 안내를 참고해주세요.
             </Text>
             <View style={{ alignItems: 'center', marginTop: 50 }}>
-              <Button onPress={@onPressUsage} isTextBold={false} textSize={15} height={37} width={120} color="black invert">사용방법 안내</Button>
+              <Button onPress={@onPressUsage} isTextBold={false} textSize={15} height={37} width={125} color="black invert">사용방법 안내</Button>
             </View>
           </View>
           }
