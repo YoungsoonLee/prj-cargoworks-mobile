@@ -17,11 +17,25 @@ export default withHandler = (WrappedComponent) =>
 
           return
 
-        if @props.routeParam?.type is 'update'
-          Util.back()
+        if @props.state.value.taxType is 1
+          Meteor.call 'registerPopbillMember', toJs(@props.state.value), @props.user.username, (error) =>
+            if error
+              Util.alert error.reason
+
+              return
+
+            if @props.routeParam?.type is 'update'
+              Util.back()
+
+            else
+              Util.go 'UpdateBankAccount'
 
         else
-          Util.go 'UpdateBankAccount'
+          if @props.routeParam?.type is 'update'
+            Util.back()
+
+          else
+            Util.go 'UpdateBankAccount'
 
     onPressCheckRegNumber: =>
       @props.state.isRegNumberChecked = true
