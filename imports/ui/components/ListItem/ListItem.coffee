@@ -20,7 +20,7 @@ export default observer class ListItem extends Component
 
   render: =>
     <Touchable onPress={@onPress}>
-      <View style={{ height: 80, paddingHorizontal: 15, flexDirection: 'row', borderTopWidth: @props.isBorderTopVisible and 1, borderTopColor: '#a6a6a6', borderBottomWidth: @props.isBorderBottomVisible and 1, borderBottomColor: '#a6a6a6' }}>
+      <View style={{ height: 80, paddingHorizontal: 15, flexDirection: 'row', borderTopWidth: (if @props.isBorderTopVisible then 1 else 0), borderTopColor: '#a6a6a6', borderBottomWidth: (if @props.isBorderBottomVisible then 1 else 0), borderBottomColor: '#a6a6a6' }}>
         <View style={{ flex: 1, justifyContent: 'center' }}>
           <Text size={20} bold color={black}>{ @props.children }</Text>
           { not not @props.subTitle and

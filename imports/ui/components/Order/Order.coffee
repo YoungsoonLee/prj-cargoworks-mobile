@@ -86,6 +86,12 @@ export default observer class Order extends Component
       return (
         <Touchable onPress={@onPress}>
           <View style={{ flexDirection: 'row', height: 50, backgroundColor: backgroundColor, borderRadius: 3, marginTop: 1 }}>
+            <View style={{ zIndex: 1, width: 21, height: 21, backgroundColor: darkBlue, borderRadius: 3, position: 'absolute', top: 13, left: '41%', alignItems: 'center', justifyContent: 'center' }}>
+              <Text color="#ffffff" size={10} bold>+{ waypointsLegth }</Text>
+              { if isRoundTrip
+                <Image source={require '../../../../images/round_trip.png'} style={{ width: 12 * 1.3, height: 7 * 1.3 }} />
+              }
+            </View>
             <View style={{ overflow: 'hidden', borderRightWidth: 1, borderRightColor: '#cccccc', width: 40, justifyContent: 'center', paddingLeft: 8 }}>
               <Text bold size={20} color={black}>{ distance }</Text>
             </View>
@@ -97,12 +103,6 @@ export default observer class Order extends Component
             </View>
             <View style={{ borderRightWidth: 1, borderRightColor: '#cccccc', flex: 1, justifyContent: 'center', paddingLeft: 15 }}>
               <Text bold size={22} color={black}>{ endAddress.slice 0, 5 }</Text>
-              <View style={{ width: 21, height: 21, backgroundColor: darkBlue, borderRadius: 3, position: 'absolute', top: 13, left: -11, alignItems: 'center', justifyContent: 'center' }}>
-                <Text color="#ffffff" size={10} bold>+{ waypointsLegth }</Text>
-                { if isRoundTrip
-                  <Image source={require '../../../../images/round_trip.png'} style={{ width: 12 * 1.3, height: 7 * 1.3 }} />
-                }
-              </View>
             </View>
             <View style={{ borderRightWidth: 1, borderRightColor: '#cccccc', width: 37, alignItems: 'center', justifyContent: 'center' }}>
               <Text bold size={20} color={black}>{ vehicleType }</Text>
@@ -118,6 +118,12 @@ export default observer class Order extends Component
       return (
         <Touchable onPress={@onPress}>
           <View style={{ flexDirection: 'row', height: 100, backgroundColor: backgroundColor, borderRadius: 3, marginTop: 1 }}>
+            <View style={{ zIndex: 1, width: 21, height: 21, backgroundColor: darkBlue, borderRadius: 3, position: 'absolute', top: 10, left: '41%', alignItems: 'center', justifyContent: 'center' }}>
+              <Text color="#ffffff" size={10} bold>+{ waypointsLegth }</Text>
+              { if isRoundTrip
+                <Image source={require '../../../../images/round_trip.png'} style={{ width: 12 * 1.3, height: 7 * 1.3 }} />
+              }
+            </View>
             <View style={{ overflow: 'hidden', borderRightWidth: 1, borderRightColor: '#cccccc', width: 40, paddingTop: 8, paddingLeft: 8 }}>
               <Text bold size={20} color={black}>{ distance }</Text>
             </View>
@@ -130,12 +136,6 @@ export default observer class Order extends Component
                 <View style={{ borderRightWidth: 1, borderRightColor: '#cccccc', flex: 1, justifyContent: 'center', paddingLeft: 15 }}>
                   <Text bold size={22} color={black}>{ endAddress.slice 0, 5 }</Text>
                   <Text bold size={17} color="#375ab5" marginTop={2}>{ dischargeScheduleAt }</Text>
-                  <View style={{ width: 21, height: 21, backgroundColor: darkBlue, borderRadius: 3, position: 'absolute', top: 10, left: -11, alignItems: 'center', justifyContent: 'center' }}>
-                    <Text color="#ffffff" size={10} bold>+{ waypointsLegth }</Text>
-                    { if isRoundTrip
-                      <Image source={require '../../../../images/round_trip.png'} style={{ width: 12 * 1.3, height: 7 * 1.3 }} />
-                    }
-                  </View>
                 </View>
                 <View style={{ borderRightWidth: 1, borderRightColor: '#cccccc', width: 37, alignItems: 'center', justifyContent: 'center' }}>
                   <Text bold size={20} color={black}>{ weight }</Text>

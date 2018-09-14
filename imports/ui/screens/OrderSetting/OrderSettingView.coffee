@@ -45,7 +45,7 @@ export default observer class OrderSettingView extends Component
       </ScrollView>
       { if @props.transporter.operationStatus is @props.TRANSPORTERS.OPERATION_STATUS.OUT.VALUE
         <Button onPress={=> @onPressInOrOut true} borderRadius={0} height={75} color="light blue">
-          <View style={{ flexDirection: 'row' }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             <Image source={require '../../../../images/enter.png'} style={{ width: 22, height: 16 }} />
             <Text bold marginLeft={5} color={white} size={20}>출근하기</Text>
           </View>
@@ -53,7 +53,7 @@ export default observer class OrderSettingView extends Component
       }
       { if @props.transporter.operationStatus is @props.TRANSPORTERS.OPERATION_STATUS.IN.VALUE
         <Button onPress={=> @onPressInOrOut false} borderRadius={0} height={75} color="grey">
-          <View style={{ flexDirection: 'row' }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             <Image source={require '../../../../images/out.png'} style={{ width: 22, height: 16 }} />
             <Text bold marginLeft={5} color={white} size={20}>퇴근하기</Text>
           </View>
