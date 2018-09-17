@@ -1,0 +1,8 @@
+{
+  "name": "카고웍스 운전자용",
+  "version": "0.0.9",
+  "build": "9",
+  "isProduction": false,
+  "productionBackendIp": "cargoworks.cc",
+  "developmentBackendIp": "192.168.0.36:3000"
+}

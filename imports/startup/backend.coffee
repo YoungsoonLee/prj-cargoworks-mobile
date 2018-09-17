@@ -1,7 +1,7 @@
-if isProduction
-  global.backendIp = 'cargoworks.cc'
+if Meteor.isProduction
+  global.backendIp = Meteor.settings.productionBackendIp
 
 else
-  global.backendIp = '192.168.0.36:3000'
+  global.backendIp = Meteor.settings.developmentBackendIp
 
 Meteor.connect "ws://#{backendIp}/websocket"
