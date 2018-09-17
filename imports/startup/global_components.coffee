@@ -2,7 +2,7 @@ import { View, Image, ImageBackground, ScrollView, TouchableWithoutFeedback, Pic
 import Toggles from 'slap-react-native-toggles'
 import Toggle from 'slap-react-native-toggle'
 import TextArea from 'slap-react-native-text-area'
-import Switch from 'slap-react-native-switch'
+import Switch from '../ui/components/Switch/Switch.coffee'
 import Swiper from 'slap-react-native-swiper'
 import Spinner from 'slap-react-native-spinner'
 import MagnetView from 'slap-react-native-magnet-view'
@@ -27,6 +27,7 @@ import withFindOne from '../hocs/data/withFindOne.coffee'
 import withFind from '../hocs/data/withFind.coffee'
 import withHocs from '../hocs/etc/withHocs.coffee'
 import withState from '../hocs/etc/withState.coffee'
+import withModal from '../hocs/etc/withModal.coffee'
 import withValidation from '../hocs/etc/withValidation.coffee'
 import withRouteParam from '../hocs/etc/withRouteParam.coffee'
 import withConstant from '../hocs/etc/withConstant.coffee'
@@ -72,6 +73,7 @@ global.withFindOne = withFindOne
 global.withFind = withFind
 global.withHocs = withHocs
 global.withState = withState
+global.withModal = withModal
 global.withValidation = withValidation
 global.withRouteParam = withRouteParam
 global.withConstant = withConstant

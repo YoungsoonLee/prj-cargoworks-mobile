@@ -359,13 +359,19 @@ export default observer class Util extends Component
       return "#{min}분"
 
   @get: (state, path) =>
-    value = ''
+    if not state or not path
+      return null
+
+    value = null
 
     eval "value = state.#{path}"
 
     value
 
   @set: (state, path, value) =>
+    if not state or not path
+      return null
+
     eval "state.#{path} = value"
 
   @push: (state, path, value) =>

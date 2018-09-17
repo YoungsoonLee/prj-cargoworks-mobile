@@ -66,9 +66,6 @@ export default observer class OrderGetSettingView extends Component
   onPressSave: =>
     @props.onPressSave()
 
-  onChangeSwitch: (isOn, name) =>
-    @props.state[name] = isOn
-
   render: =>
     <Layout title="수문수신 설정">
       <ScrollView>
@@ -101,7 +98,7 @@ export default observer class OrderGetSettingView extends Component
         </View>
         <View style={{ borderTopWidth: 1, borderTopColor: black, flexDirection: 'row', height: 55 }}>
           <View style={{ width: 70, alignItems: 'center', justifyContent: 'center' }}>
-            <Switch onChange={@onChangeSwitch} isOn={@props.state.isOnlyMyAgentOrder} name="isOnlyMyAgentOrder" />
+            <Switch state={@props.state} path="isOnlyMyAgentOrder" />
           </View>
           <View style={{ flex: 1, justifyContent: 'center' }}>
             <Text size={13}>
