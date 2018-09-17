@@ -37,24 +37,14 @@ patchInfo = =>
   if settings.isProduction
     await replaceInFile
       files: './ios/mobile_seed/AppDelegate.m'
-      from: "jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@\"index\" fallbackResource:nil];"
-      to: "// jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@\"index\" fallbackResource:nil];"
-
-    await replaceInFile
-      files: './ios/mobile_seed/AppDelegate.m'
-      from: /\/\/\s*jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];/
+      from: "jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@\"index\" fallbackResource:nil]"
       to: "jsCodeLocation = [[NSBundle mainBundle] URLForResource:@\"main\" withExtension:@\"jsbundle\"];"
 
   else
     await replaceInFile
       files: './ios/mobile_seed/AppDelegate.m'
-      from: /\/\/\s*jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];/
-      to: "jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@\"index\" fallbackResource:nil];"
-
-    await replaceInFile
-      files: './ios/mobile_seed/AppDelegate.m'
       from: "jsCodeLocation = [[NSBundle mainBundle] URLForResource:@\"main\" withExtension:@\"jsbundle\"];"
-      to: "// jsCodeLocation = [[NSBundle mainBundle] URLForResource:@\"main\" withExtension:@\"jsbundle\"];"
+      to: "jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@\"index\" fallbackResource:nil]"
 
   console.log "name: #{settings.name} patch done"
   console.log "version: #{settings.version} build: #{settings.build} patch done"

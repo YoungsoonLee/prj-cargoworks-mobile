@@ -4,9 +4,9 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
-    "patch-version": "node ./js/imports/patch_version.js",
-    "build-android": "npm run patch-version && cd android && ./gradlew assembleRelease",
-    "bundle-ios": "npm run patch-version && react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ./"
+    "patch-info": "node ./js/imports/patch_info.js",
+    "build-android": "npm run patch-info && cd android && ./gradlew assembleRelease",
+    "bundle-ios": "npm run patch-info && react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ./"
   },
   "dependencies": {
     "geolib": "^2.0.24",
