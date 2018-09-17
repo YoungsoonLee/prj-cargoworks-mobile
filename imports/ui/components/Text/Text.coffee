@@ -1,4 +1,4 @@
-import { Text } from 'react-native'
+import { Text, Platform } from 'react-native'
 
 export default observer class _Text extends Component
   # @propTypes:
@@ -53,6 +53,7 @@ export default observer class _Text extends Component
       fontWeight: if @props.bold then 'bold' else 'normal'
       textDecorationLine: if @props.underline then 'underline' else 'none'
       opacity: @props.opacity
+      fontFamily: if Platform.OS is 'android' then 'sans-serif' else 'Apple SD Gothic Neo'
 
     _.extend style, @props.style
 
