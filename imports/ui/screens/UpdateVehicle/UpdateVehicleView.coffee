@@ -20,7 +20,8 @@ export default observer class UpdateVehicleView extends Component
           <Input placeholder="차량" isDisabled state={@props.state} path="vehicle" marginTop={20} />
           }
         <Button marginTop={20} color="blue" onPress={@onPressSelectVehicle}>차량선택</Button>
-        <Text size={18} bold marginTop={45}>자동차 등록증이 잘 보이도록 사진으로 찍어 올려주세요.</Text>
+        <Text size={18} bold marginTop={45}>자동차등록증을 촬영하여 올려주세요.</Text>
+        <Text size={17} bold color="#555555">(주민등록번호 뒤 7자리를 펜으로 가려서 촬영하세요)</Text>
         <View style={{ height: 30 }} />
         <ImageFrame url={@props.state.carRegisterImageUrl} onChange={@onChangeImageFrame} />
         <View style={{ height: 50 }} />
