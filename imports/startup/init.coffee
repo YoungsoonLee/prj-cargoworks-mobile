@@ -9,3 +9,5 @@ global.width = Dimensions.get('window').width
 global.height = Dimensions.get('window').height
 
 Meteor.settings = settings
+
+global.isProduction = Meteor.settings.isProduction

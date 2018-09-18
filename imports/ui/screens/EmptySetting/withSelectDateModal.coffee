@@ -1,5 +1,5 @@
-export default withModal = (WrappedComponent) =>
-  observer class WithModal extends Component
+export default withSelectDateModal = (WrappedComponent) =>
+  observer class WithSelectDateModal extends Component
     constructor: (props) ->
       super props
 

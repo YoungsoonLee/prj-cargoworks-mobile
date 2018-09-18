@@ -1,9 +1,17 @@
 import CwHeader from '../../components/CwHeader/CwHeader.coffee'
 import EvilIcons from 'react-native-vector-icons/EvilIcons'
+import { Platform } from 'react-native'
 
 export default observer class EmptySettingView extends Component
   onPressOpenSelectDateModal: =>
     @props.onPressOpenSelectDateModal()
+
+  onPressOpenSelectTimeModal: =>
+    if Platform.OS is 'android'
+      @props.onPressOpenTimePickerAndroid()
+
+    else if Platform.OS is 'ios'
+      @props.onPressOpenSelectTimeModal()
 
   onPressResetDate: =>
     @props.onPressResetDate()
@@ -64,9 +72,9 @@ export default observer class EmptySettingView extends Component
               <Text>출발시간</Text>
             </View>
             <View style={{ flex: 1 }}>
-              { if not @props.state.startDate
+              { if not @props.state.startTime
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <Button width={90} height={32} textSize={13} onPress={@onPressOpenSelectTime}>시간선택</Button>
+                  <Button width={90} height={32} textSize={13} onPress={@onPressOpenSelectTimeModal}>시간선택</Button>
                   <Text size={12} marginLeft={10}>미선택시 항상 가능</Text>
                 </View>
 

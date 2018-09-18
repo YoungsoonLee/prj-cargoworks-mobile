@@ -1,6 +1,6 @@
 import EmptySettingView from './EmptySettingView.coffee'
-import Calendar from './Calendar.coffee'
-import withModal from './withModal.coffee'
+import withSelectDateModal from './withSelectDateModal.coffee'
+import withSelectTimeModal from './withSelectTimeModal.coffee'
 import withHandler from './withHandler.coffee'
 
 getDefaultState = =>
@@ -15,7 +15,8 @@ getDefaultState = =>
 getHocs = =>
   [
     withState(getDefaultState)
-    withModal
+    withSelectDateModal
+    withSelectTimeModal
     withHandler
   ]
 

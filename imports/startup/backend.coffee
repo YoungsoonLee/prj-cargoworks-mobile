@@ -1,4 +1,4 @@
-if Meteor.isProduction
+if isProduction
   global.backendIp = Meteor.settings.productionBackendIp
 
 else
