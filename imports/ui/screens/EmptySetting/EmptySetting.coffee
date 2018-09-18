@@ -1,5 +1,7 @@
 import EmptySettingView from './EmptySettingView.coffee'
 import Calendar from './Calendar.coffee'
+import withModal from './withModal.coffee'
+import withHandler from './withHandler.coffee'
 
 getDefaultState = =>
   isEmpty: false
@@ -10,4 +12,11 @@ getDefaultState = =>
   mixType: '1/1'
   isDateModalVisible: false
 
-export default EmptySetting = withState(getDefaultState) withModal(Calendar) EmptySettingView
+getHocs = =>
+  [
+    withState(getDefaultState)
+    withModal
+    withHandler
+  ]
+
+export default EmptySetting = withHocs(getHocs) EmptySettingView

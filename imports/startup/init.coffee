@@ -1,7 +1,7 @@
 import 'moment/locale/ko'
 import state from '../etc/state.coffee'
 import { Dimensions } from 'react-native'
-import settings from '../../settings.json'
+import settings from '../../../settings.json'
 
 global.state = state
 

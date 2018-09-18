@@ -16,6 +16,7 @@ import StatusBar from '../ui/components/StatusBar/StatusBar.coffee'
 import Touchable from 'slap-react-native-touchable'
 import Text from '../ui/components/Text/Text.coffee'
 import Button from '../ui/components/Button/Button.coffee'
+import Modal from '../ui/components/Modal/Modal.coffee'
 import Error from '../ui/components/Error/Error.coffee'
 import Input from '../ui/components/Input/Input.coffee'
 import Checkbox from '../ui/components/Checkbox/Checkbox.coffee'
@@ -27,7 +28,6 @@ import withFindOne from '../hocs/data/withFindOne.coffee'
 import withFind from '../hocs/data/withFind.coffee'
 import withHocs from '../hocs/etc/withHocs.coffee'
 import withState from '../hocs/etc/withState.coffee'
-import withModal from '../hocs/etc/withModal.coffee'
 import withValidation from '../hocs/etc/withValidation.coffee'
 import withRouteParam from '../hocs/etc/withRouteParam.coffee'
 import withConstant from '../hocs/etc/withConstant.coffee'
@@ -62,6 +62,7 @@ global.StatusBar = StatusBar
 global.Touchable = Touchable
 global.Text = Text
 global.Button = Button
+global.Modal = Modal
 global.Error = Error
 global.Input = Input
 global.Checkbox = Checkbox
@@ -73,7 +74,6 @@ global.withFindOne = withFindOne
 global.withFind = withFind
 global.withHocs = withHocs
 global.withState = withState
-global.withModal = withModal
 global.withValidation = withValidation
 global.withRouteParam = withRouteParam
 global.withConstant = withConstant

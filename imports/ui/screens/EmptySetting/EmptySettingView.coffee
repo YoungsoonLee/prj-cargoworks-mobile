@@ -1,8 +1,15 @@
 import CwHeader from '../../components/CwHeader/CwHeader.coffee'
+import EvilIcons from 'react-native-vector-icons/EvilIcons'
 
 export default observer class EmptySettingView extends Component
-  onPressSelectDate: =>
-    @props.modal.show()
+  onPressOpenSelectDateModal: =>
+    @props.onPressOpenSelectDateModal()
+
+  onPressResetDate: =>
+    @props.onPressResetDate()
+
+  onPressResetTime: =>
+    @props.onPressResetTime()
 
   render: =>
     <Layout title="공차,혼적 등록">
@@ -35,10 +42,20 @@ export default observer class EmptySettingView extends Component
             </View>
             <View style={{ flex: 1 }}>
               { if not @props.state.startDate
-                <Button onPress={@onPressSelectDate}>날짜선택</Button>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                  <Button width={90} height={32} textSize={13} onPress={@onPressOpenSelectDateModal}>날짜선택</Button>
+                  <Text size={12} marginLeft={10}>미선택시 항상 가능</Text>
+                </View>
 
               else
-                <Text>{ moment(@props.state.startDate).format('YYYY-MM-DD') }</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                  <Text>{ moment(@props.state.startDate).format('YYYY-MM-DD') }</Text>
+                  <TouchableWithoutFeedback onPress={@onPressResetDate}>
+                    <View style={{ width: 40, height: 40, justifyContent: 'center', alignItems: 'center' }}>
+                      <EvilIcons name="close" color="#9b9b9b" size={35} />
+                    </View>
+                  </TouchableWithoutFeedback>
+                </View>
               }
             </View>
           </View>
@@ -47,7 +64,22 @@ export default observer class EmptySettingView extends Component
               <Text>출발시간</Text>
             </View>
             <View style={{ flex: 1 }}>
+              { if not @props.state.startDate
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                  <Button width={90} height={32} textSize={13} onPress={@onPressOpenSelectTime}>시간선택</Button>
+                  <Text size={12} marginLeft={10}>미선택시 항상 가능</Text>
+                </View>
 
+              else
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                  <Text>{ moment(@props.state.startTime).format('HH:mm') }</Text>
+                  <TouchableWithoutFeedback onPress={@onPressResetTime}>
+                    <View style={{ width: 40, height: 40, justifyContent: 'center', alignItems: 'center' }}>
+                      <EvilIcons name="close" color="#9b9b9b" size={35} />
+                    </View>
+                  </TouchableWithoutFeedback>
+                </View>
+              }
             </View>
           </View>
         </View>
