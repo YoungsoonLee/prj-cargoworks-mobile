@@ -19,6 +19,12 @@ export default observer class EmptySettingView extends Component
   onPressResetTime: =>
     @props.onPressResetTime()
 
+  onChangeCheckboxControlled: (isChecked, name) =>
+    @props.state.mixType = name
+
+  onPressSave: =>
+    @props.onPressSave()
+
   render: =>
     <Layout title="공차,혼적 등록">
       <ScrollView>
@@ -98,7 +104,7 @@ export default observer class EmptySettingView extends Component
               <Text>혼적</Text>
             </View>
             <View style={{ flex: 1, flexDirection: 'row' }}>
-              <Switch />
+              <Switch state={@props.state} path="isMixed" />
               <View style={{ marginLeft: 7 }}>
                 <Text color={black} size={14}>혼적 가능한 적재공간을 선택하세요.</Text>
                 <Text color={black} size={11}>* 등록 후 1건이라도 주문을 수락하면 자동 해제됩니다.</Text>
@@ -107,7 +113,7 @@ export default observer class EmptySettingView extends Component
           </View>
           <View style={{ flexDirection: 'row', alignItems: 'center', height: 40 }}>
             <View style={{ width: 40, alignItems: 'center' }}>
-              <Checkbox color={black} />
+              <CheckboxControlled isRadio color={black} isChecked={@props.state.mixType is '1/1'} onChange={@onChangeCheckboxControlled} name="1/1" />
             </View>
             <View style={{ flex: 1 }}>
               <Text color={black} size={14}>전체</Text>
@@ -115,7 +121,7 @@ export default observer class EmptySettingView extends Component
           </View>
           <View style={{ flexDirection: 'row', alignItems: 'center', height: 40 }}>
             <View style={{ width: 40, alignItems: 'center' }}>
-              <Checkbox color={black} />
+              <CheckboxControlled isRadio color={black} isChecked={@props.state.mixType is '1/2'} onChange={@onChangeCheckboxControlled} name="1/2" />
             </View>
             <View style={{ flex: 1 }}>
               <Text color={black} size={14}>1/2</Text>
@@ -123,7 +129,7 @@ export default observer class EmptySettingView extends Component
           </View>
           <View style={{ flexDirection: 'row', alignItems: 'center', height: 40 }}>
             <View style={{ width: 40, alignItems: 'center' }}>
-              <Checkbox color={black} />
+              <CheckboxControlled isRadio color={black} isChecked={@props.state.mixType is '1/3'} onChange={@onChangeCheckboxControlled} name="1/3" />
             </View>
             <View style={{ flex: 1 }}>
               <Text color={black} size={14}>1/3</Text>
