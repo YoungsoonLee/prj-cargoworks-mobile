@@ -28,6 +28,7 @@ import Qnas from '../../screens/Qnas/Qnas.coffee'
 import Signature from '../../screens/Signature/Signature.coffee'
 import Usage from '../../screens/Usage/Usage.coffee'
 import MyAgents from '../../screens/MyAgents/MyAgents.coffee'
+import MyAgentDetail from '../../screens/MyAgentDetail/MyAgentDetail.coffee'
 
 export default StackNavigator
   Splash:
@@ -88,5 +89,7 @@ export default StackNavigator
     screen: Usage
   MyAgents:
     screen: MyAgents
+  MyAgentDetail:
+    screen: MyAgentDetail
 ,
   headerMode: 'none'
