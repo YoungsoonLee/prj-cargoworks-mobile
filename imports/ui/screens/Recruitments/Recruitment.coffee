@@ -1,6 +1,6 @@
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
-export default observer class MyAgent extends Component
+export default observer class Recruitment extends Component
   # @propTypes:
   #   isBorderTopVisible: PropTypes.bool
   #   onPress: PropTypes.func
