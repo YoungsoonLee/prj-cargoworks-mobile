@@ -29,10 +29,10 @@ export default observer class Layout extends Component
       <View style={{ flex: 1 }}>
         <StatusBar />
         <View style={{ height: 52, backgroundColor: darkBlue, flexDirection: 'row' }}>
-          <View style={{ width: 60, alignItems: 'center', justifyContent: 'center' }}>
+          <View style={{ width: 60 }}>
             { @props.isBackButtonVisible and @props.type is 'screen' and
               <Touchable onPress={@onPressBack}>
-                <View style={{ flexDirection: 'row' }}>
+                <View style={{ flexDirection: 'row', width: 60, height: 52, justifyContent: 'center', alignItems: 'center' }}>
                   <SimpleLineIcons name="arrow-left" size={18} color="#a2aabf" />
                   <Text color="#a2aabf" marginLeft={3} size={19} bold>뒤로</Text>
                 </View>
