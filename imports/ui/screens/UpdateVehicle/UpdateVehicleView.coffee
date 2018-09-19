@@ -23,7 +23,7 @@ export default observer class UpdateVehicleView extends Component
         <Text size={18} bold marginTop={45}>자동차등록증을 촬영하여 올려주세요.</Text>
         <Text size={17} bold color="#555555">(주민등록번호 뒤 7자리를 펜으로 가려서 촬영하세요)</Text>
         <View style={{ height: 30 }} />
-        <ImageFrame url={@props.state.carRegisterImageUrl} onChange={@onChangeImageFrame} />
+        <ImageUploader state={@props.state} path="carRegisterImageUrl" />
         <View style={{ height: 50 }} />
       </ScrollView>
       <Button isDisabled={not @props.validation.isValid} borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>{ if @props.routeParam?.type is 'update' then '저장하기' else '다음' }</Button>

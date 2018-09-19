@@ -19,6 +19,7 @@ import Button from '../ui/components/Button/Button.coffee'
 import Modal from '../ui/components/Modal/Modal.coffee'
 import Error from '../ui/components/Error/Error.coffee'
 import Input from '../ui/components/Input/Input.coffee'
+import ImageUploader from '../ui/components/ImageUploader/ImageUploader.coffee'
 import CheckboxControlled from '../ui/components/CheckboxControlled/CheckboxControlled.coffee'
 import Checkbox from '../ui/components/Checkbox/Checkbox.coffee'
 import Badge from 'slap-react-native-badge'
@@ -66,6 +67,7 @@ global.Button = Button
 global.Modal = Modal
 global.Error = Error
 global.Input = Input
+global.ImageUploader = ImageUploader
 global.CheckboxControlled = CheckboxControlled
 global.Checkbox = Checkbox
 global.Badge = Badge
