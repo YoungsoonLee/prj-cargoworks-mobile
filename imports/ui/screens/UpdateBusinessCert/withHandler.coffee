@@ -55,7 +55,7 @@ export default withHandler = (WrappedComponent) =>
             Util.alert '유효하지 않은 사업자 등록번호입니다'
 
           # 간이과세자
-          else if result.type is '0'
+          else if result.type is '3'
             @props.state.isRegNumberValid = true
 
             @props.state.taxType = 0
