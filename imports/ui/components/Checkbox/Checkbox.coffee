@@ -52,10 +52,10 @@ export default observer class Checkbox extends Component
 
   render: =>
     if typeof @props.label is 'string'
-      content = <Text>{ @props.label }</Text>
+      label = <Text>{ @props.label }</Text>
 
     else
-      content = @props.label
+      label = @props.label
 
     <View style={{ flexDirection: 'row', marginTop: @props.marginTop, marginLeft: @props.marginLeft }}>
       <TouchableWithoutFeedback onPress={@onPress}>
@@ -63,7 +63,9 @@ export default observer class Checkbox extends Component
           <Ionicons name="ios-checkbox" size={32} color={if @state.isChecked then '#c12d3a' else '#cccccc'} />
         </View>
       </TouchableWithoutFeedback>
-      <View style={{ flex: 1, paddingLeft: 10, justifyContent: 'center' }}>
-        { content }
-      </View>
+      { if @props.label
+        <View style={{ flex: 1, paddingLeft: 10, justifyContent: 'center' }}>
+          { label }
+        </View>
+      }
     </View>

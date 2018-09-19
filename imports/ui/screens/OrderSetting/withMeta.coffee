@@ -18,7 +18,7 @@ export default withMeta = (WrappedComponent) =>
       ,
         icon: <Image source={require '../../../../images/love.png'} style={{ width: 20, height: 20 }} />
         title: '전담거래처'
-        screen: 'MyAgents'
+        screen: 'Recruitments'
       ]
 
       <WrappedComponent {...@props} menuItems={menuItems} />

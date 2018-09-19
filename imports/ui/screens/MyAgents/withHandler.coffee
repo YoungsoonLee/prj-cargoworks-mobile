@@ -1,8 +1,7 @@
 export default withHandler = (WrappedComponent) =>
   observer class WithHandler extends Component
-    onPressMyAgent: (recruitment) =>
-      Util.go 'MyAgentDetail',
-        recruitmentId: recruitment._id
+    onPressSave: =>
+
 
     render: =>
-      <WrappedComponent {...@props} onPressMyAgent={@onPressMyAgent} />
+      <WrappedComponent {...@props} onPressSave={@onPressSave} />

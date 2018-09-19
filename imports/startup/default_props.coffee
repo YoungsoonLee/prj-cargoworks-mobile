@@ -7,6 +7,11 @@ Button.defaultProps.colors = [
   borderColor: '#cccccc'
   textColor: '#444444'
 ,
+  name: 'white and red'
+  buttonColor: white
+  borderColor: '#c12d3a'
+  textColor: '#c12d3a'
+,
   name: 'blue'
   buttonColor: blue
 ,

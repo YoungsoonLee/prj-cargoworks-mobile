@@ -27,8 +27,9 @@ import UpdatePassword from '../../screens/UpdatePassword/UpdatePassword.coffee'
 import Qnas from '../../screens/Qnas/Qnas.coffee'
 import Signature from '../../screens/Signature/Signature.coffee'
 import Usage from '../../screens/Usage/Usage.coffee'
+import Recruitments from '../../screens/Recruitments/Recruitments.coffee'
+import RecruitmentDetail from '../../screens/RecruitmentDetail/RecruitmentDetail.coffee'
 import MyAgents from '../../screens/MyAgents/MyAgents.coffee'
-import MyAgentDetail from '../../screens/MyAgentDetail/MyAgentDetail.coffee'
 
 export default StackNavigator
   Splash:
@@ -87,9 +88,11 @@ export default StackNavigator
     screen: Signature
   Usage:
     screen: Usage
+  Recruitments:
+    screen: Recruitments
+  RecruitmentDetail:
+    screen: RecruitmentDetail
   MyAgents:
     screen: MyAgents
-  MyAgentDetail:
-    screen: MyAgentDetail
 ,
   headerMode: 'none'

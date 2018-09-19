@@ -98,7 +98,7 @@ export default observer class OrderGetSettingView extends Component
         </View>
         <View style={{ borderTopWidth: 1, borderTopColor: black, flexDirection: 'row', height: 55 }}>
           <View style={{ width: 70, alignItems: 'center', justifyContent: 'center' }}>
-            <Switch state={@props.state} path="isOnlyMyAgentOrder" />
+            <Switch state={@props.state} path="isOnlyRecruitmentOrder" />
           </View>
           <View style={{ flex: 1, justifyContent: 'center' }}>
             <Text size={13}>

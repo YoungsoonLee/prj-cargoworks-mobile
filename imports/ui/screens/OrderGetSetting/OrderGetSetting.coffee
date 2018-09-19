@@ -25,7 +25,7 @@ getDefaultState = (props) =>
 
   distance: orderFilterConfiguration.distance
   vehicles: vehicles
-  isOnlyMyAgentOrder: orderFilterConfiguration.isOnlyMyAgentOrder
+  isOnlyRecruitmentOrder: orderFilterConfiguration.isOnlyRecruitmentOrder
 
 getHocs = =>
   [
