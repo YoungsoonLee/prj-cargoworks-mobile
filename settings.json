@@ -2,7 +2,7 @@
   "name": "카고웍스 운전자용",
   "version": "0.0.11",
   "build": "11",
-  "isProduction": true,
+  "isProduction": false,
   "_developmentBackendIp": "192.168.0.36:3000",
   "developmentBackendIp": "cargoworks.cc",
   "productionBackendIp": "cargoworks.cc"
