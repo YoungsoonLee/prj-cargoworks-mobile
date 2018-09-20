@@ -53,7 +53,8 @@ export default withHandler = (WrappedComponent) =>
         @props.cState.isSecretNumberValid = true
 
         Util.alert '인증되었습니다.', =>
-          @props.onVerify()
+          if @props.onVerify
+            @props.onVerify()
 
     render: =>
       <WrappedComponent {...@props} onPressSendSecretNumber={@onPressSendSecretNumber} onPressConfirmSecretNumber={@onPressConfirmSecretNumber} />

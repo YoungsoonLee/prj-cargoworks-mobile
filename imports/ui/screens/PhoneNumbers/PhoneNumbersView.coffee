@@ -11,7 +11,6 @@ export default observer class PhoneNumbersView extends Component
 
   renderPhoneNumbers: =>
     @props.state.phoneNumbers.map (phoneNumber, index) =>
-      console.log toJs phoneNumber
       <View key={phoneNumber.number} style={{ height: 65, flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#a6a6a6' }}>
         <View style={{ width: 65, justifyContent: 'center', alignItems: 'center' }}>
           <CheckboxControlled isRadio isChecked={phoneNumber.isPrimary} onChange={@onChangeCheckbox} name="#{index}" />
