@@ -4,7 +4,7 @@ import withHandler from './withHandler.coffee'
 getDefaultState = =>
   phoneNumber: ''
   secretNumber: ''
-  internalSecretNumber: ''
+  internalSecretNumber: uuid()
   isSecretNumberValid: false
   secretNumberError: ''
 

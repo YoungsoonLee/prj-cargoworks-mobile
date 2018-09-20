@@ -113,7 +113,7 @@ export default observer class EmptySettingView extends Component
           </View>
           <View style={{ flexDirection: 'row', alignItems: 'center', height: 40 }}>
             <View style={{ width: 40, alignItems: 'center' }}>
-              <CheckboxControlled isRadio color={black} isChecked={@props.state.mixType is '1/1'} onChange={@onChangeCheckboxControlled} name="1/1" />
+              <CheckboxControlled isRadio isChecked={@props.state.mixType is '1/1'} onChange={@onChangeCheckboxControlled} name="1/1" />
             </View>
             <View style={{ flex: 1 }}>
               <Text color={black} size={14} marginLeft={10}>전체</Text>
@@ -121,7 +121,7 @@ export default observer class EmptySettingView extends Component
           </View>
           <View style={{ flexDirection: 'row', alignItems: 'center', height: 40 }}>
             <View style={{ width: 40, alignItems: 'center' }}>
-              <CheckboxControlled isRadio color={black} isChecked={@props.state.mixType is '1/2'} onChange={@onChangeCheckboxControlled} name="1/2" />
+              <CheckboxControlled isRadio isChecked={@props.state.mixType is '1/2'} onChange={@onChangeCheckboxControlled} name="1/2" />
             </View>
             <View style={{ flex: 1 }}>
               <Text color={black} size={14} marginLeft={10}>1/2</Text>
@@ -129,7 +129,7 @@ export default observer class EmptySettingView extends Component
           </View>
           <View style={{ flexDirection: 'row', alignItems: 'center', height: 40 }}>
             <View style={{ width: 40, alignItems: 'center' }}>
-              <CheckboxControlled isRadio color={black} isChecked={@props.state.mixType is '1/3'} onChange={@onChangeCheckboxControlled} name="1/3" />
+              <CheckboxControlled isRadio isChecked={@props.state.mixType is '1/3'} onChange={@onChangeCheckboxControlled} name="1/3" />
             </View>
             <View style={{ flex: 1 }}>
               <Text color={black} size={14} marginLeft={10}>1/3</Text>
