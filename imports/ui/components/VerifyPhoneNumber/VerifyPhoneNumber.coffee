@@ -1,7 +1,7 @@
 import VerifyPhoneNumberView from './VerifyPhoneNumberView.coffee'
 import withHandler from './withHandler.coffee'
 
-getDefaultState = (props) =>
+getDefaultState = =>
   phoneNumber: ''
   secretNumber: ''
   internalSecretNumber: ''
@@ -17,7 +17,6 @@ getItems = =>
 
 withHocs = =>
   [
-    withUser()
     withState(getDefaultState, 'cState')
     withValidation(getItems)
     withHandler
