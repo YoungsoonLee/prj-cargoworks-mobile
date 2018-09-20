@@ -18,7 +18,7 @@ export default observer class Setting extends Component
     <Layout title="설정">
       <ScrollView>
         <CwHeader>개인정보설정</CwHeader>
-        <ListItem onPress={@onPressListItem} name="PhoneNumbers" subTitle="01042322232">휴대폰 번호 관리</ListItem>
+        <ListItem onPress={@onPressListItem} name="PhoneNumbers">휴대폰 번호 관리</ListItem>
         <ListItem onPress={@onPressListItem} name="UpdatePassword">비밀번호 변경</ListItem>
         <ListItem onPress={@onPressListItem} name="UpdateVehicle">내 차량정보 설정</ListItem>
         <ListItem onPress={@onPressListItem} name="UpdateBusinessCert">사업자등록 설정</ListItem>
@@ -28,7 +28,7 @@ export default observer class Setting extends Component
         <ListItem>이벤트</ListItem>
         <ListItem isBorderBottomVisible={false}>푸쉬알림</ListItem>
         <CwHeader>고객센터</CwHeader>
-        <ListItem>공지사항</ListItem>
+        <ListItem onPress={@onPressListItem} name="Notices">공지사항</ListItem>
         <ListItem>자주 묻는 질문</ListItem>
         <ListItem>문의하기</ListItem>
         <ListItem onPress={@onPressTerm} name="transporterApp terms of service">서비스 이용약관</ListItem>
