@@ -1,5 +1,6 @@
 import ImageCropPicker from 'react-native-image-crop-picker'
 import EvilIcons from 'react-native-vector-icons/EvilIcons'
+import { Platform } from 'react-native'
 
 export default observer class ImageUploader extends Component
   # @propTypes:
@@ -45,7 +46,13 @@ export default observer class ImageUploader extends Component
 
     @state.isUploading = true
 
-    filename = result.filename.trim().replace(/\s/, '')
+    if Platform.OS is 'android'
+      exec = /\/([^/]+)$/.exec result.path
+
+      filename = exec[1]
+
+    else if Platform.OS is 'ios'
+      filename = result.filename.trim().replace(/\s/, '')
 
     Meteor.call 'uploadImage', result.data, filename, (error, url) =>
       if error
