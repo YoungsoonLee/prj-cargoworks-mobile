@@ -15,7 +15,7 @@ getItems = =>
     isRequired: true
   ]
 
-withHocs = =>
+getHocs = =>
   [
     withState(getDefaultState, 'cState')
     withValidation(getItems)
