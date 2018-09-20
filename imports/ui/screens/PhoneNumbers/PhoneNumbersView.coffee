@@ -4,10 +4,10 @@ import VerifyPhoneNumber from '../../components/VerifyPhoneNumber/VerifyPhoneNum
 
 export default observer class PhoneNumbersView extends Component
   onChangeCheckbox: (isChecked, name) =>
-    @props.state.phoneNumbers.forEach (phoneNumber) =>
-      phoneNumber.isPrimary = false
+    @props.onChangeCheckbox isChecked, name
 
-    @props.state.phoneNumbers[name].isPrimary = isChecked
+  onPressDelete: (index) =>
+    @props.onPressDelete index
 
   renderPhoneNumbers: =>
     @props.state.phoneNumbers.map (phoneNumber, index) =>
@@ -20,12 +20,17 @@ export default observer class PhoneNumbersView extends Component
           <Text color={black} bold marginLeft={12}>{ phoneNumber.number }</Text>
         </View>
         <View style={{ width: 75, justifyContent: 'center', alignItems: 'center' }}>
-          <Button color="white and red" width={50} height={35} textSize={13} paddingHorizontal={0}>삭제</Button>
+          { if not phoneNumber.isPrimary
+            <Button onPress={=> @onPressDelete index} color="white and red" width={50} height={35} textSize={13} paddingHorizontal={0}>삭제</Button>
+          }
         </View>
       </View>
 
   onVerify: =>
     @props.onVerify()
+
+  onPressSave: =>
+    @props.onPressSave()
 
   render: =>
     if Platform.OS is 'android'
@@ -48,5 +53,5 @@ export default observer class PhoneNumbersView extends Component
         </View>
         { @renderPhoneNumbers() }
       </ScrollView>
-      <Button borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>저장하기</Button>
+      <Button borderRadius={0} height={75} color="light blue" onPress={@onPressSave}>저장하기</Button>
     </Layout>
