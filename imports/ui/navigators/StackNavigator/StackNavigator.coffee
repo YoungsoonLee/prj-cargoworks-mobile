@@ -33,6 +33,7 @@ import MyAgents from '../../screens/MyAgents/MyAgents.coffee'
 import Notices from '../../screens/Notices/Notices.coffee'
 import Notice from '../../screens/Notice/Notice.coffee'
 import Faqs from '../../screens/Faqs/Faqs.coffee'
+import Faq from '../../screens/Faq/Faq.coffee'
 
 export default StackNavigator
   Splash:
@@ -103,5 +104,7 @@ export default StackNavigator
     screen: Notice
   Faqs:
     screen: Faqs
+  Faq:
+    screen: Faq
 ,
   headerMode: 'none'

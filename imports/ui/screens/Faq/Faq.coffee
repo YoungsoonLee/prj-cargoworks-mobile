@@ -6,7 +6,7 @@ getSelector = (props) =>
 getHocs = =>
   [
     withRouteParam
-    withFindOne('notices', getSelector)
+    withFindOne('faqs', getSelector)
   ]
 
-export default Notice = withHocs(getHocs) FaqView
+export default Faq = withHocs(getHocs) FaqView
