@@ -1,5 +1,6 @@
 import FaqsView from './FaqsView.coffee'
 import withHandler from './withHandler.coffee'
+import withFilter from './withFilter.coffee'
 import { Platform } from 'react-native'
 
 now = new Date()
@@ -25,9 +26,14 @@ getSelector = =>
 
   selector
 
+getDefaultState = =>
+  search: ''
+
 getHocs = =>
   [
+    withState(getDefaultState)
     withFind('faqs', getSelector)
+    withFilter
     withHandler
   ]
 
