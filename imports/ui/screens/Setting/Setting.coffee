@@ -29,7 +29,7 @@ export default observer class Setting extends Component
         <ListItem isBorderBottomVisible={false}>푸쉬알림</ListItem>
         <CwHeader>고객센터</CwHeader>
         <ListItem onPress={@onPressListItem} name="Notices">공지사항</ListItem>
-        <ListItem>자주 묻는 질문</ListItem>
+        <ListItem onPress={@onPressListItem} name="Faqs">자주 묻는 질문</ListItem>
         <ListItem>문의하기</ListItem>
         <ListItem onPress={@onPressTerm} name="transporterApp terms of service">서비스 이용약관</ListItem>
         <ListItem onPress={@onPressTerm} name="transporterApp privacy policy">개인정보 보호정책</ListItem>
