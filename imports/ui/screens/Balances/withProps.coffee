@@ -3,6 +3,13 @@ export default withProps = (WrappedComponent) =>
     render: =>
       balances = _.cloneDeep @props.balances
 
+      requestedBalances = balances.filter (balance) =>
+        balance.transactionStatus is 'REQUESTED'
+
+      requestedWithdraw = requestedBalances.reduce (sum, requestedBalance) =>
+        sum + requestedBalance.amount
+      , 0
+
       balances = balances.filter (balance) =>
         @props.state.startAt.format('YYYY-MM-DD') <= moment(balance.createdAt).format('YYYY-MM-DD') <= @props.state.endAt.format('YYYY-MM-DD')
 
@@ -22,4 +29,4 @@ export default withProps = (WrappedComponent) =>
           return sum
       , 0
 
-      <WrappedComponent {...@props} balances={balances} withdrawal={withdrawal} deposite={deposite} />
+      <WrappedComponent {...@props} balances={balances} withdrawal={withdrawal} deposite={deposite} requestedWithdraw={requestedWithdraw} />

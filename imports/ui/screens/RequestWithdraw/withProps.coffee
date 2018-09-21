@@ -5,8 +5,8 @@ export default withProps = (WrappedComponent) =>
 
       minDeposite = parseInt @props.global.transporterMinDeposit.replace ',', ''
 
-      if @props.transporter.deposite - minDeposite >=0
-        availableWithdraw = @props.transporter.deposite - minDeposite
+      if (@props.transporter.deposit - minDeposite) >= 0
+        availableWithdraw = @props.transporter.deposit - minDeposite
 
       else
         availableWithdraw = 0

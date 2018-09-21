@@ -68,7 +68,7 @@ export default observer class BalancesView extends Component
       <View style={{ flexDirection: 'row', height: 100, paddingHorizontal: 20 }}>
         <View style={{ flex: 1, justifyContent: 'center' }}>
           <Text bold size={27} color={black}>충전금 <Text bold size={27} color={blue}>{ Util.getFormattedPrice @props.transporter.deposit }원</Text></Text>
-          <Text size={17}>환급 대기중 0원</Text>
+          <Text size={17}>환급 대기중 { Util.getFormattedPrice @props.requestedWithdraw }원</Text>
         </View>
         <View style={{ width: 90, alignItems: 'center', justifyContent: 'center' }}>
           <Button color="blue" width={90} height={50} textSize={17} paddingHorizontal={0} onPress={@onPressRequestWithdraw}>환급요청</Button>
