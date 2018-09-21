@@ -2,7 +2,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 
 export default observer class BalancesView extends Component
   onPressFilter: (filter) =>
-    @props.state.filter = filter
+    @props.onPressFilter filter
 
   renderFilters: =>
     filters = [
@@ -55,6 +55,9 @@ export default observer class BalancesView extends Component
         </View>
       </Touchable>
 
+  onPressRequestWithdraw: =>
+    @props.onPressRequestWithdraw()
+
   render: =>
     <ScrollView style={{ backgroundColor: white }}>
       <View style={{ height: 80, alignItems: 'center', justifyContent: 'center', backgroundColor: darkBlue }}>
@@ -68,7 +71,7 @@ export default observer class BalancesView extends Component
           <Text size={17}>환급 대기중 0원</Text>
         </View>
         <View style={{ width: 90, alignItems: 'center', justifyContent: 'center' }}>
-          <Button color="blue" width={90} height={50} textSize={17} paddingHorizontal={0}>환급요청</Button>
+          <Button color="blue" width={90} height={50} textSize={17} paddingHorizontal={0} onPress={@onPressRequestWithdraw}>환급요청</Button>
         </View>
       </View>
       <View style={{ flexDirection: 'row', height: 45, borderBottomWidth: 1, borderBottomColor: '#cccccc', borderTopWidth: 1, borderTopColor: '#cccccc' }}>

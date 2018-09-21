@@ -1,6 +1,7 @@
 import BalancesView from './BalancesView.coffee'
 import withProps from './withProps.coffee'
 import withReaction from './withReaction.coffee'
+import withHandler from './withHandler.coffee'
 
 getTransportersSelector = (props) =>
   _id: props.user.profile.transporterId
@@ -22,6 +23,7 @@ getHocs = =>
     withConstant('balances')
     withProps
     withReaction
+    withHandler
   ]
 
 export default Balances = withHocs(getHocs) BalancesView
