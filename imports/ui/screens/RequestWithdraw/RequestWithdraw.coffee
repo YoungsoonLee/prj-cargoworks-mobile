@@ -14,8 +14,6 @@ getItems = (props) =>
     validate: (value) =>
       amount = parseInt(value) or 0
 
-      console.log amount
-
       if amount < 1
         return false
 
