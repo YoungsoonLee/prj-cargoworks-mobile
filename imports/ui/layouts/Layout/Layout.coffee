@@ -42,10 +42,12 @@ export default observer class Layout extends Component
           <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Text color={white} size={20} bold>{ @props.title }</Text>
           </View>
-          <View style={{ width: 52, alignItems: 'center', justifyContent: 'center' }}>
+          <View style={{ width: 52 }}>
             { @props.type is 'popup' and
               <Touchable onPress={@onPressClose}>
-                <Text color="#a2aabf" size={19} bold>닫기</Text>
+                <View style={{ width: 52, height: 52, alignItems: 'center', justifyContent: 'center' }}>
+                  <Text color="#a2aabf" size={19} bold>닫기</Text>
+                </View>
               </Touchable>
               }
           </View>
