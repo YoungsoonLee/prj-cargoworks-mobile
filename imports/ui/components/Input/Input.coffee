@@ -81,7 +81,7 @@ export default observer class Input extends Component
         onFocus={@onFocus}
         onBlur={@onBlur}
         onChangeText={@onChange}
-        style={{ height: 40 }}
+        style={{ height: 40, fontSize: 16 }}
         placeholder={@props.placeholder}
         maxLength={@props.maxLength}
         keyboardType={keyboardType}
