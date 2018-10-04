@@ -35,6 +35,7 @@ import Notice from '../../screens/Notice/Notice.coffee'
 import Faqs from '../../screens/Faqs/Faqs.coffee'
 import Faq from '../../screens/Faq/Faq.coffee'
 import RequestWithdraw from '../../screens/RequestWithdraw/RequestWithdraw.coffee'
+import FindId from '../../screens/FindId/FindId.coffee'
 
 export default StackNavigator
   Splash:
@@ -109,5 +110,7 @@ export default StackNavigator
     screen: Faq
   RequestWithdraw:
     screen: RequestWithdraw
+  FindId:
+    screen: FindId
 ,
   headerMode: 'none'
