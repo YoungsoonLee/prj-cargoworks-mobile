@@ -87,6 +87,12 @@ export default observer class WayPointsView extends Component
       else
         isLastWaypoint = false
 
+      if @props.order.status isnt @props.ORDERS.STATUS.COMPLETED.VALUE
+        isCompleted = false
+
+      else
+        isCompleted = true
+
       <View key={waypoint.id}>
         <View style={{ backgroundColor: backgroundColor, flexDirection: 'row', borderTopWidth: 1, borderTopColor: black, borderBottomWidth: (if index is waypoints.length - 1 then 1 else 0), borderBottomColor: black }}>
           <View style={{ width: 85, borderRightWidth: 1, borderRightColor: '#a2aabf', justifyContent: 'center', paddingLeft: 10 }}>
@@ -138,6 +144,9 @@ export default observer class WayPointsView extends Component
           <View style={{ borderTopWidth: 1, borderTopColor: black }} />
         }
         { if @props.type is 'my order' and isActive
+          @props.orderInfo
+        }
+        { if @props.type is 'my order' and isLastWaypoint and isCompleted
           @props.orderInfo
         }
         { if @props.type is 'my order' and isActive and isLastWaypoint
