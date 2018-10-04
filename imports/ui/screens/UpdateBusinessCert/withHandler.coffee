@@ -6,7 +6,7 @@ export default withHandler = (WrappedComponent) =>
       ,
         $set:
           taxType: @props.state.taxType
-          regNumber: @props.state.value.regNumber
+          regNumber: @props.state.value.regNumber.replace /-/g, ''
           regName: @props.state.value.storeName
           ownerName: @props.state.value.name
           address: @props.state.value.address

@@ -11,7 +11,8 @@ export default withHandler = (WrappedComponent) =>
         orderId: @props.order._id
 
     onPressPublishCashReceipt: =>
-      Util.go 'PublishCashReceipt'
+      Util.go 'PublishCashReceipt',
+        orderId: @props.order._id
 
     onPressAgent: =>
       Util.go 'Agent'
