@@ -86,5 +86,5 @@ export default observer class PublishCashReceiptView extends Component
         </View>
         <View style={{ height: 300 }} />
       </ScrollView>
-      <Button isDisabled={not @props.validation.isValid or not @props.order.isCashBillPublished} borderRadius={0} height={75} color="light blue" onPress={=> @onPressPublish total}>고객 현금영수증 발행하기</Button>
+      <Button isDisabled={not @props.validation.isValid or @props.order.isCashBillPublished} borderRadius={0} height={75} color="light blue" onPress={=> @onPressPublish total}>고객 현금영수증 발행하기</Button>
     </Layout>
