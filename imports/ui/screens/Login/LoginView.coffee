@@ -5,6 +5,12 @@ export default observer class LoginView extends Component
   onPressSignup: =>
     @props.onPressSignup()
 
+  onPressFindId: =>
+    @props.onPressFindId()
+
+  onPressFindPassword: =>
+    @props.onPressFindPassword()
+
   render: =>
     <Layout title="로그인">
       <ScrollView style={{ padding: 20 }}>
@@ -19,7 +25,7 @@ export default observer class LoginView extends Component
         </Error>
         <Button isDisabled={not @props.validation.isValid} marginTop={30} color="light blue" onPress={@onPressLogin}>로그인</Button>
         <View style={{ alignItems: 'center' }}>
-          <Text marginTop={20} size={17}><Text size={17} underline onPress={=>}>아이디 찾기</Text> / <Text size={18} underline onPress={=>}>비밀번호 찾기</Text></Text>
+          <Text marginTop={20} size={17}><Text size={17} underline onPress={@onPressFindId}>아이디 찾기</Text> / <Text size={18} underline onPress={@onPressFindPassword}>비밀번호 찾기</Text></Text>
         </View>
         <Button marginTop={48} color="light blue invert" onPress={@onPressSignup}>회원가입</Button>
         <View style={{ height: 300 }} />
