@@ -6,6 +6,215 @@ import OneSignal from 'react-native-onesignal'
 import geolib from 'geolib'
 
 export default observer class Util extends Component
+  # type은 'PARCEL', 'FREIGHT' 중 하나
+  # address는 지번 주소(띄어쓰기가 되어 있어야 한다)
+  # sido는 1단 주소
+  # sigungu는 2단 주소
+  # 3단 주소는 이 함수에서 생성한다
+  # endSido는 도착지의 주소일 경우만 넣는다. 출발지의 시도를 넣어줘야 한다.(daum에 있음)
+  # startAddress 도착지의 주소일 경우만 넣는다. 출발지의 지번주소를 넣어줘야 한다.
+  @getShortAddress: (type, isStart, address, sido, sigungu, startSido, startAddress) =>
+    if /서울|부산|대구|인천|광주|대전|울산/.test sido
+      addr1 = sido + '시'
+
+    else if sido is '제주특별자치도'
+      addr1 = '제주'
+
+    else if sido is '세종특별자치시'
+      addr1 = '세종'
+
+    else
+      addr1 = sido
+
+    if /서울|부산|대구|인천|광주|대전|울산/.test startSido
+      startAddr1 = startSido + '시'
+
+    else if startSido is '제주특별자치도'
+      startAddr1 = '제주'
+
+    else if startSido is '세종특별자치시'
+      startAddr1 = '세종'
+
+    else
+      startAddr1 = startSido
+
+    addr2 = sigungu.replace /\s.+구/, ''
+
+    regExp = new RegExp "#{sido} #{sigungu} (.+[읍면동]) "
+
+    exec = regExp.exec address
+
+    if exec
+      addr3 = exec?[1]
+
+    else
+      addr3 = ''
+
+    exec = /(.+리) /.exec address
+
+    if exec
+      addr4 = exec?[1]
+
+    else
+      exec = /(.+통 .+반) /.exec address
+
+      if exec
+        addr4 = exec?[1]
+
+      else
+        addr4 = ''
+
+    exec = /(.+리) /.exec startAddress
+
+    if exec
+      startAddr4 = exec?[1]
+
+    else
+      exec = /(.+통 .+반) /.exec startAddress
+
+      if exec
+        startAddr4 = exec?[1]
+
+      else
+        startAddr4 = ''
+
+    # console.log 'addr1', addr1
+    # console.log 'addr2', addr2
+    # console.log 'addr3', addr3
+    # console.log 'addr4', addr4
+
+    if type is 'PARCEL'
+      # 줄이고자 하는 주소가 출발지인 경우
+      if isStart
+        if /.+동$/.test addr3 # addr3이 동인 경우
+          return addr3
+
+        else # addr3이 동이 아닌 경우
+          if /.+군$/.test addr2
+            exec = /(.+)군$/.exec addr2
+
+            return "#{exec?[1]} #{addr4}"
+
+          else
+            exec = /(.+)시$/.exec addr2
+
+            return "#{exec?[1]} #{addr4}"
+
+      # 도착지인 경우
+      else
+        if addr1 is startAddr1 # 출발지와 도착지의 addr1이 같은 경우
+          if /.+동$/.test addr3 # addr3이 동인 경우
+            if /서울|부산|대구|인천|광주|대전|울산/.test addr1 # addr1이 서울 또는 광역시일 경우
+              return addr3
+
+            else
+              exec = /(.+)시$/.exec addr2
+
+              return "#{exec?[1]} #{addr3}"
+
+          else # addr3이 동이 아닌 경우
+            if /.+군$/.test addr2
+              exec = /(.+)군$/.exec addr2
+
+              return "#{exec?[1]} #{addr4}"
+
+            else
+              exec = /(.+)시$/.exec addr2
+
+              return "#{exec?[1]} #{addr4}"
+
+        else # 출발지와 도착지의 addr1이 같지 않은 경우
+          if /.+동$/.test addr3 # addr3이 동인 경우
+            if /서울|부산|대구|인천|광주|대전|울산/.test addr1 # addr1이 서울 또는 광역시일 경우
+              exec = /(.+)시$/.exec addr1
+
+              return "#{exec?[1]} #{addr3}"
+
+            else
+              exec = /(.+)시$/.exec addr2
+
+              return "#{exec?[1]} #{addr3}"
+
+
+          else # addr3이 동이 아닌 경우
+            if /.+군$/.test addr2
+              # 출발지와 도착지의 addr1이 광역시인 경우
+              if /부산|대구|인천|광주|대전|울산/.test(addr1) and /부산|대구|인천|광주|대전|울산/.test(startAddr1)
+                exec = /(.+)시$/.exec addr1
+
+                return "#{exec?[1]} #{addr3}"
+
+              else
+                exec = /(.+)시$/.exec addr2
+
+                return "#{exec?[1]} #{addr3}"
+
+            else
+              exec = /(.+)시$/.exec addr2
+
+              return "#{exec?[1]} #{addr4}"
+
+    else if type is 'FREIGHT'
+      # 줄이고자 하는 주소가 출발지인 경우
+      if isStart
+        if /.+동$/.test addr3 # addr3이 동인 경우
+          if /서울|부산|대구|인천|광주|대전|울산/.test addr1 # addr1이 서울 또는 광역시일 경우
+            exec = /(.+)시$/.exec addr1
+
+            return "#{exec?[1]} #{addr3}"
+
+          else
+            exec = /(.+)시$/.exec addr2
+
+            return "#{exec?[1]} #{addr3}"
+
+        else
+          if /부산|대구|인천|광주|대전|울산/.test addr1
+            exec = /(.+)군$/.exec addr2
+
+            return "#{exec?[1]} #{addr4}"
+
+          else
+            if /.+군$/.test addr2
+              exec = /(.+)군$/.exec addr2
+
+              return "#{exec?[1]} #{addr4}"
+
+            else
+              exec = /(.+)시$/.exec addr2
+
+              return "#{exec?[1]} #{addr4}"
+
+      # 도착지인 경우
+      else
+        if /.+동$/.test addr3 # addr3이 동인 경우
+          if /서울|부산|대구|인천|광주|대전|울산/.test addr1 # addr1이 서울 또는 광역시일 경우
+            exec = /(.+)시$/.exec addr1
+
+            return "#{exec?[1]} #{addr3}"
+
+          else
+            return "#{addr1} #{addr2}"
+
+        else
+          if /부산|대구|인천|광주|대전|울산/.test addr1
+            exec = /(.+)시$/.exec addr1
+
+            return "#{exec?[1]} #{addr2}"
+
+          else
+            if /.+군$/.test addr2
+              if addr1 is startAddr1 and /.+리$/.test startAddr4
+                exec = /(.+)군$/.exec addr2
+
+                return "#{exec?[1]} #{addr4}"
+
+              else
+                return "#{addr1} #{addr2}"
+
+            else
+              return "#{addr1} #{addr2}"
+
   @getCount: =>
     state.count
 

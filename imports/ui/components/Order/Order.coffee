@@ -23,9 +23,20 @@ export default observer class Order extends Component
 
     isImmediate = @props.order.waypoints.pickUpSchedule is @props.ORDERS.PICKUP_SCHEDULE.IMMEDIATE.VALUE
 
-    startAddress = "#{@props.order.waypoints.addresses[0].daum.sido or ''} #{@props.order.waypoints.addresses[0].daum.sigugun or ''}"
+    startAddress = "#{@props.order.waypoints.addresses[0].daum.sido or ''} #{@props.order.waypoints.addresses[0].daum.sigungu or ''}"
 
-    endAddress = "#{@props.order.waypoints.addresses[@props.order.waypoints.addresses.length - 1].daum.sido or ''} #{@props.order.waypoints.addresses[@props.order.waypoints.addresses.length - 1].daum.sigugun or ''}"
+    endAddress = "#{@props.order.waypoints.addresses[@props.order.waypoints.addresses.length - 1].daum.sido or ''} #{@props.order.waypoints.addresses[@props.order.waypoints.addresses.length - 1].daum.sigungu or ''}"
+
+    startDaum = @props.order.waypoints.addresses[0].daum
+
+    endDaum = @props.order.waypoints.addresses[@props.order.waypoints.addresses.length - 1].daum
+
+    startShortAddress = Util.getShortAddress @props.order.vehicleType, true, startDaum.jibunAddress or startDaum.autoJibunAddress, startDaum.sido, startDaum.sigungu
+
+    endShortAddress = Util.getShortAddress @props.order.vehicleType, false, endDaum.jibunAddress or endDaum.autoJibunAddress, endDaum.sido, endDaum.sigungu, startDaum.sido, startDaum.jibunAddress or startDaum.autoJibunAddress
+
+    # console.log startShortAddress
+    # console.log endShortAddress
 
     waypointsLegth = @props.order.waypoints.addresses.length - 2
 
@@ -86,12 +97,16 @@ export default observer class Order extends Component
       return (
         <Touchable onPress={@onPress}>
           <View style={{ flexDirection: 'row', height: 50, backgroundColor: backgroundColor, borderRadius: 3, marginTop: 1 }}>
-            <View style={{ zIndex: 1, width: 21, height: 21, backgroundColor: darkBlue, borderRadius: 3, position: 'absolute', top: 13, left: '41%', alignItems: 'center', justifyContent: 'center' }}>
-              <Text color="#ffffff" size={10} bold>+{ waypointsLegth }</Text>
-              { if isRoundTrip
-                <Image source={require '../../../../images/round_trip.png'} style={{ width: 12 * 1.3, height: 7 * 1.3 }} />
-              }
-            </View>
+            { if not (waypointsLegth is 0 and not isRoundTrip)
+              <View style={{ zIndex: 1, width: 21, height: 21, backgroundColor: darkBlue, borderRadius: 3, position: 'absolute', top: 13, left: '41%', alignItems: 'center', justifyContent: 'center' }}>
+                { if waypointsLegth > 0
+                  <Text color="#ffffff" size={10} bold>+{ waypointsLegth }</Text>
+                }
+                { if isRoundTrip
+                  <Image source={require '../../../../images/round_trip.png'} style={{ width: 12 * 1.3, height: 7 * 1.3 }} />
+                }
+              </View>
+            }
             <View style={{ overflow: 'hidden', borderRightWidth: 1, borderRightColor: '#cccccc', width: 40, justifyContent: 'center', paddingLeft: 8 }}>
               <Text bold size={20} color={black}>{ distance }</Text>
             </View>
@@ -99,10 +114,10 @@ export default observer class Order extends Component
               { if not isImmediate
                 <EvilIcons name="clock" color={black} size={27} style={{ marginRight: 2 }} />
               }
-              <Text bold size={22} color={black}>{ startAddress.slice 0, 5 }</Text>
+              <Text bold size={22} color={black}>{ startShortAddress }</Text>
             </View>
             <View style={{ borderRightWidth: 1, borderRightColor: '#cccccc', flex: 1, justifyContent: 'center', paddingLeft: 15 }}>
-              <Text bold size={22} color={black}>{ endAddress.slice 0, 5 }</Text>
+              <Text bold size={22} color={black}>{ endShortAddress }</Text>
             </View>
             <View style={{ borderRightWidth: 1, borderRightColor: '#cccccc', width: 37, alignItems: 'center', justifyContent: 'center' }}>
               <Text bold size={20} color={black}>{ vehicleType }</Text>
@@ -118,23 +133,27 @@ export default observer class Order extends Component
       return (
         <Touchable onPress={@onPress}>
           <View style={{ flexDirection: 'row', height: 100, backgroundColor: backgroundColor, borderRadius: 3, marginTop: 1 }}>
-            <View style={{ zIndex: 1, width: 21, height: 21, backgroundColor: darkBlue, borderRadius: 3, position: 'absolute', top: 10, left: '41%', alignItems: 'center', justifyContent: 'center' }}>
-              <Text color="#ffffff" size={10} bold>+{ waypointsLegth }</Text>
-              { if isRoundTrip
-                <Image source={require '../../../../images/round_trip.png'} style={{ width: 12 * 1.3, height: 7 * 1.3 }} />
-              }
-            </View>
+            { if not (waypointsLegth is 0 and not isRoundTrip)
+              <View style={{ zIndex: 1, width: 21, height: 21, backgroundColor: darkBlue, borderRadius: 3, position: 'absolute', top: 13, left: '41%', alignItems: 'center', justifyContent: 'center' }}>
+                { if waypointsLegth > 0
+                  <Text color="#ffffff" size={10} bold>+{ waypointsLegth }</Text>
+                }
+                { if isRoundTrip
+                  <Image source={require '../../../../images/round_trip.png'} style={{ width: 12 * 1.3, height: 7 * 1.3 }} />
+                }
+              </View>
+            }
             <View style={{ overflow: 'hidden', borderRightWidth: 1, borderRightColor: '#cccccc', width: 40, paddingTop: 8, paddingLeft: 8 }}>
               <Text bold size={20} color={black}>{ distance }</Text>
             </View>
             <View style={{ flex: 1 }}>
               <View style={{ height: 66, flexDirection: 'row' }}>
                 <View style={{ borderRightWidth: 1, borderRightColor: '#cccccc', flex: 1, justifyContent: 'center', paddingLeft: 5 }}>
-                  <Text bold size={22} color={black}>{ startAddress.slice 0, 5 }</Text>
+                  <Text bold size={22} color={black}>{ startShortAddress }</Text>
                   <Text bold size={17} color="#375ab5" marginTop={2}>{ pickUpScheduledAt }</Text>
                 </View>
                 <View style={{ borderRightWidth: 1, borderRightColor: '#cccccc', flex: 1, justifyContent: 'center', paddingLeft: 15 }}>
-                  <Text bold size={22} color={black}>{ endAddress.slice 0, 5 }</Text>
+                  <Text bold size={22} color={black}>{ endShortAddress }</Text>
                   <Text bold size={17} color="#375ab5" marginTop={2}>{ dischargeScheduleAt }</Text>
                 </View>
                 <View style={{ borderRightWidth: 1, borderRightColor: '#cccccc', width: 37, alignItems: 'center', justifyContent: 'center' }}>
