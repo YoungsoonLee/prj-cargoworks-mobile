@@ -102,7 +102,7 @@ export default observer class WayPointsView extends Component
             }
           </View>
           <View style={{ minHeight: 65, paddingTop: 10, paddingBottom: 10, flex: 1, justifyContent: 'center', paddingLeft: 10 }}>
-            <Text bold size={20} color={black}>{ waypoint.daum.autoJibunAddress or waypoint.daum.address }</Text>
+            <Text bold size={20} color={black}>{ waypoint.daum.jibunAddress or waypoint.daum.autoJibunAddress }</Text>
             { if @props.type is 'order'
               <View>
                 { if index is 0 and not not pickUpSchedule
