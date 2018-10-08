@@ -34,7 +34,7 @@ export default observer class Setting extends Component
         <ListItem onPress={@onPressTerm} name="transporterApp terms of service">서비스 이용약관</ListItem>
         <ListItem onPress={@onPressTerm} name="transporterApp privacy policy">개인정보 보호정책</ListItem>
         <ListItem onPress={@onPressTerm} name="transporterApp gps service terms">위치기반 서비스 이용약관</ListItem>
-        <ListItem isBorderBottomVisible={false}>어플리케이션 정보</ListItem>
+        <ListItem isBorderBottomVisible={false} onPress={@onPressListItem} name="AppInfo">어플리케이션 정보</ListItem>
         <CwHeader>계정</CwHeader>
         <ListItem onPress={@onPressLogout}>로그아웃</ListItem>
         <ListItem>탈퇴</ListItem>
