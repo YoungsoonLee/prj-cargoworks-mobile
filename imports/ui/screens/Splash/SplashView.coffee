@@ -1,4 +1,4 @@
-import '../../components/Splash/Splash.coffee'
+import Splash from '../../components/Splash/Splash.coffee'
 
 export default observer class SplashView extends Component
   constructor: (props) ->
