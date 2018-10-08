@@ -1,4 +1,4 @@
-import '../../../startup/index.coffee'
+import '../../components/Splash/Splash.coffee'
 
 export default observer class SplashView extends Component
   constructor: (props) ->
@@ -25,14 +25,5 @@ export default observer class SplashView extends Component
   render: =>
     <View style={{ flex: 1 }}>
       <StatusBar />
-      <View style={{ backgroundColor: '#ffffff', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Image
-          source={require '../../../../images/splash.png'}
-          style={
-            width: 200
-            height: 200
-            marginTop: -60
-          }
-        />
-      </View>
+      <Splash />
     </View>
