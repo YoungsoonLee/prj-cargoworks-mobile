@@ -38,6 +38,8 @@ import RequestWithdraw from '../../screens/RequestWithdraw/RequestWithdraw.coffe
 import FindId from '../../screens/FindId/FindId.coffee'
 import FindPassword from '../../screens/FindPassword/FindPassword.coffee'
 import AppInfo from '../../screens/AppInfo/AppInfo.coffee'
+import Events from '../../screens/Events/Events.coffee'
+import Event from '../../screens/Event/Event.coffee'
 
 export default StackNavigator
   Splash:
@@ -118,5 +120,9 @@ export default StackNavigator
     screen: FindPassword
   AppInfo:
     screen: AppInfo
+  Events:
+    screen: Events
+  Event:
+    screen: Event
 ,
   headerMode: 'none'
