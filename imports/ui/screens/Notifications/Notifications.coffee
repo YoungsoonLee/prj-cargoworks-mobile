@@ -2,8 +2,6 @@ import NotificationsView from './NotificationsView.coffee'
 import withHandler from './withHandler.coffee'
 
 getSelector = (props) =>
-  console.log props.user._id
-
   userId: props.user._id
 
 getHocs = =>
