@@ -3,6 +3,6 @@
   "version": "0.0.16",
   "build": "16",
   "isProduction": false,
-  "developmentBackendIp": "test.cargoworks.cc",
+  "developmentBackendIp": "192.168.0.36:3000",
   "productionBackendIp": "cargoworks.cc"
 }

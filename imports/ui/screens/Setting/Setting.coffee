@@ -26,7 +26,7 @@ export default observer class Setting extends Component
         <ListItem isBorderBottomVisible={false} onPress={@onPressListItem} name="MyAgents">소속 운송사 설정</ListItem>
         <CwHeader>프로모션</CwHeader>
         <ListItem onPress={@onPressListItem} name="Events">이벤트</ListItem>
-        <ListItem isBorderBottomVisible={false}>푸쉬알림</ListItem>
+        <ListItem onPress={@onPressListItem} name="Notifications" isBorderBottomVisible={false}>푸쉬알림</ListItem>
         <CwHeader>고객센터</CwHeader>
         <ListItem onPress={@onPressListItem} name="Notices">공지사항</ListItem>
         <ListItem onPress={@onPressListItem} name="Faqs">자주 묻는 질문</ListItem>
