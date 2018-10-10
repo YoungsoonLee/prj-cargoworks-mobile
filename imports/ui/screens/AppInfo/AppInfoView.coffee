@@ -25,6 +25,6 @@ export default observer class AppInfoView extends Component
         </View>
       </View>
       <View style={{ padding: 16, marginTop: 30 }}>
-        <Button onPress={@onPressUpdate} isDisabled={compare >= 0} color="light blue">{ if compare >= 0 then '이미 최신버전입니다' else '최신버전 업데이트' }</Button>
+        <Button onPress={@onPressUpdate} isDisabled={compare >= 0} color="light blue">{ if compare >= 0 then '최신버전입니다' else '최신버전 업데이트' }</Button>
       </View>
     </Layout>
