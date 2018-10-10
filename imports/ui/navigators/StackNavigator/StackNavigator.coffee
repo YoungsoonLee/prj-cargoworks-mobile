@@ -28,7 +28,7 @@ import Qnas from '../../screens/Qnas/Qnas.coffee'
 import Signature from '../../screens/Signature/Signature.coffee'
 import Usage from '../../screens/Usage/Usage.coffee'
 import Recruitments from '../../screens/Recruitments/Recruitments.coffee'
-import RecruitmentDetail from '../../screens/RecruitmentDetail/RecruitmentDetail.coffee'
+import Recruitment from '../../screens/Recruitment/Recruitment.coffee'
 import MyAgents from '../../screens/MyAgents/MyAgents.coffee'
 import Notices from '../../screens/Notices/Notices.coffee'
 import Notice from '../../screens/Notice/Notice.coffee'
@@ -101,8 +101,8 @@ export default StackNavigator
     screen: Usage
   Recruitments:
     screen: Recruitments
-  RecruitmentDetail:
-    screen: RecruitmentDetail
+  Recruitment:
+    screen: Recruitment
   MyAgents:
     screen: MyAgents
   Notices:

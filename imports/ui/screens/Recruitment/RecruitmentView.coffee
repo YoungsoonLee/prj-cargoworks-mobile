@@ -1,4 +1,4 @@
-export default observer class RecruitmentDetailView extends Component
+export default observer class RecruitmentView extends Component
   onPressApply: =>
     @props.onPressApply()
 

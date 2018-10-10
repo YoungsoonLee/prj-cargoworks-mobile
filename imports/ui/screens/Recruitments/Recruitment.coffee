@@ -4,10 +4,12 @@ export default observer class Recruitment extends Component
   # @propTypes:
   #   isBorderTopVisible: PropTypes.bool
   #   onPress: PropTypes.func
+  #   recruitment: PropTypes.object
 
   @defaultProps:
     isBorderTopVisible: false
     onPress: =>
+    recruitment: {}
 
   onPress: =>
     @props.onPress()
@@ -16,15 +18,15 @@ export default observer class Recruitment extends Component
     <Touchable onPress={@onPress}>
       <View style={{ flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 10, borderTopWidth: (if @props.isBorderTopVisible then 1 else 0), borderTopColor: '#a6a6a6', borderBottomWidth: 1, borderBottomColor: '#a6a6a6' }}>
         <View style={{ flex: 1 }}>
-          <Text size={13} color="#666666">{ "#{moment().format('YY.MM.DD')} | 월 평균 퀵 50건 / 화물 50건" }</Text>
-          <Text bold size={18} marginTop={3}>{ "(주)스마트링크커뮤니케이션즈" }</Text>
+          <Text size={13} color="#666666">{ "#{moment(@props.recruitment.createdAt).format('YY.MM.DD')} | 월 평균 퀵 #{@props.recruitment.averageParcelOrdersPerMonth}건 / 화물 #{@props.recruitment.averageFreightOrdersPerMonth}건" }</Text>
+          <Text bold size={18} marginTop={3}>{ @props.recruitment.consignor.name }</Text>
           <View style={{ height: 10 }} />
           <View style={{ flexDirection: 'row' }}>
             <View style={{ width: 100 }}>
               <Text size={15} color="#666666">주요 출발지역</Text>
             </View>
             <View style={{ flex: 1 }}>
-              <Text size={15} color="#666666">{ "서울시 강남구 신사동 520-5" }</Text>
+              <Text size={15} color="#666666">{ @props.recruitment.start }</Text>
             </View>
           </View>
           <View style={{ flexDirection: 'row' }}>
@@ -32,7 +34,7 @@ export default observer class Recruitment extends Component
               <Text size={15} color="#666666">주요 출발지역</Text>
             </View>
             <View style={{ flex: 1 }}>
-              <Text size={15} color="#666666">{ "서울시 강남구 신사동 520-5" }</Text>
+              <Text size={15} color="#666666">{ @props.recruitment.end }</Text>
             </View>
           </View>
           <View style={{ flexDirection: 'row' }}>
@@ -40,7 +42,7 @@ export default observer class Recruitment extends Component
               <Text size={15} color="#666666">모집차량</Text>
             </View>
             <View style={{ flex: 1 }}>
-              <Text size={15} color="#666666">{ "다마스, 벤" }</Text>
+              <Text size={15} color="#666666">{ @props.recruitment.vehicleTexts.join ', ' }</Text>
             </View>
           </View>
           <View style={{ flexDirection: 'row' }}>
@@ -48,7 +50,7 @@ export default observer class Recruitment extends Component
               <Text size={15} color="#666666">주요 수행시간</Text>
             </View>
             <View style={{ flex: 1 }}>
-              <Text size={15} color="#666666">{ "오전시간대" }</Text>
+              <Text size={15} color="#666666">{ "#{@props.recruitment.startWorkHour}시 ~ #{@props.recruitment.endWorkHour}시" }</Text>
             </View>
           </View>
         </View>
