@@ -15,6 +15,23 @@ export default observer class Recruitment extends Component
     @props.onPress()
 
   render: =>
+    transporter = @props.recruitment.transporters.find (transporter) =>
+      transporter.transporterId is @props.transporter._id
+
+    if transporter
+      if transporter.isConnected
+        label = '전담기사 수행중'
+
+      else
+        label = '지원함'
+
+    else
+      if 1 is 1
+        label = '모집중'
+
+      else
+        label = '모집종료'
+
     <Touchable onPress={@onPress}>
       <View style={{ flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 10, borderTopWidth: (if @props.isBorderTopVisible then 1 else 0), borderTopColor: '#a6a6a6', borderBottomWidth: 1, borderBottomColor: '#a6a6a6' }}>
         <View style={{ flex: 1 }}>
@@ -57,8 +74,15 @@ export default observer class Recruitment extends Component
         <View style={{ width: 10, justifyContent: 'center' }}>
           <Ionicons name="ios-arrow-forward" size={23} />
         </View>
-        <View style={{ borderRadius: 2, position: 'absolute', top: 10, right: 10, width: 100, height: 25, backgroundColor: blue, justifyContent: 'center', alignItems: 'center' }}>
-          <Text bold color={white} size={13}>전담기사 수행중</Text>
-        </View>
+        { if label in ['모집중', '전담기사 수행중']
+          <View style={{ borderRadius: 2, position: 'absolute', top: 10, right: 10, width: 100, height: 25, backgroundColor: blue, justifyContent: 'center', alignItems: 'center' }}>
+            <Text bold color={white} size={13}>{ label }</Text>
+          </View>
+        }
+        { if label in ['모집종료', '지원함']
+          <View style={{ borderRadius: 2, position: 'absolute', top: 10, right: 10, width: 100, height: 25, backgroundColor: '#cccccc', justifyContent: 'center', alignItems: 'center' }}>
+            <Text bold color={white} size={13}>{ label }</Text>
+          </View>
+        }
       </View>
     </Touchable>

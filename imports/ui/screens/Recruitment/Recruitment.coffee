@@ -2,4 +2,16 @@ import RecruitmentView from './RecruitmentView.coffee'
 import withMeta from './withMeta.coffee'
 import withHandler from './withHandler.coffee'
 
-export default Recruitment = withRouteParam withHandler withMeta RecruitmentView
+getSelector = (props) =>
+  _id: props.user.profile.transporterId
+
+getHocs = =>
+  [
+    withUser()
+    withFindOne('transporters', getSelector)
+    withRouteParam
+    withHandler
+    withMeta
+  ]
+
+export default Recruitment = withHocs(getHocs) RecruitmentView

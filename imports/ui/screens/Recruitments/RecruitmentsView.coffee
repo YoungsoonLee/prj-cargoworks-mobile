@@ -6,7 +6,7 @@ export default observer class RecruitmentsView extends Component
 
   renderRecruitments: =>
     @props.recruitments.map (recruitment, index) =>
-      <Recruitment RECRUITMENTS={@props.RECRUITMENTS} onPress={=> @onPressRecruitment recruitment} isBorderTopVisible={index is 0} key={recruitment._id} recruitment={recruitment} />
+      <Recruitment transporter={@props.transporter} RECRUITMENTS={@props.RECRUITMENTS} onPress={=> @onPressRecruitment recruitment} isBorderTopVisible={index is 0} key={recruitment._id} recruitment={recruitment} />
 
   render: =>
     <Layout title="전담기사 모집공고">

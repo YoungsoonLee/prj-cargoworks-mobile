@@ -13,8 +13,13 @@ getConsignorsSelector = (props) =>
   _id:
     $in: consignorIds
 
+getTransportersSelector = (props) =>
+  _id: props.user.profile.transporterId
+
 getHocs = =>
   [
+    withUser()
+    withFindOne('transporters', getTransportersSelector)
     withConstant('recruitments')
     withFind('recruitments', =>, getRecruitmentsOption)
     withFind('consignors', getConsignorsSelector)
