@@ -19,6 +19,9 @@ export default observer class BalancesView extends Component
         </View>
       </TouchableWithoutFeedback>
 
+  onPressBalance: (balance) =>
+    @props.onPressBalance balance
+
   renderBalances: =>
     @props.balances.map (balance, index) =>
       if /FEE|WITHDRAWAL/.test balance.transactionType
@@ -27,7 +30,7 @@ export default observer class BalancesView extends Component
       else
         isWithdrawal = false
 
-      <Touchable key={index}>
+      <Touchable key={index} onPress={=> @onPressBalance balance}>
         <View style={{ height: 70, borderBottomWidth: 1, borderBottomColor: '#a6a6a6', flexDirection: 'row' }}>
           <View style={{ width: 85, justifyContent: 'center', paddingLeft: 7 }}>
             <Text>

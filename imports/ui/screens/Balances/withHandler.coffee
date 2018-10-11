@@ -6,5 +6,9 @@ export default withHandler = (WrappedComponent) =>
     onPressRequestWithdraw: =>
       Util.go 'RequestWithdraw'
 
+    onPressBalance: (balance) =>
+      Util.go 'Balance',
+        balance: balance
+
     render: =>
-      <WrappedComponent {...@props} onPressFilter={@onPressFilter} onPressRequestWithdraw={@onPressRequestWithdraw} />
+      <WrappedComponent {...@props} onPressFilter={@onPressFilter} onPressRequestWithdraw={@onPressRequestWithdraw} onPressBalance={@onPressBalance} />
