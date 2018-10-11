@@ -14,7 +14,10 @@ export default withMeta = (WrappedComponent) =>
       ,
         icon: <Image source={require '../../../../images/map.png'} style={{ width: 20, height: 20 }} />
         title: '지역현황'
-        screen: 'Regions'
+        screen: 'OrdersByAddress'
+        param:
+          depth: 1
+          previousAddress: ''
       ,
         icon: <Image source={require '../../../../images/love.png'} style={{ width: 20, height: 20 }} />
         title: '전담거래처'

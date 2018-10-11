@@ -6,14 +6,7 @@ import OneSignal from 'react-native-onesignal'
 import geolib from 'geolib'
 
 export default observer class Util extends Component
-  # type은 'PARCEL', 'FREIGHT' 중 하나
-  # address는 지번 주소(띄어쓰기가 되어 있어야 한다)
-  # sido는 1단 주소
-  # sigungu는 2단 주소
-  # 3단 주소는 이 함수에서 생성한다
-  # endSido는 도착지의 주소일 경우만 넣는다. 출발지의 시도를 넣어줘야 한다.(daum에 있음)
-  # startAddress 도착지의 주소일 경우만 넣는다. 출발지의 지번주소를 넣어줘야 한다.
-  @getShortAddress: (type, isStart, address, sido, sigungu, startSido, startAddress) =>
+  @getPartialAddress: (depth, address, sido, sigungu, startSido, startAddress) =>
     if /서울|부산|대구|인천|광주|대전|울산/.test sido
       addr1 = sido + '시'
 
@@ -25,18 +18,6 @@ export default observer class Util extends Component
 
     else
       addr1 = sido
-
-    if /서울|부산|대구|인천|광주|대전|울산/.test startSido
-      startAddr1 = startSido + '시'
-
-    else if startSido is '제주특별자치도'
-      startAddr1 = '제주'
-
-    else if startSido is '세종특별자치시'
-      startAddr1 = '세종'
-
-    else
-      startAddr1 = startSido
 
     addr2 = sigungu.replace /\s.+구/, ''
 
@@ -63,6 +44,43 @@ export default observer class Util extends Component
 
       else
         addr4 = ''
+
+    if depth is 1
+      return addr1
+
+    else if depth is 2
+      return addr2
+
+    else if depth is 3
+      return addr3
+
+    else if depth is 4
+      return addr4
+
+  # type은 'PARCEL', 'FREIGHT' 중 하나
+  # address는 지번 주소(띄어쓰기가 되어 있어야 한다)
+  # sido는 1단 주소
+  # sigungu는 2단 주소
+  # 3단 주소는 이 함수에서 생성한다
+  # endSido는 도착지의 주소일 경우만 넣는다. 출발지의 시도를 넣어줘야 한다.(daum에 있음)
+  # startAddress 도착지의 주소일 경우만 넣는다. 출발지의 지번주소를 넣어줘야 한다.
+  @getShortAddress: (type, isStart, address, sido, sigungu, startSido, startAddress) =>
+    addr1 = @getPartialAddress 1, address, sido, sigungu, startSido, startAddress
+    addr2 = @getPartialAddress 2, address, sido, sigungu, startSido, startAddress
+    addr3 = @getPartialAddress 3, address, sido, sigungu, startSido, startAddress
+    addr4 = @getPartialAddress 4, address, sido, sigungu, startSido, startAddress
+
+    if /서울|부산|대구|인천|광주|대전|울산/.test startSido
+      startAddr1 = startSido + '시'
+
+    else if startSido is '제주특별자치도'
+      startAddr1 = '제주'
+
+    else if startSido is '세종특별자치시'
+      startAddr1 = '세종'
+
+    else
+      startAddr1 = startSido
 
     exec = /(.+리) /.exec startAddress
 

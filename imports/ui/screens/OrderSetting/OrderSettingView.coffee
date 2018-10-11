@@ -1,10 +1,10 @@
 export default observer class OrderSettingView extends Component
-  onPressMenuTime: (screen) =>
-    @props.onPressMenuTime screen
+  onPressMenuItem: (menuItem) =>
+    @props.onPressMenuItem menuItem
 
   renderMenuItems: =>
     @props.menuItems.map (menuItem, index) =>
-      <Touchable key={index} onPress={=> @onPressMenuTime menuItem.screen}>
+      <Touchable key={index} onPress={=> @onPressMenuItem menuItem}>
         <View style={{ marginTop: (if index is 0 then 0 else 5), height: 80, flexDirection: 'row', borderWidth: 1, borderColor: '#cccccc', borderRadius: 3 }}>
           <View style={{ width: 55, alignItems: 'center', justifyContent: 'center' }}>
             { menuItem.icon }

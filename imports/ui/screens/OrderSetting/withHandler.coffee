@@ -1,7 +1,7 @@
 export default withHandler = (WrappedComponent) =>
   observer class WithHandler extends Component
-    onPressMenuTime: (screen) =>
-      Util.go screen
+    onPressMenuItem: (menuItem) =>
+      Util.go menuItem.screen, menuItem.param
 
     onPressInOrOut: (isIn) =>
       if isIn
@@ -20,4 +20,4 @@ export default withHandler = (WrappedComponent) =>
           Util.alert error.reason
 
     render: =>
-      <WrappedComponent {...@props} onPressMenuTime={@onPressMenuTime} onPressInOrOut={@onPressInOrOut} />
+      <WrappedComponent {...@props} onPressMenuItem={@onPressMenuItem} onPressInOrOut={@onPressInOrOut} />

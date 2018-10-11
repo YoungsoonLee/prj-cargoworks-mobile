@@ -23,10 +23,6 @@ export default observer class Order extends Component
 
     isImmediate = @props.order.waypoints.pickUpSchedule is @props.ORDERS.PICKUP_SCHEDULE.IMMEDIATE.VALUE
 
-    startAddress = "#{@props.order.waypoints.addresses[0].daum.sido or ''} #{@props.order.waypoints.addresses[0].daum.sigungu or ''}"
-
-    endAddress = "#{@props.order.waypoints.addresses[@props.order.waypoints.addresses.length - 1].daum.sido or ''} #{@props.order.waypoints.addresses[@props.order.waypoints.addresses.length - 1].daum.sigungu or ''}"
-
     startDaum = @props.order.waypoints.addresses[0].daum
 
     endDaum = @props.order.waypoints.addresses[@props.order.waypoints.addresses.length - 1].daum

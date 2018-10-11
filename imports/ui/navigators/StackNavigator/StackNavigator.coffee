@@ -41,6 +41,8 @@ import AppInfo from '../../screens/AppInfo/AppInfo.coffee'
 import Events from '../../screens/Events/Events.coffee'
 import Event from '../../screens/Event/Event.coffee'
 import Notifications from '../../screens/Notifications/Notifications.coffee'
+import OrdersByAddress from '../../screens/OrdersByAddress/OrdersByAddress.coffee'
+import OrdersByAddress2 from '../../screens/OrdersByAddress2/OrdersByAddress2.coffee'
 
 export default StackNavigator
   Splash:
@@ -127,5 +129,9 @@ export default StackNavigator
     screen: Event
   Notifications:
     screen: Notifications
+  OrdersByAddress:
+    screen: OrdersByAddress
+  OrdersByAddress2:
+    screen: OrdersByAddress2
 ,
   headerMode: 'none'

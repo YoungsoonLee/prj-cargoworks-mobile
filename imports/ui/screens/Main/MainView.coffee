@@ -4,6 +4,7 @@ import tabNavigation from '../../../etc/tab_navigation.coffee'
 import OneSignal from 'react-native-onesignal'
 import Geolocation from 'react-native-geolocation-service'
 import backgroundTimer from 'react-native-background-timer'
+import { PermissionsAndroid, Platform } from 'react-native'
 
 export default observer class MainView extends Component
   updateLocation: =>
@@ -34,7 +35,19 @@ export default observer class MainView extends Component
         timeout: 15000
         maximumAge: 10000
 
+  requestLocationPermission: =>
+    if Platform.OS is 'android'
+      try
+        await PermissionsAndroid.request PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+          title: '위치정보에 대한 권한이 필요합니다.'
+          message: '현재 위치를 알기 위해서 디바이스의 위치정보에 대한 권한이 필요합니다.'
+
+      catch error
+        console.log error
+
   componentDidMount: =>
+    @requestLocationPermission()
+
     @updateLocation()
 
     backgroundTimer.runBackgroundTimer =>
