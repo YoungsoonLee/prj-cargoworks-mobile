@@ -10,6 +10,7 @@ getDefaultState = =>
   filter: '오늘'
   startAt: moment()
   endAt: moment()
+  isOutstandingIncluded: false
 
 getBalancesSelector = (props) =>
   transporterId: props.transporter._id

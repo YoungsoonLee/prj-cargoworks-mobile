@@ -105,7 +105,7 @@ export default observer class BalancesView extends Component
         </View>
         <View style={{ width: 100, alignItems: 'center', justifyContent: 'center' }}>
           <Text size={14} color="#cccccc">미결제 운임</Text>
-          <Switch style={{ marginTop: 20 }} />
+          <Switch style={{ marginTop: 20 }} state={@props.state} path="isOutstandingIncluded" />
         </View>
       </View>
       { @renderBalances() }

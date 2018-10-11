@@ -13,6 +13,11 @@ export default withProps = (WrappedComponent) =>
       balances = balances.filter (balance) =>
         @props.state.startAt.format('YYYY-MM-DD') <= moment(balance.createdAt).format('YYYY-MM-DD') <= @props.state.endAt.format('YYYY-MM-DD')
 
+
+      if not @props.state.isOutstandingIncluded
+        balances = balances.filter (balance) =>
+          balance.transactionStatus isnt @props.BALANCES.TRANSACTIONS.STATUS.OUTSTANDING.VALUE
+
       withdrawal = balances.reduce (sum, balance) =>
         if /FEE|WITHDRAWAL/.test balance.transactionType
           return sum + balance.amount
