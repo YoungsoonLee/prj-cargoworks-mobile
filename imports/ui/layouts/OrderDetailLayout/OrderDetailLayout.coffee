@@ -1,3 +1,9 @@
 import OrderDetailLayoutView from './OrderDetailLayoutView.coffee'
 
-export default OrderDetailLayout = withConstant('orders') OrderDetailLayoutView
+getHocs = =>
+  [
+    withConstant('transporters')
+    withConstant('orders')
+  ]
+
+export default OrderDetailLayout = withHocs(getHocs) OrderDetailLayoutView

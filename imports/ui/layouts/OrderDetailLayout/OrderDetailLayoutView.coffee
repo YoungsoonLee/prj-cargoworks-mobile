@@ -11,8 +11,12 @@ export default observer class OrderDetailLayoutView extends Component
     <View style={{ flex: 1 }}>
       <View style={{ height: 50, backgroundColor: darkBlue, borderTopWidth: 1, borderTopColor: lightBlue, justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
         <Text bold size={20} color={yellow}>{ Util.getFormattedPrice @props.order.agentFare.final }원</Text>
-        <Badge marginLeft={8} badgeColor={yellow} textColor={black}>수</Badge>
-        <Text marginLeft={8} bold size={18} color={yellow}>{ Util.getFormattedPrice @props.order.agentFare.agentFee }</Text>
+        { if @props.order.vehicleType is @props.TRANSPORTERS.VEHICLES.FREIGHT.VALUE
+          <Badge marginLeft={8} badgeColor={yellow} textColor={black}>수</Badge>
+        }
+        { if @props.order.vehicleType is @props.TRANSPORTERS.VEHICLES.FREIGHT.VALUE
+          <Text marginLeft={8} bold size={18} color={yellow}>{ Util.getFormattedPrice @props.order.agentFare.agentFee }</Text>
+        }
         { if @props.order.agentFare.isExpress
           <>
             <Text marginLeft={8} bold size={20} color="#76eaa0">급송</Text>
