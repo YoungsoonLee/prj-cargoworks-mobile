@@ -62,6 +62,18 @@ export default observer class OrderInfoView extends Component
       else if @props.order.waypoints.dischargeSchedule is @props.ORDERS.DISCHARGE_SCHEDULE.RESERVED.VALUE
         dischargeSchedule = Util.getShortDischargeScheduleAt @props.order.waypoints.dischargeScheduleAt
 
+    if @props.order.agent.paymentMethod is 'PERIODIC' and @props.order.vehicleType is @props.TRANSPORTERS.VEHICLES.FREIGHT.VALUE
+      paymentPeriods = _.cloneDeep @props.order.agent.paymentPeriods
+
+      paymentPeriods = _.sortBy paymentPeriods, (paymentPeriod) =>
+        paymentPeriod
+
+      paymentDays = paymentPeriods.map (paymentPeriod) =>
+        paymentPeriod + '일'
+
+    else
+      paymentDays = []
+
     <View>
       <View style={{ height: 32, flexDirection: 'row' }}>
         <View style={{ width: 85, borderRightWidth: 1, borderRightColor: '#a2aabf', justifyContent: 'center', paddingLeft: 10 }}>
@@ -115,14 +127,14 @@ export default observer class OrderInfoView extends Component
           <Text color={black} bold size={16} underline onPress={@onPressAgent}>{ @props.order.agent.name }</Text>
         </View>
       </View>
-      <View style={{ height: 32, flexDirection: 'row' }}>
-        <View style={{ width: 85, borderRightWidth: 1, borderRightColor: '#a2aabf', justifyContent: 'center', paddingLeft: 10 }}>
-          <Text color="#444444" bold size={16}>결제일</Text>
+      { if paymentDays.length > 0
+        <View style={{ height: 32, flexDirection: 'row' }}>
+          <View style={{ width: 85, borderRightWidth: 1, borderRightColor: '#a2aabf' }} />
+          <View style={{ flex: 1, justifyContent: 'center', paddingLeft: 10 }}>
+            <Text color={black} bold size={16}>매월 { paymentDays.join ', ' } 결제</Text>
+          </View>
         </View>
-        <View style={{ flex: 1, justifyContent: 'center', paddingLeft: 10 }}>
-          <Text color={black} bold size={16}>매월 4일, 25일 결제</Text>
-        </View>
-      </View>
+      }
       <View style={{ height: 10, flexDirection: 'row' }}>
         <View style={{ width: 85, borderRightWidth: 1, borderRightColor: '#a2aabf' }} />
       </View>
