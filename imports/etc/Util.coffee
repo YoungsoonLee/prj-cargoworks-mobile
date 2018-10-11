@@ -775,6 +775,38 @@ export default observer class Util extends Component
 
       callback error
 
+  @signout: (callback) =>
+    user = Meteor.user()
+
+    if not user
+      return
+
+    OneSignal.sendTag 'id', ''
+
+    Meteor.call 'users.update',
+      _id: user._id
+    ,
+      $set:
+        'profile.isDeleted': true
+    , (error) =>
+      if error
+        callback error
+
+        return
+
+      Meteor.call 'transporters.update',
+        _id: user.profile.transporterId
+      ,
+        $set:
+          isDeleted: true
+      , (error) =>
+        if error
+          callback error
+
+          return
+
+        callback()
+
   @go: (routeName, param) =>
     stackNavigation.navigate routeName, param
 
