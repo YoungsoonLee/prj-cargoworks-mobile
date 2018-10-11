@@ -54,8 +54,22 @@ export default observer class MainView extends Component
       @updateLocation()
     , 10 * 1000
 
+    @timeoutId = setTimeout =>
+      mobileNumber = @props.transporter.mobileNumbers.find (mobileNumber) =>
+        mobileNumber.isPrimary and mobileNumber.isTakenOverByOthers
+
+      if mobileNumber
+        Util.confirm '''
+          전화번호 인증이 필요합니다.
+          인증 화면으로 이동합니다.
+        ''', =>
+          Util.go 'PhoneNumbers'
+        , 2000
+
   componentWillUnmount: =>
     backgroundTimer.stopBackgroundTimer()
+
+    clearTimeout @timeoutId
 
   render: =>
     <MainLayout>

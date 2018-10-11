@@ -15,9 +15,14 @@ export default observer class PhoneNumbersView extends Component
         <View style={{ width: 65, justifyContent: 'center', alignItems: 'center' }}>
           <CheckboxControlled isRadio isChecked={phoneNumber.isPrimary} onChange={@onChangeCheckbox} name="#{index}" />
         </View>
-        <View style={{ flex: 1, alignItems: 'center', flexDirection: 'row' }}>
-          <Text color={if phoneNumber.isPrimary then '#c12d3a' else '#cccccc'} bold>대표번호</Text>
-          <Text color={black} bold marginLeft={12}>{ phoneNumber.number }</Text>
+        <View style={{ flex: 1, justifyContent: 'center' }}>
+          <View style={{ flexDirection: 'row' }}>
+            <Text color={if phoneNumber.isPrimary then '#c12d3a' else '#cccccc'} bold>대표번호</Text>
+            <Text color={black} bold marginLeft={12}>{ phoneNumber.number }</Text>
+          </View>
+          { if phoneNumber.isTakenOverByOthers
+            <Text color="#c12d3a">다른 사람에 의해 인증되었습니다.</Text>
+          }
         </View>
         <View style={{ width: 75, justifyContent: 'center', alignItems: 'center' }}>
           { if not phoneNumber.isPrimary
