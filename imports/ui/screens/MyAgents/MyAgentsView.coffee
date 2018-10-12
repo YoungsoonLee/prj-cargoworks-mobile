@@ -1,21 +1,13 @@
 import CwHeader from '../../components/CwHeader/CwHeader.coffee'
+import MyAgent from '../../components/MyAgent/MyAgent.coffee'
 
 export default observer class MyAgentsView extends Component
-  renderAgents: =>
-    agents = [0..5]
+  onChangeCheckbox: (myAgent) =>
+    @props.onChangeCheckbox myAgent
 
-    agents.map (agent) =>
-      <View key={agent} style={{ height: 65, flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#a6a6a6' }}>
-        <View style={{ width: 65, justifyContent: 'center', alignItems: 'center' }}>
-          <CheckboxControlled />
-        </View>
-        <View style={{ flex: 1, justifyContent: 'center' }}>
-          <Text bold size={18} color="#333333">(주)무빗퀵</Text>
-        </View>
-        <View style={{ width: 75, justifyContent: 'center', alignItems: 'center' }}>
-          <Button color="white and red" width={50} height={35} textSize={13} paddingHorizontal={0}>거절</Button>
-        </View>
-      </View>
+  renderAgents: =>
+    @props.myAgents.map (myAgent) =>
+      <MyAgent myAgent={myAgent} isChecked={@props.state.checkedMyAgent.id is myAgent.id} onChangeCheckbox={=> @onChangeCheckbox myAgent} />
 
   onPressSave: =>
     @props.onPressSave()
