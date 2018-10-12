@@ -46,6 +46,7 @@ export default observer class MainView extends Component
         console.log error
 
   componentDidMount: =>
+    Util.go 'Invitation'
     @requestLocationPermission()
 
     @updateLocation()

@@ -44,6 +44,7 @@ import Notifications from '../../screens/Notifications/Notifications.coffee'
 import OrdersByAddress from '../../screens/OrdersByAddress/OrdersByAddress.coffee'
 import OrdersByAddress2 from '../../screens/OrdersByAddress2/OrdersByAddress2.coffee'
 import Balance from '../../screens/Balance/Balance.coffee'
+import Invitation from '../../screens/Invitation/Invitation.coffee'
 
 export default StackNavigator
   Splash:
@@ -136,5 +137,7 @@ export default StackNavigator
     screen: OrdersByAddress2
   Balance:
     screen: Balance
+  Invitation:
+    screen: Invitation
 ,
   headerMode: 'none'
