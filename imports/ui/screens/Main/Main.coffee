@@ -1,6 +1,29 @@
 import MainView from './MainView.coffee'
 
-getSelector = (props) =>
+getTransportersSelector = (props) =>
   _id: props.user.profile.transporterId
 
-export default Main = withUser() withFindOne('transporters', getSelector) MainView
+getInvitationsSelector = (props) =>
+  mobileNumbers = props.transporter.mobileNumbers.filter (mobileNumber) =>
+    not mobileNumber.isTakenOverByOthers
+
+  phoneNumbers = mobileNumbers.map (mobileNumber) =>
+    mobileNumber.number
+
+  mobileNumber:
+    $in: phoneNumbers
+  type: 'TRANSPORTER'
+  status: 'INVITED'
+
+option =
+  isReadyNeeded: false
+  isDocNeeded: false
+
+getHocs = =>
+  [
+    withUser()
+    withFindOne('transporters', getTransportersSelector)
+    withFindOne('invitations', getInvitationsSelector, =>, option)
+  ]
+
+export default Main = withHocs(getHocs) MainView

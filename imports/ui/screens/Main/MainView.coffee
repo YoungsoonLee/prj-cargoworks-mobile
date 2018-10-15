@@ -46,7 +46,9 @@ export default observer class MainView extends Component
         console.log error
 
   componentDidMount: =>
-    Util.go 'Invitation'
+    if @props.invitation._id
+      @init @props
+
     @requestLocationPermission()
 
     @updateLocation()
@@ -66,6 +68,14 @@ export default observer class MainView extends Component
         ''', =>
           Util.go 'PhoneNumbers'
         , 2000
+
+  componentWillUpdate: (nextProps) =>
+    if nextProps.invitation._id
+      @init nextProps
+
+  init: _.once (props) =>
+    Util.go 'Invitation',
+      id: props.invitation._id
 
   componentWillUnmount: =>
     backgroundTimer.stopBackgroundTimer()
