@@ -39,16 +39,6 @@ export default observer class OrderDetailLayoutView extends Component
           <Text marginLeft={8} bold size={20} color="#71d5ff">착불</Text>
         }
       </View>
-      { if @props.order.dispatchType is @props.ORDERS.DISPATCH_TYPES.IN_HOUSE.VALUE
-        <View style={{ height: 40, backgroundColor: '#eafcfe', justifyContent: 'center', alignItems: 'center' }}>
-          <Text color={black}>소속 운송사 주문 입니다.</Text>
-        </View>
-      }
-      { if @props.order.dispatchType is @props.ORDERS.DISPATCH_TYPES.EXCLUSIVE.VALUE
-        <View style={{ height: 40, backgroundColor: lightYellow, justifyContent: 'center', alignItems: 'center' }}>
-          <Text color={black}>전담거래처 주문입니다.</Text>
-        </View>
-      }
       <View style={{ flex: 1 }}>
         { @props.children }
       </View>

@@ -83,10 +83,13 @@ export default observer class Order extends Component
       paymentMethodColor = '#2a9160'
 
     if @props.order.dispatchType is @props.ORDERS.DISPATCH_TYPES.IN_HOUSE.VALUE
-      backgroundColor = lightYellow
+      backgroundColor = '#eafcfe'
+
+    else if @props.order.dispatchType is @props.ORDERS.DISPATCH_TYPES.SHARED.VALUE
+      backgroundColor = '#eafcfe'
 
     else if @props.order.dispatchType is @props.ORDERS.DISPATCH_TYPES.EXCLUSIVE.VALUE
-      backgroundColor = '#eafcfe'
+      backgroundColor = '#fffae1'
 
     else
       backgroundColor = white
