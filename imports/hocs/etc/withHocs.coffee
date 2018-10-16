@@ -15,15 +15,14 @@ export default withHocs = (getHocs) =>
           MergedWrappedComponent: MergedWrappedComponent
 
       componentWillUpdate: (nextProps) =>
-        if not _.isEqual @props, nextProps
-          hocs = getHocs nextProps
+        hocs = getHocs nextProps
 
-          mergedHoc = _.flowRight hocs
+        mergedHoc = _.flowRight hocs
 
-          if not _.isEqual mergedHoc, toJs @state.mergedHoc
-            MergedWrappedComponent = mergedHoc WrappedComponent
+        if JSON.stringify(mergedHoc) isnt JSON.stringify(toJs(@state.mergedHoc))
+          MergedWrappedComponent = mergedHoc WrappedComponent
 
-            @state.MergedWrappedComponent = MergedWrappedComponent
+          @state.MergedWrappedComponent = MergedWrappedComponent
 
       render: =>
         MergedWrappedComponent = toJs @state.MergedWrappedComponent
