@@ -86,7 +86,7 @@ export default observer class Order extends Component
       backgroundColor = '#eafcfe'
 
     else if @props.order.dispatchType is @props.ORDERS.DISPATCH_TYPES.SHARED.VALUE
-      backgroundColor = '#eafcfe'
+      backgroundColor = white
 
     else if @props.order.dispatchType is @props.ORDERS.DISPATCH_TYPES.EXCLUSIVE.VALUE
       backgroundColor = '#fffae1'

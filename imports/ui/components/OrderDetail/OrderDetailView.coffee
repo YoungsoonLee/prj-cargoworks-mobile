@@ -24,8 +24,8 @@ export default observer class OrderDetailView extends Component
 
       else if @props.order.dispatchType is @props.ORDERS.DISPATCH_TYPES.SHARED.VALUE
         dispatchType = 'in house'
-        dispatchTypeText = '공유 주문 입니다.'
-        dispatchTypeBackgroundColor = '#eafcfe'
+        dispatchTypeText = '수락할 수 있는 주문입니다.'
+        dispatchTypeBackgroundColor = white
 
       else if @props.order.dispatchType is @props.ORDERS.DISPATCH_TYPES.EXCLUSIVE.VALUE
         dispatchType = 'exclusive'
