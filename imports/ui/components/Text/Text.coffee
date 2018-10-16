@@ -54,8 +54,7 @@ export default observer class _Text extends Component
       textDecorationLine: if @props.underline then 'underline' else 'none'
       opacity: @props.opacity
       fontFamily: if Platform.OS is 'android' then 'sans-serif' else 'Apple SD Gothic Neo'
-      allowFontScaling: false
 
     _.extend style, @props.style
 
-    <Text onPress={@props.onPress} style={style}>{ @props.children }</Text>
+    <Text onPress={@props.onPress} style={style} allowFontScaling={false}>{ @props.children }</Text>
