@@ -532,7 +532,7 @@ export default observer class Util extends Component
         return '탑'
 
       else if freightBoxType is BOX_TYPES.FREEZER.VALUE
-        return '냉'
+        return '냉탑'
 
     ''
 

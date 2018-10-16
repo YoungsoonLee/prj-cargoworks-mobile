@@ -1,3 +1,5 @@
+import { Platform } from 'react-native'
+
 export default observer class Order extends Component
   # @propTypes:
   #   order: PropTypes.object
@@ -94,31 +96,35 @@ export default observer class Order extends Component
         <Touchable onPress={@onPress}>
           <View style={{ flexDirection: 'row', height: 50, backgroundColor: backgroundColor, borderRadius: 3, marginTop: 1 }}>
             { if not (waypointsLegth is 0 and not isRoundTrip)
-              <View style={{ zIndex: 1, width: 21, height: 21, backgroundColor: darkBlue, borderRadius: 3, position: 'absolute', top: 13, left: '41%', alignItems: 'center', justifyContent: 'center' }}>
-                { if waypointsLegth > 0
-                  <Text color="#ffffff" size={10} bold>+{ waypointsLegth }</Text>
+              <View style={{ zIndex: 1, width: 21, height: 21, backgroundColor: darkBlue, borderRadius: 3, position: 'absolute', top: 13, left: '42%', alignItems: 'center', justifyContent: 'center' }}>
+                { if not isRoundTrip and waypointsLegth > 0
+                  <Text color="#ffffff" size={14} bold>+{ waypointsLegth }</Text>
                 }
                 { if isRoundTrip
                   <Image source={require '../../../../images/round_trip.png'} style={{ width: 12 * 1.3, height: 7 * 1.3 }} />
                 }
               </View>
             }
-            <View style={{ overflow: 'hidden', borderRightWidth: 1, borderRightColor: '#cccccc', width: 40, justifyContent: 'center', paddingLeft: 8 }}>
-              <Text bold size={20} color={black}>{ distance }</Text>
+            <View style={{ borderRightWidth: 1, borderRightColor: '#cccccc', width: 33, justifyContent: 'center', paddingLeft: 5 }}>
+              <Text bold size={20} color={black}>{ if distance < 100 then distance else 99 }</Text>
             </View>
             <View style={{ flexDirection: 'row', borderRightWidth: 1, borderRightColor: '#cccccc', flex: 1, alignItems: 'center', paddingLeft: 5 }}>
               { if not isImmediate
                 <EvilIcons name="clock" color={black} size={27} style={{ marginRight: 2 }} />
               }
-              <Text bold size={22} color={black}>{ startShortAddress }</Text>
+              <View style={{ height: (if Platform.OS is 'ios' then 23 else 26), width: (if Platform.OS is 'ios' then null else 300), marginTop: -4 }}>
+                <Text bold size={22} color={black}>{ startShortAddress }</Text>
+              </View>
             </View>
-            <View style={{ borderRightWidth: 1, borderRightColor: '#cccccc', flex: 1, justifyContent: 'center', paddingLeft: 15 }}>
-              <Text bold size={22} color={black}>{ endShortAddress }</Text>
+            <View style={{ borderRightWidth: 1, borderRightColor: '#cccccc', flex: 1, justifyContent: 'center' }}>
+              <View style={{ height: (if Platform.OS is 'ios' then 23 else 26), width: (if Platform.OS is 'ios' then null else 300), marginTop: -4, marginLeft: (if not (waypointsLegth is 0 and not isRoundTrip) then 15 else 5) }}>
+                <Text bold size={22} color={black}>{ endShortAddress }</Text>
+              </View>
             </View>
             <View style={{ borderRightWidth: 1, borderRightColor: '#cccccc', width: 37, alignItems: 'center', justifyContent: 'center' }}>
               <Text bold size={20} color={black}>{ vehicleType }</Text>
             </View>
-            <View style={{ width: 47, alignItems: 'flex-end', justifyContent: 'center', paddingRight: 6 }}>
+            <View style={{ width: 41, alignItems: (if Platform.OS is 'ios' then 'center' else 'flex-end'), justifyContent: 'center', paddingRight: (if Platform.OS is 'ios' then 0 else 5) }}>
               <Text bold size={20} color={darkRed}>{ fare }</Text>
             </View>
           </View>
@@ -130,33 +136,37 @@ export default observer class Order extends Component
         <Touchable onPress={@onPress}>
           <View style={{ flexDirection: 'row', height: 100, backgroundColor: backgroundColor, borderRadius: 3, marginTop: 1 }}>
             { if not (waypointsLegth is 0 and not isRoundTrip)
-              <View style={{ zIndex: 1, width: 21, height: 21, backgroundColor: darkBlue, borderRadius: 3, position: 'absolute', top: 13, left: '41%', alignItems: 'center', justifyContent: 'center' }}>
-                { if waypointsLegth > 0
-                  <Text color="#ffffff" size={10} bold>+{ waypointsLegth }</Text>
+              <View style={{ zIndex: 1, width: 21, height: 21, backgroundColor: darkBlue, borderRadius: 3, position: 'absolute', top: 13, left: '42%', alignItems: 'center', justifyContent: 'center' }}>
+                { if not isRoundTrip and waypointsLegth > 0
+                  <Text color="#ffffff" size={14} bold>+{ waypointsLegth }</Text>
                 }
                 { if isRoundTrip
                   <Image source={require '../../../../images/round_trip.png'} style={{ width: 12 * 1.3, height: 7 * 1.3 }} />
                 }
               </View>
             }
-            <View style={{ overflow: 'hidden', borderRightWidth: 1, borderRightColor: '#cccccc', width: 40, paddingTop: 8, paddingLeft: 8 }}>
-              <Text bold size={20} color={black}>{ distance }</Text>
+            <View style={{ borderRightWidth: 1, borderRightColor: '#cccccc', width: 33, paddingTop: 8, paddingLeft: 5 }}>
+              <Text bold size={20} color={black}>{ if distance < 100 then distance else 99 }</Text>
             </View>
             <View style={{ flex: 1 }}>
               <View style={{ height: 66, flexDirection: 'row' }}>
                 <View style={{ borderRightWidth: 1, borderRightColor: '#cccccc', flex: 1, justifyContent: 'center', paddingLeft: 5 }}>
-                  <Text bold size={22} color={black}>{ startShortAddress }</Text>
+                  <View style={{ height: (if Platform.OS is 'ios' then 23 else 26), width: (if Platform.OS is 'ios' then null else 300), marginTop: -4 }}>
+                    <Text bold size={22} color={black}>{ startShortAddress }</Text>
+                  </View>
                   <Text bold size={17} color="#375ab5" marginTop={2}>{ pickUpScheduledAt }</Text>
                 </View>
-                <View style={{ borderRightWidth: 1, borderRightColor: '#cccccc', flex: 1, justifyContent: 'center', paddingLeft: 15 }}>
-                  <Text bold size={22} color={black}>{ endShortAddress }</Text>
-                  <Text bold size={17} color="#375ab5" marginTop={2}>{ dischargeScheduleAt }</Text>
+                <View style={{ borderRightWidth: 1, borderRightColor: '#cccccc', flex: 1, justifyContent: 'center' }}>
+                  <View style={{ height: (if Platform.OS is 'ios' then 23 else 26), width: (if Platform.OS is 'ios' then null else 300), marginTop: -4, marginLeft: (if not (waypointsLegth is 0 and not isRoundTrip) then 15 else 5) }}>
+                    <Text bold size={22} color={black}>{ endShortAddress }</Text>
+                  </View>
+                  <Text bold size={17} color="#375ab5" marginTop={2} marginLeft={if not (waypointsLegth is 0 and not isRoundTrip) then 15 else 5}>{ dischargeScheduleAt }</Text>
                 </View>
                 <View style={{ borderRightWidth: 1, borderRightColor: '#cccccc', width: 37, alignItems: 'center', justifyContent: 'center' }}>
                   <Text bold size={20} color={black}>{ weight }</Text>
                   <Text size={17} color={black} marginTop={5}>{ vehicleType }</Text>
                 </View>
-                <View style={{ width: 47, alignItems: 'flex-end', justifyContent: 'center', paddingRight: 6 }}>
+                <View style={{ width: 41, alignItems: (if Platform.OS is 'ios' then 'center' else 'flex-end'), justifyContent: 'center', paddingRight: (if Platform.OS is 'ios' then 0 else 5) }}>
                   <Text bold size={20} color={darkRed}>{ fare }</Text>
                   <Text size={17} color={black} marginTop={5}>({ fee })</Text>
                 </View>
@@ -170,7 +180,7 @@ export default observer class Order extends Component
                     <Badge badgeColor="#c12d3a">급송</Badge>
                   }
                 </View>
-                <View style={{ width: 47, alignItems: 'center', justifyContent: 'center' }}>
+                <View style={{ width: 41, alignItems: 'center', justifyContent: 'center' }}>
                   <Badge badgeColor={paymentMethodColor}>{ paymentMethod }</Badge>
                 </View>
               </View>
