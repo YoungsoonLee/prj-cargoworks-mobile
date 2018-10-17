@@ -12,6 +12,9 @@ export default observer class OrderDetailView extends Component
   onPressOk: =>
     @props.onPressOk()
 
+  onPressDecline: =>
+    @props.onPressDecline()
+
   render: =>
     second = parseInt(@props.state.remainedSecond % 60)
 

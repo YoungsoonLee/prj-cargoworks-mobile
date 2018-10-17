@@ -9,26 +9,12 @@ export default withReaction = (WrappedComponent) =>
       ,
         =>
           if @props.state.remainedSecond <= 0 and @props.order.dispatchType is @props.ORDERS.DISPATCH_TYPES.DESIGNATED.VALUE and @props.order.status is @props.ORDERS.STATUS.DISPATCHING.VALUE
-            @cancelOrder()
+            @props.onPressDecline()
       )
 
     componentWillUnmount: =>
       if @props.order.dispatchType is @props.ORDERS.DISPATCH_TYPES.DESIGNATED.VALUE and @props.order.status is @props.ORDERS.STATUS.DISPATCHING.VALUE
-        @cancelOrder()
-
-    cancelOrder: =>
-      Meteor.call 'orders.update',
-        _id: @props.order._id
-      ,
-        $set:
-          status: 'CANCELED'
-      , (error) =>
-        if error
-          Util.alert error.reason
-
-          return
-
-        Util.back()
+        @props.onPressDecline()
 
     render: =>
       <WrappedComponent {...@props} />
