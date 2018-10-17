@@ -22,7 +22,7 @@ export default withHandler = (WrappedComponent) =>
           $set:
             'orderFilterConfigurations.$.distance': @props.state.distance
             'orderFilterConfigurations.$.vehicles': vehicles
-            'orderFilterConfigurations.$.isOnlyRecruitmentOrder': @props.state.isOnlyRecruitmentOrder
+            'orderFilterConfigurations.$.isOnlyMyAgentOrder': @props.state.isOnlyRecruitmentOrder
         , (error) =>
           if error
             Util.alert error.reason
@@ -40,7 +40,7 @@ export default withHandler = (WrappedComponent) =>
 
         orderFilterConfigurationsDefaultObject.distance = @props.state.distance
         orderFilterConfigurationsDefaultObject.vehicles = vehicles
-        orderFilterConfigurationsDefaultObject.isOnlyRecruitmentOrder = @props.state.isOnlyRecruitmentOrder
+        orderFilterConfigurationsDefaultObject.isOnlyMyAgentOrder = @props.state.isOnlyRecruitmentOrder
 
         Meteor.call 'transporters.update',
           _id: @props.transporter._id
