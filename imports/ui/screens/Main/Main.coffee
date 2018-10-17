@@ -19,11 +19,21 @@ option =
   isReadyNeeded: false
   isDocNeeded: false
 
+getOrdersSelector = (props) =>
+  status: 'DISPATCHING'
+  dispatchType: 'DESIGNATED'
+  'transporter._id': props.transporter._id
+
+getOrdersOption = =>
+  sort:
+    createdAt: -1
+
 getHocs = =>
   [
     withUser()
     withFindOne('transporters', getTransportersSelector)
     withFindOne('invitations', getInvitationsSelector, =>, option)
+    withFindOne('orders', getOrdersSelector, getOrdersOption, option)
   ]
 
 export default Main = withHocs(getHocs) MainView

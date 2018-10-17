@@ -73,6 +73,16 @@ export default observer class MainView extends Component
     if nextProps.invitation._id
       @init nextProps
 
+    if nextProps.order._id
+      if not nextProps.order.isShown
+        nextProps.order.isShown = true
+
+        @showOrder nextProps
+
+  showOrder: (props) =>
+    Util.go 'OrderDetail',
+      id: props.order._id
+
   init: _.once (props) =>
     Util.go 'Invitation',
       id: props.invitation._id
