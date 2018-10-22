@@ -4,7 +4,7 @@ export default observer class SignupView extends Component
 
   render: =>
     <Layout title="계정 만들기">
-      <ScrollView>
+      <ScrollView paddingBottom={300}>
         <View style={{ padding: 20 }}>
           <View style={{ alignItems: 'center', marginTop: 20 }}>
             <Image source={require '../../../../images/phone.png'} style={{ width: 50, height: 74 }} />
@@ -23,7 +23,6 @@ export default observer class SignupView extends Component
             <Input type="password" placeholder="비밀번호 확인" marginTop={10} state={@props.state} path="passwordConfirm" />
           </Error>
         </View>
-        <View style={{ height: 300 }} />
       </ScrollView>
       <Button isDisabled={not @props.validation.isValid} borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>다음</Button>
     </Layout>

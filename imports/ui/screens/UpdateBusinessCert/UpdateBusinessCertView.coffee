@@ -7,7 +7,7 @@ export default observer class UpdateBusinessCertView extends Component
 
   render: =>
     <Layout title="사업자 등록증">
-      <ScrollView>
+      <ScrollView paddingBottom={300}>
         <View style={{ flex: 1, padding: 20 }}>
           <Text color="#c12d3a" size={15} bold>영업용 차량의 경우 사업자 정보를 등록하세요. (필수)</Text>
           <Text size={15} marginTop={15}>
@@ -37,7 +37,6 @@ export default observer class UpdateBusinessCertView extends Component
           <Input placeholder="주소" state={@props.state} path="value.address" />
           <View style={{ height: 15 }} />
           <Input placeholder="연락처" state={@props.state} path="value.contactNumber" />
-          <View style={{ height: 300 }} />
         </View>
       </ScrollView>
       <Button isDisabled={not @props.validation.isValid} borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>{ if @props.routeParam?.type is 'update' then '저장하기' else '다음' }</Button>

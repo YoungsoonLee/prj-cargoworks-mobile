@@ -6,7 +6,7 @@ export default observer class VerifyPhoneNumberView extends Component
 
   render: =>
     <Layout title="휴대폰 인증">
-      <ScrollView>
+      <ScrollView paddingBottom={300}>
         <View style={{ flex: 1, padding: 20 }}>
           <View style={{ alignItems: 'center', marginTop: 20 }}>
             <Image source={require '../../../../images/phone.png'} style={{ width: 50, height: 74 }} />
@@ -16,7 +16,6 @@ export default observer class VerifyPhoneNumberView extends Component
           <View style={{ height: 10 }} />
           <VerifyPhoneNumber state={@props.state} path="phoneNumber" />
         </View>
-        <View style={{ height: 300 }} />
       </ScrollView>
       <Button isDisabled={not @props.validation.isValid} borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>다음</Button>
     </Layout>

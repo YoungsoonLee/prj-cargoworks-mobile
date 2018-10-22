@@ -41,7 +41,6 @@ export default observer class OrderSettingView extends Component
       }
       <ScrollView style={{ paddingHorizontal: 10 }}>
         { @renderMenuItems() }
-        <View style={{ height: 100 }} />
       </ScrollView>
       { if @props.transporter.operationStatus is @props.TRANSPORTERS.OPERATION_STATUS.OUT.VALUE
         <Button onPress={=> @onPressInOrOut true} borderRadius={0} height={75} color="light blue">

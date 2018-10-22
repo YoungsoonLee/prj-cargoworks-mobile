@@ -6,7 +6,7 @@ export default observer class FindIdView extends Component
 
   render: =>
     <Layout title="아이디 찾기">
-      <ScrollView>
+      <ScrollView paddingBottom={300}>
         <View style={{ flex: 1, padding: 20 }}>
           <View style={{ alignItems: 'center', marginTop: 20 }}>
             <Image source={require '../../../../images/unlock_password.png'} style={{ width: 80, height: 74 }} />
@@ -19,7 +19,6 @@ export default observer class FindIdView extends Component
           <View style={{ height: 10 }} />
           <VerifyPhoneNumber state={@props.state} path="phoneNumber" />
         </View>
-        <View style={{ height: 300 }} />
       </ScrollView>
       <Button isDisabled={not @props.validation.isValid} borderRadius={0} height={75} color="light blue" onPress={@onPressSend}>SMS로 가입정보 전송</Button>
     </Layout>

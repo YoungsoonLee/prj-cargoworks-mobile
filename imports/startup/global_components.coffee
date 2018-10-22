@@ -1,4 +1,4 @@
-import { View, Image, ImageBackground, ScrollView, TouchableWithoutFeedback, Picker } from 'react-native'
+import { View, Image, ImageBackground, TouchableWithoutFeedback, Picker } from 'react-native'
 import Toggles from 'slap-react-native-toggles'
 import Toggle from 'slap-react-native-toggle'
 import TextArea from 'slap-react-native-text-area'
@@ -40,11 +40,11 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import EvilIcons from 'react-native-vector-icons/EvilIcons'
 import Feather from 'react-native-vector-icons/Feather'
 import Util from '../etc/Util.coffee'
+import ScrollView from '../ui/components/ScrollView/ScrollView.coffee'
 
 global.View = View
 global.Image = Image
 global.ImageBackground = ImageBackground
-global.ScrollView = ScrollView
 global.TouchableWithoutFeedback = TouchableWithoutFeedback
 global.Picker = Picker
 global.Toggles = Toggles
@@ -93,3 +93,4 @@ global._set = Util.set
 global.push = Util.push
 global.unshift = Util.unshift
 global.splice = Util.splice
+global.ScrollView = ScrollView

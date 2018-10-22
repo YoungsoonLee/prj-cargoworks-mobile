@@ -29,7 +29,6 @@ export default observer class MyOrderDetailView extends Component
       <OrderDetailLayout order={@props.order} type="my order">
         <ScrollView>
           <WayPoints type="my order" order={@props.order} transporter={@props.transporter} ORDERS={@props.ORDERS} TRANSPORTERS={@props.TRANSPORTERS} orderInfo={<OrderInfo type="my order" order={@props.order} TRANSPORTERS={@props.TRANSPORTERS} ORDERS={@props.ORDERS} />} />
-          <View style={{ height: 100 }} />
         </ScrollView>
       </OrderDetailLayout>
       { if not isCompleted

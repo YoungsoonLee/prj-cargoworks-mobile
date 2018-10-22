@@ -4,7 +4,7 @@ export default observer class UpdateInsuranceForOthersView extends Component
 
   render: =>
     <Layout title="적재물배상책임보험">
-      <ScrollView style={{ padding: 20 }}>
+      <ScrollView style={{ padding: 20 }} paddingBottom={300}>
         <Text>
           적재물배상책임보험에 가입되어 있거나 피보험자로 가입하셔야 합니다. 가입정보는 운송주선사도 공유하여 배차에영향을 줄 수 있습니다.{'\n'}
           {'\n'}
@@ -20,7 +20,6 @@ export default observer class UpdateInsuranceForOthersView extends Component
             <Input isRequired placeholder="주민등록번호" marginTop={10} state={@props.state} path="idNumber" />
           </View>
         }
-        <View style={{ height: 300 }} />
       </ScrollView>
       <Button isDisabled={not @props.validation.isValid and @props.state.isAgreeChecked} borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>다음</Button>
     </Layout>

@@ -38,7 +38,7 @@ export default observer class PublishCashReceiptView extends Component
     total = final + additional
 
     <Layout title="현금 영수증 발행">
-      <ScrollView>
+      <ScrollView paddingBottom={300}>
         <View style={{ height: 260, alignItems: 'center', justifyContent: 'center', backgroundColor: darkBlue, borderTopWidth: 1, borderTopColor: '#a2aabf' }}>
           { if not @props.order.isCashBillPublished
             <Text bold color={white} size={18}>고객에게 현금 영수증을 발행합니다.</Text>
@@ -84,7 +84,6 @@ export default observer class PublishCashReceiptView extends Component
         <View style={{ paddingHorizontal: 25, marginTop: 20 }}>
           { @renderMethods() }
         </View>
-        <View style={{ height: 300 }} />
       </ScrollView>
-      <Button isDisabled={not @props.validation.isValid or @props.order.isCashBillPublished} borderRadius={0} height={75} color="light blue" onPress={=> @onPressPublish total}>고객 현금영수증 발행하기</Button>
+      <Button isDisabled={not @props.validation.isValid or @props.order.isCashBillPublished} borderRadius={0} height={75} color="light blue" onPress={=> @onPressPublish total}>고객 현금영수증 발행</Button>
     </Layout>

@@ -13,7 +13,7 @@ export default observer class UpdateBankAccountView extends Component
 
   render: =>
     <Layout title="계좌 정보">
-      <ScrollView style={{ flex: 1, padding: 20 }}>
+      <ScrollView style={{ flex: 1, padding: 20 }} paddingBottom={300}>
         <Text size={18} bold color="#000000">충전금을 환급 받거나, 현금 주문시 운임을 받을 계좌를 설정하세요.</Text>
         <Select marginTop={15} name="bank" label="은행선택" onChange={@onChangeSelect} value={@props.state.value.bank}>
           { @renderBanks() }
@@ -33,7 +33,6 @@ export default observer class UpdateBankAccountView extends Component
             <Input placeholder="방법을 선택 후 번호를 입력해 주세요" state={@props.state} path="value.number" />
           </View>
         }
-        <View style={{ height: 300 }} />
       </ScrollView>
       <Button isDisabled={not @props.validation.isValid} borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>{ if @props.routeParam?.type is 'update' then '저장하기' else '다음' }</Button>
     </Layout>
