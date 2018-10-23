@@ -57,4 +57,4 @@ export default observer class _Text extends Component
 
     _.extend style, @props.style
 
-    <Text onPress={@props.onPress} style={style}>{ @props.children }</Text>
+    <Text onPress={@props.onPress} style={style} allowFontScaling={false}>{ @props.children }</Text>
