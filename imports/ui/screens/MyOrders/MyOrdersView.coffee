@@ -30,7 +30,7 @@ export default observer class MyOrdersView extends Component
             <Text marginTop={13} size={18} bold color={white}>배송/운행중 ({ deliveryingOrders.length })</Text>
             <View style={{ height: 13 }} />
             { @renderOrders deliveryingOrders }
-            <Text marginTop={13} size={18} bold color={white}>픽업/상차 ({ beforePickupOrders.length })</Text>
+            <Text marginTop={13} size={18} bold color={white}>픽업/상차/대기 ({ beforePickupOrders.length })</Text>
             <View style={{ height: 13 }} />
             { @renderOrders beforePickupOrders }
           </View>

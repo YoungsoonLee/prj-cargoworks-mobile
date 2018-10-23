@@ -160,7 +160,6 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-keep-awake')
     compile project(':react-native-device-info')
     compile project(':react-native-background-timer')
     compile project(':react-native-signature-capture')
