@@ -39,7 +39,7 @@ export default observer class BalancesView extends Component
             </Text>
           </View>
           <View style={{ flex: 1, justifyContent: 'center' }}>
-            <Text color={black} size={22} bold>{ @props.BALANCES.TRANSACTIONS.TYPES[balance.transactionType].TEXT }</Text>
+            <Text color={black} size={22} bold>{ @props.BALANCES.TRANSACTIONS.TYPES[balance.transactionType].TEXT.replace /기사 /g, '' }</Text>
             { if not not balance.orderId or not not balance.reason
               <Text size={12}>{ not not balance.orderId and '주문번호 ' }{ balance.orderId }{ not not balance.reason and ' / ' }{ balance.reason }</Text>
             }

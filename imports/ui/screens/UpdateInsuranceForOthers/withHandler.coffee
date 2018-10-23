@@ -1,7 +1,7 @@
 export default withHandler = (WrappedComponent) =>
   observer class WithHandler extends Component
     onPressNext: =>
-      Meteor.call 'users.update',
+      Meteor.call 'transporters.update',
         _id: @props.user.profile.transporterId
       ,
         $set:
@@ -14,7 +14,11 @@ export default withHandler = (WrappedComponent) =>
 
           return
 
-        Util.go 'UpdateBusinessCert'
+        if @props.routeParam?.type is 'update'
+          Util.back()
+
+        else
+          Util.go 'UpdateBusinessCert'
 
     render: =>
       <WrappedComponent {...@props} onPressNext={@onPressNext} />

@@ -1,5 +1,6 @@
 import UpdateVehicleView from './UpdateVehicleView.coffee'
 import withHandler from './withHandler.coffee'
+import withReaction from './withReaction.coffee'
 
 getSelector = (props) =>
   userId: props.user._id
@@ -12,6 +13,7 @@ getDefaultState = (props) =>
   # Util.getVehicle 함수는 db scheme의 값을 받아서 ui component에서 사용하는 vehicle string으로 변환해준다
   vehicle: Util.getVehicle props.transporter.vehicleWeightCapacity, props.transporter.freightBoxType, props.TRANSPORTERS
   carRegisterImageUrl: props.transporter.vehicleRegistrationImageUrl
+  isUpdated: false
 
 getItems = =>
   [
@@ -34,6 +36,7 @@ getHocs = =>
     withState(getDefaultState)
     withValidation(getItems)
     withHandler
+    withReaction
   ]
 
 export default UpdateVehicle = withHocs(getHocs) UpdateVehicleView

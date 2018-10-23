@@ -15,6 +15,7 @@ getDefaultState = (props) =>
     contactNumber: props.transporter.contactNumber or ''
   isRegNumberValid: if props.transporter.regNumber then true else false
   isRegNumberChecked: if props.transporter.regNumber then true else false
+  isUpdated: false
 
 getItems = (props) =>
   [
@@ -58,6 +59,7 @@ getItems = (props) =>
 
 getHocs = =>
   [
+    withConstant('transporters')
     withRouteParam
     withUser()
     withFindOne('transporters', getSelector)

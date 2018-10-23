@@ -92,7 +92,7 @@ export default observer class WayPointsView extends Component
 
       else
         isCompleted = true
-      
+
       <View key={waypoint.id}>
         <View style={{ backgroundColor: backgroundColor, flexDirection: 'row', borderTopWidth: 1, borderTopColor: black, borderBottomWidth: (if index is waypoints.length - 1 then 1 else 0), borderBottomColor: black }}>
           <View style={{ width: 85, borderRightWidth: 1, borderRightColor: '#a2aabf', justifyContent: 'center', paddingLeft: 10 }}>
@@ -122,7 +122,7 @@ export default observer class WayPointsView extends Component
                 { if waypoint.isSignedOff and index isnt 0
                   <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10 }}>
                     <Button onPress={=> @onPressSignature waypoint.signatureImageUrl, waypoint.signedOffAt} paddingHorizontal={0} color="blue" width={50} height={25} textSize={14}>서명</Button>
-                    <Text color={blue} size={14} bold marginLeft={10}>{ moment(waypoint.signedOffAt).format('HH:mm') }</Text>
+                    <Text color={blue} size={14} bold marginLeft={10}>{ moment(waypoint.signedOffAt).format('YY.MM.DD A HH:mm') }</Text>
                   </View>
                 }
               </View>

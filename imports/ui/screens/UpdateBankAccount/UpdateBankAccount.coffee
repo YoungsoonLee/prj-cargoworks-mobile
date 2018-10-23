@@ -1,5 +1,6 @@
 import UpdateBankAccountView from './UpdateBankAccountView.coffee'
 import withHandler from './withHandler.coffee'
+import withReaction from './withReaction.coffee'
 
 getSelector = (props) =>
   _id: props.user.profile.transporterId
@@ -11,6 +12,7 @@ getDefaultState = (props) =>
     holderName: props.transporter.withdrawalAccount.holderName
     method: props.transporter.taxationMethod or '수신안함'
     number: props.transporter.taxationRegistrationNumber
+  isUpdated: false
 
 getItems = (props) =>
   [
@@ -39,6 +41,7 @@ getHocs = =>
     withConstant('accounts')
     withValidation(getItems)
     withHandler
+    withReaction
   ]
 
 export default UpdateBankAccount = withHocs(getHocs) UpdateBankAccountView

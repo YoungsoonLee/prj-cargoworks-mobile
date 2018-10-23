@@ -5,16 +5,7 @@ export default withReaction = (WrappedComponent) =>
 
       reaction(
         =>
-          @props.state.value.regNumber
-      ,
-        =>
-          @props.state.isRegNumberValid = false
-          @props.state.isRegNumberChecked = false
-      )
-
-      reaction(
-        =>
-          JSON.stringify @props.state.value
+          @props.state.carNumber + @props.state.carNumber.weight + @props.state.carNumber.boxType + @props.state.carNumber.vehicle + @props.state.carNumber.carRegisterImageUrl
       ,
         =>
           @props.state.isUpdated = true

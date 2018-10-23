@@ -18,7 +18,7 @@ export default observer class RecruitmentView extends Component
       <ScrollView>
         <View style={{ width: 110, height: 10, borderRightWidth: 1, borderRightColor: '#a2aabf' }} />
         { @renderItems() }
-        <View style={{ width: 110, height: 500, borderRightWidth: 1, borderRightColor: '#a2aabf' }} />
+        <View style={{ width: 110, height: 100, borderRightWidth: 1, borderRightColor: '#a2aabf' }} />
       </ScrollView>
       <Button borderRadius={0} height={75} color="light blue" onPress={@onPressApply}>지원하기</Button>
     </Layout>

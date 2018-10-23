@@ -23,6 +23,7 @@ getSelector = (props) =>
 
 getHocs = =>
   [
+    withRouteParam
     withFindOne('insurances')
     withUser()
     withFindOne('transporters', getSelector)

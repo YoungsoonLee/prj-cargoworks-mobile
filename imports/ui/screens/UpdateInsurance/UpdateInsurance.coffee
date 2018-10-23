@@ -23,6 +23,7 @@ getItems = =>
 
 getHocs = =>
   [
+    withRouteParam
     withUser()
     withFindOne('insurances')
     withFindOne('transporters', getSelector)

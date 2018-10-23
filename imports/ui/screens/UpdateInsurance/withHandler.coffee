@@ -14,7 +14,11 @@ export default withHandler = (WrappedComponent) =>
 
           return
 
-        Util.go 'UpdateBankAccount'
+        if @props.routeParam?.type is 'update'
+          Util.back()
+
+        else
+          Util.go 'UpdateBankAccount'
 
     render: =>
       <WrappedComponent {...@props} onPressNext={@onPressNext} />

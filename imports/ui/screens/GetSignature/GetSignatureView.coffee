@@ -10,7 +10,7 @@ export default observer class GetSignatureView extends Component
   render: =>
     <Layout title="서명">
       <View style={{ height: 140, alignItems: 'center', justifyContent: 'center', backgroundColor: darkBlue, borderTopWidth: 1, borderTopColor: '#a2aabf' }}>
-        <Text bold color={white} size={18}>픽업지 서명</Text>
+        <Text bold color={white} size={18}>서명일시</Text>
         <Text marginTop={5} size={14} color="#fffae1">{ moment().format('YYYY.MM.DD a hh:mm') }</Text>
         <Text bold center color={white} marginTop={10}>
           고객님 성함으로 서명을 받으세요.{'\n'}

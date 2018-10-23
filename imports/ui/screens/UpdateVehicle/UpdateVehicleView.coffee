@@ -26,5 +26,5 @@ export default observer class UpdateVehicleView extends Component
         <ImageUploader state={@props.state} path="carRegisterImageUrl" />
         <View style={{ height: 50 }} />
       </ScrollView>
-      <Button isDisabled={not @props.validation.isValid} borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>{ if @props.routeParam?.type is 'update' then '저장하기' else '다음' }</Button>
+      <Button isDisabled={not @props.validation.isValid} borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>{ if @props.routeParam?.type is 'update' then '변경요청' else '다음' }</Button>
     </Layout>

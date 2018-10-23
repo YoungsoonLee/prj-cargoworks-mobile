@@ -2,10 +2,10 @@ export default observer class OrderGetSettingView extends Component
   vehicleItemWidth: (width - 5 * 5) / 4
 
   renderDistances: =>
-    distances = [1..500].map (distance) =>
-      <Picker.Item key={distance} value={distance} label="#{distance} km" />
+    distances = [1..50].map (distance, index) =>
+      <Picker.Item key={index} value={distance} label="#{distance} km" />
 
-    distances.unshift <Picker.Item key={0} value={-1} label="설정안함" />
+    distances.unshift <Picker.Item key={-1} value={-1} label="설정안함" />
 
     distances
 
@@ -67,7 +67,7 @@ export default observer class OrderGetSettingView extends Component
     @props.onPressSave()
 
   render: =>
-    <Layout title="수문수신 설정">
+    <Layout title="주문수신 설정">
       <ScrollView>
         <View style={{ borderBottomWidth: 1, borderBottomColor: black, height: 65, backgroundColor: '#eeeeee', justifyContent: 'center', paddingLeft: 10 }}>
           <Text bold size={15} color={black}>주문을 수신할 최대 거리를 설정하세요.</Text>

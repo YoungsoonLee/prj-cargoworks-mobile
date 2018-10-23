@@ -16,5 +16,5 @@ export default observer class UpdateInsuranceView extends Component
         <Input isRequired placeholder="이름(실명)" marginTop={10} state={@props.state} path="name" />
         <Input isRequired placeholder="주민등록번호" marginTop={10} state={@props.state} path="idNumber" />
       </ScrollView>
-      <Button isDisabled={not @props.validation.isValid} borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>다음</Button>
+      <Button isDisabled={not @props.validation.isValid} borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>{ if @props.routeParam?.type is 'update' then '저장하기' else '다음' }</Button>
     </Layout>

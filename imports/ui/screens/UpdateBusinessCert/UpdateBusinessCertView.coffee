@@ -39,5 +39,5 @@ export default observer class UpdateBusinessCertView extends Component
           <Input placeholder="연락처" state={@props.state} path="value.contactNumber" />
         </View>
       </ScrollView>
-      <Button isDisabled={not @props.validation.isValid} borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>{ if @props.routeParam?.type is 'update' then '저장하기' else '다음' }</Button>
+      <Button isDisabled={not @props.validation.isValid} borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>{ if @props.routeParam?.type is 'update' then '변경요청' else '다음' }</Button>
     </Layout>

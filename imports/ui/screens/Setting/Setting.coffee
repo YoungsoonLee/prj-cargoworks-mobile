@@ -1,4 +1,14 @@
 import SettingView from './SettingView.coffee'
 import withHandler from './withHandler.coffee'
 
-export default Setting = withHandler SettingView
+getSelector = (props) =>
+  _id: props.user.profile.transporterId
+
+getHocs = =>
+  [
+    withUser()
+    withFindOne('transporters', getSelector)
+    withHandler
+  ]
+
+export default Setting = withHocs(getHocs) SettingView

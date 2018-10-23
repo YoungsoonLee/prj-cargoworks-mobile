@@ -74,6 +74,8 @@ export default observer class OrderInfoView extends Component
     else
       paymentDays = []
 
+    console.log @props.order
+
     <View>
       <View style={{ height: 32, flexDirection: 'row' }}>
         <View style={{ width: 85, borderRightWidth: 1, borderRightColor: '#a2aabf', justifyContent: 'center', paddingLeft: 10 }}>
@@ -93,32 +95,41 @@ export default observer class OrderInfoView extends Component
       </View>
       { if @props.type is 'my order'
         <View>
-          <View style={{ height: 32, flexDirection: 'row' }}>
-            <View style={{ width: 85, borderRightWidth: 1, borderRightColor: '#a2aabf', justifyContent: 'center', paddingLeft: 10 }}>
-              <Text color="#444444" bold size={16}>상차일시</Text>
+          { if @props.order.vehicleType is @props.TRANSPORTERS.VEHICLES.PARCEL.VALUE
+            <View />
+          }
+          { if @props.order.vehicleType is @props.TRANSPORTERS.VEHICLES.FREIGHT.VALUE
+            <View>
+              <View style={{ height: 32, flexDirection: 'row' }}>
+                <View style={{ width: 85, borderRightWidth: 1, borderRightColor: '#a2aabf', justifyContent: 'center', paddingLeft: 10 }}>
+                  <Text color="#444444" bold size={16}>상차일시</Text>
+                </View>
+                <View style={{ flex: 1, justifyContent: 'center', paddingLeft: 10 }}>
+                  <Text color={black} bold size={16}>{ pickUpSchedule }</Text>
+                </View>
+              </View>
+              <View style={{ height: 32, flexDirection: 'row' }}>
+                <View style={{ width: 85, borderRightWidth: 1, borderRightColor: '#a2aabf', justifyContent: 'center', paddingLeft: 10 }}>
+                  <Text color="#444444" bold size={16}>하차일시</Text>
+                </View>
+                <View style={{ flex: 1, justifyContent: 'center', paddingLeft: 10 }}>
+                  <Text color={black} bold size={16}>{ dischargeSchedule }</Text>
+                </View>
+              </View>
             </View>
-            <View style={{ flex: 1, justifyContent: 'center', paddingLeft: 10 }}>
-              <Text color={black} bold size={16}>{ pickUpSchedule }</Text>
-            </View>
+          }
+        </View>
+      }
+      { if freightLoading
+        <View style={{ height: 32, flexDirection: 'row' }}>
+          <View style={{ width: 85, borderRightWidth: 1, borderRightColor: '#a2aabf', justifyContent: 'center', paddingLeft: 10 }}>
+            <Text color="#444444" bold size={16}>적재방법</Text>
           </View>
-          <View style={{ height: 32, flexDirection: 'row' }}>
-            <View style={{ width: 85, borderRightWidth: 1, borderRightColor: '#a2aabf', justifyContent: 'center', paddingLeft: 10 }}>
-              <Text color="#444444" bold size={16}>하차일시</Text>
-            </View>
-            <View style={{ flex: 1, justifyContent: 'center', paddingLeft: 10 }}>
-              <Text color={black} bold size={16}>{ dischargeSchedule }</Text>
-            </View>
+          <View style={{ flex: 1, justifyContent: 'center', paddingLeft: 10 }}>
+            <Text color={black} bold size={16}>{ freightLoading }</Text>
           </View>
         </View>
       }
-      <View style={{ height: 32, flexDirection: 'row' }}>
-        <View style={{ width: 85, borderRightWidth: 1, borderRightColor: '#a2aabf', justifyContent: 'center', paddingLeft: 10 }}>
-          <Text color="#444444" bold size={16}>적재방법</Text>
-        </View>
-        <View style={{ flex: 1, justifyContent: 'center', paddingLeft: 10 }}>
-          <Text color={black} bold size={16}>{ freightLoading }</Text>
-        </View>
-      </View>
       <View style={{ height: 32, flexDirection: 'row' }}>
         <View style={{ width: 85, borderRightWidth: 1, borderRightColor: '#a2aabf', justifyContent: 'center', paddingLeft: 10 }}>
           <Text color="#444444" bold size={16}>운송주선</Text>

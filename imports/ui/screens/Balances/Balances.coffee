@@ -15,12 +15,16 @@ getDefaultState = =>
 getBalancesSelector = (props) =>
   transporterId: props.transporter._id
 
+getBalancesOption = =>
+  sort:
+    createdAt: -1
+
 getHocs = =>
   [
     withState(getDefaultState)
     withUser()
     withFindOne('transporters', getTransportersSelector)
-    withFind('balances', getBalancesSelector)
+    withFind('balances', getBalancesSelector, getBalancesOption)
     withConstant('balances')
     withProps
     withReaction

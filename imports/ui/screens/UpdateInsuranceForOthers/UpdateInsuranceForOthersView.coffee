@@ -21,5 +21,5 @@ export default observer class UpdateInsuranceForOthersView extends Component
           </View>
         }
       </ScrollView>
-      <Button isDisabled={not @props.validation.isValid and @props.state.isAgreeChecked} borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>다음</Button>
+      <Button isDisabled={not @props.validation.isValid and @props.state.isAgreeChecked} borderRadius={0} height={75} color="light blue" onPress={@onPressNext}>{ if @props.routeParam?.type is 'update' then '저장하기' else '다음' }</Button>
     </Layout>
