@@ -31,11 +31,11 @@ export default observer class PublishCashReceiptView extends Component
       </View>
 
   render: =>
-    final = @props.order.agentFare.final
+    transporterFare = parseInt @props.order.agentFare.transporter
 
-    additional = final * 0.1
+    additional = transporterFare * 0.1
 
-    total = final + additional
+    total = transporterFare + additional
 
     <Layout title="현금 영수증 발행">
       <ScrollView paddingBottom={300}>
@@ -56,7 +56,7 @@ export default observer class PublishCashReceiptView extends Component
                 <Text color="#ffffff" size={18}>운임</Text>
               </View>
               <View style={{ flex: 1, alignItems: 'flex-end' }}>
-                <Text color="#ffffff" size={18}>{ "#{Util.getFormattedPrice final} 원" }</Text>
+                <Text color="#ffffff" size={18}>{ "#{Util.getFormattedPrice transporterFare} 원" }</Text>
               </View>
             </View>
             <View style={{ flexDirection: 'row', height: 45, alignItems: 'center', borderBottomWidth: 1, borderBottomColor: '#ffffff' }}>

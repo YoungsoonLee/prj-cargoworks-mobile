@@ -92,7 +92,7 @@ export default observer class WayPointsView extends Component
 
       else
         isCompleted = true
-
+      
       <View key={waypoint.id}>
         <View style={{ backgroundColor: backgroundColor, flexDirection: 'row', borderTopWidth: 1, borderTopColor: black, borderBottomWidth: (if index is waypoints.length - 1 then 1 else 0), borderBottomColor: black }}>
           <View style={{ width: 85, borderRightWidth: 1, borderRightColor: '#a2aabf', justifyContent: 'center', paddingLeft: 10 }}>
@@ -102,7 +102,7 @@ export default observer class WayPointsView extends Component
             }
           </View>
           <View style={{ minHeight: 65, paddingTop: 10, paddingBottom: 10, flex: 1, justifyContent: 'center', paddingLeft: 10 }}>
-            <Text bold size={20} color={black}>{ waypoint.daum.jibunAddress or waypoint.daum.autoJibunAddress }</Text>
+            <Text bold size={20} color={black}>{ waypoint.daum.jibunAddress or waypoint.daum.autoJibunAddress } { waypoint.detail }</Text>
             { if @props.type is 'order'
               <View>
                 { if index is 0 and not not pickUpSchedule

@@ -25,6 +25,11 @@ export default observer class Util extends Component
 
     exec = regExp.exec address
 
+    if not exec
+      regExp = new RegExp "#{sido} #{sigungu} (.+[읍면동])[0-9]"
+
+      exec = regExp.exec address
+
     if exec
       addr3 = exec?[1]
 
@@ -553,6 +558,9 @@ export default observer class Util extends Component
 
     else if vehicleWeightCapacity is WEIGHTS.FIVE.VALUE
       return '5'
+
+    else if vehicleWeightCapacity is WEIGHTS.FIVE_LONG.VALUE
+      return '5축'
 
     else if vehicleWeightCapacity is WEIGHTS.EIGHT.VALUE
       return '8'

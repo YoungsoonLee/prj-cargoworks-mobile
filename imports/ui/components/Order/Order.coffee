@@ -44,7 +44,7 @@ export default observer class Order extends Component
 
     weight = Util.getShortWeight @props.order.vehicleWeightCapacity, @props.order.freightBoxType, @props.TRANSPORTERS
 
-    fare = Util.getShortPrice @props.order.agentFare.final, 0
+    fare = Util.getShortPrice @props.order.agentFare.transporter, 0
 
     fee = Util.getShortPrice @props.order.agentFare.agentFee, 0
 
@@ -95,6 +95,7 @@ export default observer class Order extends Component
       backgroundColor = white
 
     if type is 'parcel'
+      @props.order.waypoints.pickUpSchedule
       return (
         <Touchable onPress={@onPress}>
           <View style={{ flexDirection: 'row', height: 50, backgroundColor: backgroundColor, borderRadius: 3, marginTop: 1 }}>
@@ -111,11 +112,11 @@ export default observer class Order extends Component
             <View style={{ borderRightWidth: 1, borderRightColor: '#cccccc', width: 33, justifyContent: 'center', paddingLeft: 5 }}>
               <Text bold size={20} color={black}>{ if distance < 100 then distance else 99 }</Text>
             </View>
-            <View style={{ flexDirection: 'row', borderRightWidth: 1, borderRightColor: '#cccccc', flex: 1, alignItems: 'center', paddingLeft: 5 }}>
-              { if not isImmediate
-                <EvilIcons name="clock" color={black} size={27} style={{ marginRight: 2 }} />
-              }
-              <View style={{ height: (if Platform.OS is 'ios' then 23 else 26), width: (if Platform.OS is 'ios' then null else 300), marginTop: -4 }}>
+            <View style={{ flexDirection: 'row', borderRightWidth: 1, borderRightColor: '#cccccc', flex: 1, alignItems: 'center', paddingLeft: 5, overflow: 'hidden' }}>
+              <View style={{ height: (if Platform.OS is 'ios' then 23 else 26), width: (if Platform.OS is 'ios' then null else 300), marginTop: -4, flexDirection: 'row', alignItems: 'center' }}>
+                { if not isImmediate
+                  <EvilIcons name="clock" color={black} size={27} style={{ marginRight: -2, marginLeft: -4 }} />
+                }
                 <Text bold size={22} color={black}>{ startShortAddress }</Text>
               </View>
             </View>

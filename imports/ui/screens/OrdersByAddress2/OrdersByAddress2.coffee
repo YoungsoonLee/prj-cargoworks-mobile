@@ -1,6 +1,5 @@
 import OrdersByAddress2View from './OrdersByAddress2View.coffee'
 import withProps from './withProps.coffee'
-import withHandler from './withHandler.coffee'
 
 getSelector = (props) =>
   status: props.ORDERS.STATUS.DISPATCHING.VALUE

@@ -35,7 +35,7 @@ export default withProps = (WrappedComponent) =>
 
       else if state.header.ordersSort is 'fare'
         orders = _.sortBy orders, (order) =>
-          -order.agentFare.final
+          -order.agentFare.transporter
 
       # 헤더 검색
       if state.header.search
