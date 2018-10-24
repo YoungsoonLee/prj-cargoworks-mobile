@@ -1,4 +1,5 @@
 import CwHeader from '../../components/CwHeader/CwHeader.coffee'
+import MyOrderDetail from '../../components/MyOrderDetail/MyOrderDetail.coffee'
 
 export default observer class Balance extends Component
   renderDetails: =>
@@ -43,10 +44,14 @@ export default observer class Balance extends Component
         <View style={{ width: 30 }} />
       </View>
       <CwHeader>상세내용</CwHeader>
-      <ScrollView style={{ padding: 20 }}>
-        { @renderDetails() }
-        { if @props.balance.orderId
-          <Button marginTop={30} color="light blue" onPress={@onPressOrderDetail}>주문 상세보기</Button>
-        }
-      </ScrollView>
+      { if @props.type in ['deposite', 'transporter withdrawal']
+        <ScrollView style={{ padding: 20 }}>
+          { @renderDetails() }
+        </ScrollView>
+      }
+      { if @props.type is 'normal'
+        <ScrollView>
+          <MyOrderDetail order={@props.order} />
+        </ScrollView>
+      }
     </Layout>

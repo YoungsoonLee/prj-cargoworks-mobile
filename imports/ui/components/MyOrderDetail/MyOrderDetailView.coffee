@@ -33,7 +33,7 @@ export default observer class MyOrderDetailView extends Component
       </OrderDetailLayout>
       { if not isCompleted
         <View>
-          { if activeWaypoint?.isTransporterIn
+          { if not activeWaypoint?.isTransporterIn
             <Button borderRadius={0} height={75} color="light blue" onPress={@onPressGetSignature}>
               <View style={{ flexDirection: 'row' }}>
                 <Image source={require '../../../../images/pencil.png'} style={{ width: 18, height: 18 }} />
@@ -42,7 +42,7 @@ export default observer class MyOrderDetailView extends Component
             </Button>
           }
           { if not activeWaypoint?.isTransporterIn
-            <Button isDisabled={true} borderRadius={0} height={75} color="light blue">
+            <Button isDisabled borderRadius={0} height={75} color="light blue">
               <View style={{ flexDirection: 'row' }}>
                 <Image source={require '../../../../images/pencil.png'} style={{ width: 18, height: 18 }} />
                 <Text bold marginLeft={5} color={white} size={20}>서명받기 (픽업지로 이동하세요)</Text>

@@ -12,12 +12,16 @@ getAgentsSelector = (props) =>
 option =
   isDocNeeded: false
 
+getOrdersSelector = (props) =>
+  props.balance.orderId
+
 getHocs = =>
   [
     withConstant('balances')
     withRouteParam
     withFindOne('balances', getBalancesSelector)
     withFindOne('agents', getAgentsSelector, =>, option)
+    withFindOne('orders', getOrdersSelector, =>, option)
     withProps
     withMeta
     withHandler
