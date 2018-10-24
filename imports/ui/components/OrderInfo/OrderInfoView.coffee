@@ -38,17 +38,18 @@ export default observer class OrderInfoView extends Component
       else
         freightBoxType = @props.TRANSPORTERS.VEHICLES.FREIGHT.BOX_TYPES[@props.order.freightBoxType].TEXT
 
-    if @props.order.vehicleType is @props.TRANSPORTERS.VEHICLES.FREIGHT.VALUE
-      freightLoading = @props.ORDERS.FREIGHT_LOADING[@props.order.waypoints.freightLoading].TEXT
+    freightLoading = @props.ORDERS.FREIGHT_LOADING[@props.order.waypoints.freightLoading].TEXT
 
     waypoints = @props.order.waypoints.addresses
 
     if @props.order.waypoints.pickUpSchedule is @props.ORDERS.PICKUP_SCHEDULE.IMMEDIATE.VALUE
-      if @props.order.vehicleType is @props.TRANSPORTERS.VEHICLES.PARCEL.VALUE
-        pickUpSchedule = ''
+      # if @props.order.vehicleType is @props.TRANSPORTERS.VEHICLES.PARCEL.VALUE
+      #   pickUpSchedule = ''
+      #
+      # else if @props.order.vehicleType is @props.TRANSPORTERS.VEHICLES.FREIGHT.VALUE
+      #   pickUpSchedule = '즉시'
 
-      else if @props.order.vehicleType is @props.TRANSPORTERS.VEHICLES.FREIGHT.VALUE
-        pickUpSchedule = '즉시'
+      pickUpSchedule = '즉시'
 
     else if @props.order.waypoints.pickUpSchedule is @props.ORDERS.PICKUP_SCHEDULE.RESERVED.VALUE
       pickUpSchedule = Util.getShortPickUpScheduledAt @props.order.waypoints.pickUpScheduledAt
@@ -78,8 +79,6 @@ export default observer class OrderInfoView extends Component
     else
       paymentDays = []
 
-    console.log @props.order
-
     <View>
       <View style={{ height: 32, flexDirection: 'row' }}>
         <View style={{ width: 85, borderRightWidth: 1, borderRightColor: '#a2aabf', justifyContent: 'center', paddingLeft: 10 }}>
@@ -97,40 +96,51 @@ export default observer class OrderInfoView extends Component
           <Text color={black} bold size={16}>{ @props.order.agentMemo }</Text>
         </View>
       </View>
-      { if @props.type is 'my order'
+      { if @props.order.vehicleType is @props.TRANSPORTERS.VEHICLES.PARCEL.VALUE
         <View>
-          { if @props.order.vehicleType is @props.TRANSPORTERS.VEHICLES.PARCEL.VALUE
-            <View />
-          }
-          { if @props.order.vehicleType is @props.TRANSPORTERS.VEHICLES.FREIGHT.VALUE
-            <View>
-              <View style={{ height: 32, flexDirection: 'row' }}>
-                <View style={{ width: 85, borderRightWidth: 1, borderRightColor: '#a2aabf', justifyContent: 'center', paddingLeft: 10 }}>
-                  <Text color="#444444" bold size={16}>상차일시</Text>
-                </View>
-                <View style={{ flex: 1, justifyContent: 'center', paddingLeft: 10 }}>
-                  <Text color={black} bold size={16}>{ pickUpSchedule }</Text>
-                </View>
-              </View>
-              <View style={{ height: 32, flexDirection: 'row' }}>
-                <View style={{ width: 85, borderRightWidth: 1, borderRightColor: '#a2aabf', justifyContent: 'center', paddingLeft: 10 }}>
-                  <Text color="#444444" bold size={16}>하차일시</Text>
-                </View>
-                <View style={{ flex: 1, justifyContent: 'center', paddingLeft: 10 }}>
-                  <Text color={black} bold size={16}>{ dischargeSchedule }</Text>
-                </View>
-              </View>
+          <View style={{ height: 32, flexDirection: 'row' }}>
+            <View style={{ width: 85, borderRightWidth: 1, borderRightColor: '#a2aabf', justifyContent: 'center', paddingLeft: 10 }}>
+              <Text color="#444444" bold size={16}>픽업예약</Text>
             </View>
-          }
+            <View style={{ flex: 1, justifyContent: 'center', paddingLeft: 10 }}>
+              <Text color={black} bold size={16}>{ pickUpSchedule }</Text>
+            </View>
+          </View>
+          <View style={{ height: 32, flexDirection: 'row' }}>
+            <View style={{ width: 85, borderRightWidth: 1, borderRightColor: '#a2aabf', justifyContent: 'center', paddingLeft: 10 }}>
+              <Text color="#444444" bold size={16}>탁송지정</Text>
+            </View>
+            <View style={{ flex: 1, justifyContent: 'center', paddingLeft: 10 }}>
+              <Text color={black} bold size={16}>{ @props.order.waypoints.expressBusConsignmentDestinationCity }</Text>
+            </View>
+          </View>
         </View>
       }
-      { if freightLoading
-        <View style={{ height: 32, flexDirection: 'row' }}>
-          <View style={{ width: 85, borderRightWidth: 1, borderRightColor: '#a2aabf', justifyContent: 'center', paddingLeft: 10 }}>
-            <Text color="#444444" bold size={16}>적재방법</Text>
+      { if @props.order.vehicleType is @props.TRANSPORTERS.VEHICLES.FREIGHT.VALUE
+        <View>
+          <View style={{ height: 32, flexDirection: 'row' }}>
+            <View style={{ width: 85, borderRightWidth: 1, borderRightColor: '#a2aabf', justifyContent: 'center', paddingLeft: 10 }}>
+              <Text color="#444444" bold size={16}>상차일시</Text>
+            </View>
+            <View style={{ flex: 1, justifyContent: 'center', paddingLeft: 10 }}>
+              <Text color={black} bold size={16}>{ pickUpSchedule }</Text>
+            </View>
           </View>
-          <View style={{ flex: 1, justifyContent: 'center', paddingLeft: 10 }}>
-            <Text color={black} bold size={16}>{ freightLoading }</Text>
+          <View style={{ height: 32, flexDirection: 'row' }}>
+            <View style={{ width: 85, borderRightWidth: 1, borderRightColor: '#a2aabf', justifyContent: 'center', paddingLeft: 10 }}>
+              <Text color="#444444" bold size={16}>하차일시</Text>
+            </View>
+            <View style={{ flex: 1, justifyContent: 'center', paddingLeft: 10 }}>
+              <Text color={black} bold size={16}>{ dischargeSchedule }</Text>
+            </View>
+          </View>
+          <View style={{ height: 32, flexDirection: 'row' }}>
+            <View style={{ width: 85, borderRightWidth: 1, borderRightColor: '#a2aabf', justifyContent: 'center', paddingLeft: 10 }}>
+              <Text color="#444444" bold size={16}>적재방법</Text>
+            </View>
+            <View style={{ flex: 1, justifyContent: 'center', paddingLeft: 10 }}>
+              <Text color={black} bold size={16}>{ freightLoading }</Text>
+            </View>
           </View>
         </View>
       }
