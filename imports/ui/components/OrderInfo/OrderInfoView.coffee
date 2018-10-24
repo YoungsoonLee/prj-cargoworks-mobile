@@ -1,12 +1,14 @@
 export default observer class OrderInfoView extends Component
   # @propTypes:
   #   order: PropTypes.object
+  #   transporter: PropTypes.object
   #   ORDERS: PropTypes.object
   #   TRANSPORTERS: PropTypes.object
   #   type: PropTypes.oneOf ['order', 'my order']
 
   @defaultProps:
     order: {}
+    transporter: {}
     ORDERS: {}
     TRANSPORTERS: {}
     type: 'order'
@@ -78,6 +80,8 @@ export default observer class OrderInfoView extends Component
 
     else
       paymentDays = []
+
+    isCashBillPublishable = @props.transporter.vehicleWeightCapacity isnt @props.TRANSPORTERS.VEHICLES.PARCEL.WEIGHTS.MOTOR_BIKE.VALUE and @props.transporter.taxType is 1 and @props.order.paymentMethod in [@props.ORDERS.PAYMENT_METHODS.PREPAYMENT.VALUE, @props.ORDERS.PAYMENT_METHODS.ON_DELIVERY.VALUE]
 
     <View>
       <View style={{ height: 32, flexDirection: 'row' }}>
@@ -165,12 +169,14 @@ export default observer class OrderInfoView extends Component
       </View>
       { if @props.type is 'my order'
         <View>
-          <View style={{ height: 43, flexDirection: 'row' }}>
-            <View style={{ width: 85, borderRightWidth: 1, borderRightColor: '#a2aabf' }} />
-            <View style={{ flex: 1, paddingLeft: 10 }}>
-              <Button onPress={@onPressPublishCashReceipt} width={170} height={32} textStyle={{ fontSize: 16 }} color="blue">고객 현금영수증 발행</Button>
+          { if isCashBillPublishable
+            <View style={{ height: 43, flexDirection: 'row' }}>
+              <View style={{ width: 85, borderRightWidth: 1, borderRightColor: '#a2aabf' }} />
+              <View style={{ flex: 1, paddingLeft: 10 }}>
+                <Button onPress={@onPressPublishCashReceipt} width={170} height={32} textStyle={{ fontSize: 16 }} color="blue">고객 현금영수증 발행</Button>
+              </View>
             </View>
-          </View>
+          }
           { if @props.order.status is @props.ORDERS.STATUS.COMPLETED.VALUE and @props.order.vehicleType is @props.TRANSPORTERS.VEHICLES.FREIGHT.VALUE
             <View style={{ height: 43, flexDirection: 'row' }}>
               <View style={{ width: 85, borderRightWidth: 1, borderRightColor: '#a2aabf' }} />
