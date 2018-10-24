@@ -1,5 +1,4 @@
 import EmptySettingView from './EmptySettingView.coffee'
-import withSelectDateModal from './withSelectDateModal.coffee'
 import withSelectTimeModal from './withSelectTimeModal.coffee'
 import withHandler from './withHandler.coffee'
 
@@ -23,13 +22,16 @@ getDefaultState = (props) =>
 getSelector = (props) =>
   _id: props.user.profile.transporterId
 
+getState = (props) =>
+  props.state
+
 getHocs = =>
   [
     withConstant('transporters')
     withUser()
     withFindOne('transporters', getSelector)
     withState(getDefaultState)
-    withSelectDateModal
+    withSelectDateModal(getState, 'startDate', 'onPressOpenSelectDateModal')
     withSelectTimeModal
     withHandler
   ]

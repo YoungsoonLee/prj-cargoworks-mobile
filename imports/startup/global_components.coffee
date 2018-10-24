@@ -34,6 +34,7 @@ import withValidation from '../hocs/etc/withValidation.coffee'
 import withRouteParam from '../hocs/etc/withRouteParam.coffee'
 import withConstant from '../hocs/etc/withConstant.coffee'
 import withDefaultObject from '../hocs/etc/withDefaultObject.coffee'
+import withSelectDateModal from '../hocs/etc/withSelectDateModal.coffee'
 import { CachedImage } from 'react-native-cached-image'
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
@@ -82,6 +83,7 @@ global.withValidation = withValidation
 global.withRouteParam = withRouteParam
 global.withConstant = withConstant
 global.withDefaultObject = withDefaultObject
+global.withSelectDateModal = withSelectDateModal
 global.CachedImage = CachedImage
 global.SimpleLineIcons = SimpleLineIcons
 global.Ionicons = Ionicons

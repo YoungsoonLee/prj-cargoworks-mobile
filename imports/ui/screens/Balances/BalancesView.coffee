@@ -64,6 +64,9 @@ export default observer class BalancesView extends Component
   onPressStartDate: =>
     @props.onPressStartDate()
 
+  onPressEndDate: =>
+    @props.onPressEndDate()
+
   render: =>
     <ScrollView style={{ backgroundColor: white }}>
       <View style={{ height: 80, alignItems: 'center', justifyContent: 'center', backgroundColor: darkBlue }}>
@@ -91,7 +94,7 @@ export default observer class BalancesView extends Component
           <Text size={18} color={black}>~</Text>
         </View>
         <View style={{ flex: 1, backgroundColor: white, alignItems: 'center', borderWidth: 1, borderColor: '#cccccc', justifyContent: 'center' }}>
-          <Text size={18} color={black}>{ @props.state.endAt.format('YYYY.MM.DD') }</Text>
+          <Text onPress={@onPressEndDate} size={18} color={black}>{ @props.state.endAt.format('YYYY.MM.DD') }</Text>
         </View>
       </View>
       <View style={{ height: 70, paddingHorizontal: 15, flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#a6a6a6' }}>

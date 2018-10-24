@@ -11,7 +11,12 @@ export default withHandler = (WrappedComponent) =>
         id: balance._id
 
     onPressStartDate: =>
-      
+      @props.onPressSelectStartDateModal =>
+        @props.state.filter = '지정'
+
+    onPressEndDate: =>
+      @props.onPressSelectEndDateModal =>
+        @props.state.filter = '지정'
 
     render: =>
-      <WrappedComponent {...@props} onPressFilter={@onPressFilter} onPressRequestWithdraw={@onPressRequestWithdraw} onPressBalance={@onPressBalance} onPressStartDate={@onPressStartDate} />
+      <WrappedComponent {...@props} onPressFilter={@onPressFilter} onPressRequestWithdraw={@onPressRequestWithdraw} onPressBalance={@onPressBalance} onPressStartDate={@onPressStartDate} onPressEndDate={@onPressEndDate} />

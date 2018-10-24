@@ -19,9 +19,14 @@ getBalancesOption = =>
   sort:
     createdAt: -1
 
+getState = (props) =>
+  props.state
+
 getHocs = =>
   [
     withState(getDefaultState)
+    withSelectDateModal(getState, 'startAt', 'onPressSelectStartDateModal')
+    withSelectDateModal(getState, 'endAt', 'onPressSelectEndDateModal')
     withUser()
     withFindOne('transporters', getTransportersSelector)
     withFind('balances', getBalancesSelector, getBalancesOption)
