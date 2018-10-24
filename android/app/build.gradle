@@ -112,8 +112,8 @@ android {
         applicationId "cc.cargoworks"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 21
-        versionName "0.0.21"
+        versionCode 24
+        versionName "0.0.24"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -160,6 +160,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-exception-handler')
     compile project(':react-native-device-info')
     compile project(':react-native-background-timer')
     compile project(':react-native-signature-capture')

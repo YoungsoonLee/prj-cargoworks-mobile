@@ -526,10 +526,10 @@ export default observer class Util extends Component
       else if vehicleWeightCapacity is WEIGHTS.BEN.VALUE
         return '밴'
 
-      else if vehicleWeightCapacity is WEIGHTS.TRAILER.VALUE
-        return '추'
-
     else if freightBoxType in [BOX_TYPES.CARGO.VALUE, BOX_TYPES.TOP.VALUE, BOX_TYPES.FREEZER.VALUE]
+      if vehicleWeightCapacity is TRANSPORTERS.VEHICLES.FREIGHT.WEIGHTS.TRAILER.VALUE
+        return ''
+
       if freightBoxType is BOX_TYPES.CARGO.VALUE
         return '카'
 
@@ -573,6 +573,9 @@ export default observer class Util extends Component
 
     else if vehicleWeightCapacity is WEIGHTS.TWENTYFIVE.VALUE
       return '25'
+
+    else if vehicleWeightCapacity is WEIGHTS.TRAILER.VALUE
+      return '추'
 
     ''
 

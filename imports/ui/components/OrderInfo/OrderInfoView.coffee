@@ -32,7 +32,11 @@ export default observer class OrderInfoView extends Component
     else if @props.order.vehicleType is @props.TRANSPORTERS.VEHICLES.FREIGHT.VALUE
       vehicleWeightCapacity = @props.TRANSPORTERS.VEHICLES.FREIGHT.WEIGHTS[@props.order.vehicleWeightCapacity].TEXT
 
-      freightBoxType = @props.TRANSPORTERS.VEHICLES.FREIGHT.BOX_TYPES[@props.order.freightBoxType].TEXT
+      if @props.order.vehicleWeightCapacity is @props.TRANSPORTERS.VEHICLES.FREIGHT.WEIGHTS.TRAILER.VALUE
+        freightBoxType = ''
+
+      else
+        freightBoxType = @props.TRANSPORTERS.VEHICLES.FREIGHT.BOX_TYPES[@props.order.freightBoxType].TEXT
 
     if @props.order.vehicleType is @props.TRANSPORTERS.VEHICLES.FREIGHT.VALUE
       freightLoading = @props.ORDERS.FREIGHT_LOADING[@props.order.waypoints.freightLoading].TEXT
@@ -73,8 +77,6 @@ export default observer class OrderInfoView extends Component
 
     else
       paymentDays = []
-
-    console.log @props.order
 
     <View>
       <View style={{ height: 32, flexDirection: 'row' }}>
