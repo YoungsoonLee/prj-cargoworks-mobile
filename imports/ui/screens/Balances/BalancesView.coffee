@@ -61,6 +61,9 @@ export default observer class BalancesView extends Component
   onPressRequestWithdraw: =>
     @props.onPressRequestWithdraw()
 
+  onPressStartDate: =>
+    @props.onPressStartDate()
+
   render: =>
     <ScrollView style={{ backgroundColor: white }}>
       <View style={{ height: 80, alignItems: 'center', justifyContent: 'center', backgroundColor: darkBlue }}>
@@ -82,7 +85,7 @@ export default observer class BalancesView extends Component
       </View>
       <View style={{ height: 65, flexDirection: 'row', padding: 10, backgroundColor: '#f6f6f6', borderBottomWidth: 1, borderBottomColor: '#a6a6a6' }}>
         <View style={{ flex: 1, backgroundColor: white, alignItems: 'center', borderWidth: 1, borderColor: '#cccccc', justifyContent: 'center' }}>
-          <Text size={18} color={black}>{ @props.state.startAt.format('YYYY.MM.DD') }</Text>
+          <Text onPress={@onPressStartDate} size={18} color={black}>{ @props.state.startAt.format('YYYY.MM.DD') }</Text>
         </View>
         <View style={{ width: 20, alignItems: 'center', justifyContent: 'center' }}>
           <Text size={18} color={black}>~</Text>

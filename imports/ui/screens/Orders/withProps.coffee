@@ -8,6 +8,15 @@ export default withProps = (WrappedComponent) =>
       if @props.transporter.operationStatus is @props.TRANSPORTERS.OPERATION_STATUS.OUT.VALUE
         orders = []
 
+      # 차량에 의한 필터
+      if @props.transporter.vehicleWeightCapacity is @props.TRANSPORTERS.VEHICLES.PARCEL.WEIGHTS.MOTOR_BIKE.VALUE
+        orders = orders.filter (order) =>
+          order.vehicleWeightCapacity is @props.TRANSPORTERS.VEHICLES.PARCEL.WEIGHTS.MOTOR_BIKE.VALUE
+
+      else
+        orders = orders.filter (order) =>
+          order.vehicleWeightCapacity isnt @props.TRANSPORTERS.VEHICLES.PARCEL.WEIGHTS.MOTOR_BIKE.VALUE
+
       # 주문 수신설정에 의한 필터
       deviceId =  deviceInfo.getUniqueID()
 

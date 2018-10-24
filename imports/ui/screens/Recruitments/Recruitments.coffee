@@ -21,6 +21,7 @@ getHocs = =>
     withUser()
     withFindOne('transporters', getTransportersSelector)
     withConstant('recruitments')
+    withConstant('transporters')
     withFind('recruitments', =>, getRecruitmentsOption)
     withFind('consignors', getConsignorsSelector)
     withProps

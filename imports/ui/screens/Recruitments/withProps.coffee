@@ -3,6 +3,11 @@ export default withProps = (WrappedComponent) =>
     render: =>
       recruitments = _.cloneDeep @props.recruitments
 
+      vehicleType = Util.getVehicleType @props.transporter, @props.TRANSPORTERS
+
+      recruitments = recruitments.filter (recruitment) =>
+        vehicleType in recruitment.vehicles
+
       recruitments.forEach (recruitment) =>
         consignor = @props.consignors.find (consignor) =>
           consignor._id is recruitment.consignorId

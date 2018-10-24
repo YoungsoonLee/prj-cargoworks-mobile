@@ -10,5 +10,8 @@ export default withHandler = (WrappedComponent) =>
       Util.go 'Balance',
         id: balance._id
 
+    onPressStartDate: =>
+      
+
     render: =>
-      <WrappedComponent {...@props} onPressFilter={@onPressFilter} onPressRequestWithdraw={@onPressRequestWithdraw} onPressBalance={@onPressBalance} />
+      <WrappedComponent {...@props} onPressFilter={@onPressFilter} onPressRequestWithdraw={@onPressRequestWithdraw} onPressBalance={@onPressBalance} onPressStartDate={@onPressStartDate} />
