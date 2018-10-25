@@ -16,14 +16,18 @@ export default observer class MyOrderDetailView extends Component
     if @props.order.status isnt @props.ORDERS.STATUS.COMPLETED.VALUE
       isCompleted = false
 
-      for waypoint in @props.order.waypoints.addresses
-        if waypoint.isActive
-          activeWaypoint = waypoint
-
-          break
-
     else
       isCompleted = true
+
+    activeWaypoint = null
+
+    isStart = false
+
+    @props.order.waypoints.addresses.forEach (waypoint, index) =>
+      if waypoint.isActive
+        activeWaypoint = waypoint
+
+        isStart = index is 0
 
     <View style={{ flex: 1 }}>
       <OrderDetailLayout order={@props.order} type="my order">
@@ -32,23 +36,11 @@ export default observer class MyOrderDetailView extends Component
         </ScrollView>
       </OrderDetailLayout>
       { if not isCompleted
-        <View>
-          { if not activeWaypoint?.isTransporterIn
-            <Button borderRadius={0} height={75} color="light blue" onPress={@onPressGetSignature}>
-              <View style={{ flexDirection: 'row' }}>
-                <Image source={require '../../../../images/pencil.png'} style={{ width: 18, height: 18 }} />
-                <Text bold marginLeft={5} color={white} size={20}>서명받기</Text>
-              </View>
-            </Button>
-          }
-          { if not activeWaypoint?.isTransporterIn
-            <Button isDisabled borderRadius={0} height={75} color="light blue">
-              <View style={{ flexDirection: 'row' }}>
-                <Image source={require '../../../../images/pencil.png'} style={{ width: 18, height: 18 }} />
-                <Text bold marginLeft={5} color={white} size={20}>서명받기 (픽업지로 이동하세요)</Text>
-              </View>
-            </Button>
-          }
-        </View>
+        <Button isDisabled={not activeWaypoint?.isTransporterIn} borderRadius={0} height={75} color="light blue" onPress={@onPressGetSignature}>
+          <View style={{ flexDirection: 'row' }}>
+            <Image source={require '../../../../images/pencil.png'} style={{ width: 18, height: 18 }} />
+            <Text bold marginLeft={5} color={white} size={20}>서명받기{ not activeWaypoint?.isTransporterIn and isStart and ' (픽업지로 이동하세요)' } </Text>
+          </View>
+        </Button>
       }
     </View>

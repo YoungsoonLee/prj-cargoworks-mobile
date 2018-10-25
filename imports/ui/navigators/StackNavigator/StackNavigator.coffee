@@ -45,6 +45,7 @@ import OrdersByAddress from '../../screens/OrdersByAddress/OrdersByAddress.coffe
 import OrdersByAddress2 from '../../screens/OrdersByAddress2/OrdersByAddress2.coffee'
 import Balance from '../../screens/Balance/Balance.coffee'
 import Invitation from '../../screens/Invitation/Invitation.coffee'
+import WaypointsMap from '../../screens/WaypointsMap/WaypointsMap.coffee'
 
 export default StackNavigator
   Splash:
@@ -139,5 +140,7 @@ export default StackNavigator
     screen: Balance
   Invitation:
     screen: Invitation
+  WaypointsMap:
+    screen: WaypointsMap
 ,
   headerMode: 'none'
