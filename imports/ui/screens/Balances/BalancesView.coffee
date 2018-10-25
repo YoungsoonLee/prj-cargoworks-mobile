@@ -100,14 +100,14 @@ export default observer class BalancesView extends Component
       <View style={{ height: 70, paddingHorizontal: 15, flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#a6a6a6' }}>
         <View style={{ flex: 1, justifyContent: 'center' }}>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <View style={{ borderRadius: 100, paddingVertical: 5, paddingHorizontal: 10, backgroundColor: '#3f73b4', alignItems: 'center', justifyContent: 'center' }}>
-              <Text color={white}>입금</Text>
+            <View style={{ borderRadius: 100, paddingVertical: 3, paddingHorizontal: 8, backgroundColor: '#3f73b4', alignItems: 'center', justifyContent: 'center' }}>
+              <Text size={14} color={white}>입금</Text>
             </View>
             <Text color={blue} marginLeft={10} bold>{ "+ #{Util.getFormattedPrice @props.deposite}" }</Text>
           </View>
           <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 5 }}>
-            <View style={{ borderRadius: 100, paddingVertical: 5, paddingHorizontal: 10, backgroundColor: '#c12d3a', alignItems: 'center', justifyContent: 'center' }}>
-              <Text color={white}>출금</Text>
+            <View style={{ borderRadius: 100, paddingVertical: 3, paddingHorizontal: 8, backgroundColor: '#c12d3a', alignItems: 'center', justifyContent: 'center' }}>
+              <Text size={14} color={white}>출금</Text>
             </View>
             <Text color="#c12d3a" marginLeft={10} bold>{ "- #{Util.getFormattedPrice @props.withdrawal}" }</Text>
           </View>

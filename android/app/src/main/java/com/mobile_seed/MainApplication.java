@@ -3,13 +3,14 @@ package com.mobile_seed;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.RNFetchBlob.RNFetchBlobPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
+import com.rssignaturecapture.RSSignatureCapturePackage;
+import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
+import com.reactnative.ivpusic.imagepicker.PickerPackage;
+import com.agontuk.RNFusedLocation.RNFusedLocationPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.ocetnik.timer.BackgroundTimerPackage;
-import com.rssignaturecapture.RSSignatureCapturePackage;
-import com.reactnative.ivpusic.imagepicker.PickerPackage;
-import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
-import com.oblador.vectoricons.VectorIconsPackage;
-import com.RNFetchBlob.RNFetchBlobPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -17,8 +18,6 @@ import com.facebook.soloader.SoLoader;
 
 import java.util.Arrays;
 import java.util.List;
-
-import com.agontuk.RNFusedLocation.RNFusedLocationPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -32,14 +31,14 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new RNDeviceInfo(),
-            new BackgroundTimerPackage(),
-            new RSSignatureCapturePackage(),
-            new PickerPackage(),
-            new ReactNativeOneSignalPackage(),
-            new VectorIconsPackage(),
             new RNFetchBlobPackage(),
-            new RNFusedLocationPackage()
+            new VectorIconsPackage(),
+            new RSSignatureCapturePackage(),
+            new ReactNativeOneSignalPackage(),
+            new PickerPackage(),
+            new RNFusedLocationPackage(),
+            new RNDeviceInfo(),
+            new BackgroundTimerPackage()
       );
     }
 
