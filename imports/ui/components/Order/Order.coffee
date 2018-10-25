@@ -113,15 +113,15 @@ export default observer class Order extends Component
               <Text bold size={20} color={black}>{ if distance < 100 then distance else 99 }</Text>
             </View>
             <View style={{ flexDirection: 'row', borderRightWidth: 1, borderRightColor: '#cccccc', flex: 1, alignItems: 'center', paddingLeft: 5, overflow: 'hidden' }}>
-              <View style={{ height: (if Platform.OS is 'ios' then 23 else 26), width: (if Platform.OS is 'ios' then null else 300), marginTop: -4, flexDirection: 'row', alignItems: 'center' }}>
+              <View style={{ height: (if Platform.OS is 'ios' then 23 else 26), width: (if Platform.OS is 'ios' then null else 300), marginTop: -4, flexDirection: 'row', alignItems: 'center', overflow: 'hidden' }}>
                 { if not isImmediate
                   <EvilIcons name="clock" color={black} size={27} style={{ marginRight: -2, marginLeft: -4 }} />
                 }
                 <Text bold size={22} color={black}>{ startShortAddress }</Text>
               </View>
             </View>
-            <View style={{ borderRightWidth: 1, borderRightColor: '#cccccc', flex: 1, justifyContent: 'center' }}>
-              <View style={{ height: (if Platform.OS is 'ios' then 23 else 26), width: (if Platform.OS is 'ios' then null else 300), marginTop: -4, marginLeft: (if not (waypointsLegth is 0 and not isRoundTrip) then 15 else 5) }}>
+            <View style={{ borderRightWidth: 1, borderRightColor: '#cccccc', flex: 1, justifyContent: 'center', overflow: 'hidden' }}>
+              <View style={{ height: (if Platform.OS is 'ios' then 23 else 26), width: (if Platform.OS is 'ios' then null else 300), marginTop: -4, marginLeft: (if not (waypointsLegth is 0 and not isRoundTrip) then 15 else 5), overflow: 'hidden' }}>
                 <Text bold size={22} color={black}>{ endShortAddress }</Text>
               </View>
             </View>
