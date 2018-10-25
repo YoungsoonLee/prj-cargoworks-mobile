@@ -11,9 +11,11 @@ export default observer class OrderDetailLayoutView extends Component
     @props.onPressWaypointsMap()
 
   render: =>
+    agentFee = Util.getAgentFare @props.order
+
     <View style={{ flex: 1 }}>
       <View style={{ height: 50, backgroundColor: darkBlue, borderTopWidth: 1, borderTopColor: lightBlue, justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
-        <Text bold size={20} color={yellow}>{ Util.getFormattedPrice @props.order.agentFare.transporter }원</Text>
+        <Text bold size={20} color={yellow}>{ Util.getFormattedPrice agentFee }원</Text>
         { if @props.order.vehicleType is @props.TRANSPORTERS.VEHICLES.FREIGHT.VALUE
           <Badge marginLeft={8} badgeColor={yellow} textColor={black}>수</Badge>
         }

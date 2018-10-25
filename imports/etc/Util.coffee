@@ -6,6 +6,19 @@ import OneSignal from 'react-native-onesignal'
 import geolib from 'geolib'
 
 export default observer class Util extends Component
+  @getAgentFare: (order) =>
+    if order.agentFare.isExpress
+      return order.agentFare.express
+
+    else if order.agentFare.isMixedFreight
+      return order.agentFare.mixedFreight
+
+    else if order.agentFare.isSameDayDelivery
+      return order.agentFare.sameDayDelivery
+
+    else
+      return order.agentFare.transporter
+
   @getPartialAddress: (depth, address, sido, sigungu, startSido, startAddress) =>
     if /서울|부산|대구|인천|광주|대전|울산/.test sido
       addr1 = sido + '시'

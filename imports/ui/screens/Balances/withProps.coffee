@@ -14,7 +14,11 @@ export default withProps = (WrappedComponent) =>
         @props.state.startAt.format('YYYY-MM-DD') <= moment(balance.createdAt).format('YYYY-MM-DD') <= @props.state.endAt.format('YYYY-MM-DD')
 
 
-      if not @props.state.isOutstandingIncluded
+      if @props.state.isOutstandingIncluded
+        balances = balances.filter (balance) =>
+          balance.transactionStatus is @props.BALANCES.TRANSACTIONS.STATUS.OUTSTANDING.VALUE
+
+      else
         balances = balances.filter (balance) =>
           balance.transactionStatus isnt @props.BALANCES.TRANSACTIONS.STATUS.OUTSTANDING.VALUE
 

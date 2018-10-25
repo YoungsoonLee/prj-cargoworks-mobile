@@ -119,7 +119,7 @@ export default observer class WayPointsView extends Component
                 { if waypoint.unloadDetail
                   <Text bold size={17} color={black} marginTop={10}>{ waypoint.unloadDetail }</Text>
                 }
-                { if waypoint.isSignedOff and index isnt 0
+                { if waypoint.isSignedOff
                   <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10 }}>
                     <Button onPress={=> @onPressSignature waypoint.signatureImageUrl, waypoint.signedOffAt} paddingHorizontal={0} color="blue" width={50} height={25} textSize={14}>서명</Button>
                     <Text color={blue} size={14} bold marginLeft={10}>{ moment(waypoint.signedOffAt).format('YY.MM.DD A HH:mm') }</Text>

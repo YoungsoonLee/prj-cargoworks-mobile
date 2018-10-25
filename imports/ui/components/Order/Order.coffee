@@ -44,7 +44,9 @@ export default observer class Order extends Component
 
     weight = Util.getShortWeight @props.order.vehicleWeightCapacity, @props.order.freightBoxType, @props.TRANSPORTERS
 
-    fare = Util.getShortPrice @props.order.agentFare.transporter, 0
+    agentFee = Util.getAgentFare @props.order
+
+    fare = Util.getShortPrice agentFee, 0
 
     fee = Util.getShortPrice @props.order.agentFare.agentFee, 0
 
@@ -154,14 +156,14 @@ export default observer class Order extends Component
             </View>
             <View style={{ flex: 1 }}>
               <View style={{ height: 66, flexDirection: 'row' }}>
-                <View style={{ borderRightWidth: 1, borderRightColor: '#cccccc', flex: 1, justifyContent: 'center', paddingLeft: 5 }}>
-                  <View style={{ height: (if Platform.OS is 'ios' then 23 else 26), width: (if Platform.OS is 'ios' then null else 300), marginTop: -4 }}>
+                <View style={{ borderRightWidth: 1, borderRightColor: '#cccccc', flex: 1, justifyContent: 'center', paddingLeft: 5, overflow: 'hidden' }}>
+                  <View style={{ height: (if Platform.OS is 'ios' then 23 else 26), width: (if Platform.OS is 'ios' then null else 300), marginTop: -4, overflow: 'hidden' }}>
                     <Text bold size={22} color={black}>{ startShortAddress }</Text>
                   </View>
                   <Text bold size={17} color="#375ab5" marginTop={2}>{ pickUpScheduledAt }</Text>
                 </View>
-                <View style={{ borderRightWidth: 1, borderRightColor: '#cccccc', flex: 1, justifyContent: 'center' }}>
-                  <View style={{ height: (if Platform.OS is 'ios' then 23 else 26), width: (if Platform.OS is 'ios' then null else 300), marginTop: -4, marginLeft: (if not (waypointsLegth is 0 and not isRoundTrip) then 15 else 5) }}>
+                <View style={{ borderRightWidth: 1, borderRightColor: '#cccccc', flex: 1, justifyContent: 'center', overflow: 'hidden' }}>
+                  <View style={{ height: (if Platform.OS is 'ios' then 23 else 26), width: (if Platform.OS is 'ios' then null else 300), marginTop: -4, marginLeft: (if not (waypointsLegth is 0 and not isRoundTrip) then 15 else 5), overflow: 'hidden' }}>
                     <Text bold size={22} color={black}>{ endShortAddress }</Text>
                   </View>
                   <Text bold size={17} color="#375ab5" marginTop={2} marginLeft={if not (waypointsLegth is 0 and not isRoundTrip) then 15 else 5}>{ dischargeScheduleAt }</Text>
@@ -176,8 +178,10 @@ export default observer class Order extends Component
                 </View>
               </View>
               <View style={{ height: 34, flexDirection: 'row', borderTopWidth: 1, borderTopColor: '#cccccc' }}>
-                <View style={{ borderRightWidth: 1, borderRightColor: '#cccccc', flex: 1, justifyContent: 'center', paddingLeft: 5 }}>
-                  <Text color="#555555" size={17}>{ memo }</Text>
+                <View style={{ borderRightWidth: 1, borderRightColor: '#cccccc', flex: 1, justifyContent: 'center', paddingLeft: 5, overflow: 'hidden' }}>
+                  <View style={{ height: (if Platform.OS is 'ios' then 20 else 23), width: (if Platform.OS is 'ios' then null else 300), marginTop: -4, overflow: 'hidden' }}>
+                    <Text color="#555555" size={17}>{ memo }</Text>
+                  </View>
                 </View>
                 <View style={{ borderRightWidth: 1, borderRightColor: '#cccccc', width: 37, alignItems: 'center', justifyContent: 'center' }}>
                   { if isExpress
