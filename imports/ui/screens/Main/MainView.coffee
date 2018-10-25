@@ -3,7 +3,6 @@ import TabNavigator from '../../navigators/TabNavigator/TabNavigator.coffee'
 import tabNavigation from '../../../etc/tab_navigation.coffee'
 import OneSignal from 'react-native-onesignal'
 import Geolocation from 'react-native-geolocation-service'
-import backgroundTimer from 'react-native-background-timer'
 import { PermissionsAndroid, Platform } from 'react-native'
 
 export default observer class MainView extends Component
@@ -53,7 +52,7 @@ export default observer class MainView extends Component
 
     @updateLocation()
 
-    backgroundTimer.runBackgroundTimer =>
+    @intervalId = setInterval =>
       @updateLocation()
     , 10 * 1000
 
@@ -88,7 +87,7 @@ export default observer class MainView extends Component
       id: props.invitation._id
 
   componentWillUnmount: =>
-    backgroundTimer.stopBackgroundTimer()
+    clearInterval @intervalId
 
     clearTimeout @timeoutId
 

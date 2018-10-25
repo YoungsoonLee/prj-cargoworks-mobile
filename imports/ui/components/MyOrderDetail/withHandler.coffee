@@ -1,3 +1,5 @@
+import { Linking } from 'react-native'
+
 export default withHandler = (WrappedComponent) =>
   observer class WithHandler extends Component
     onPressGetSignature: =>
@@ -16,5 +18,9 @@ export default withHandler = (WrappedComponent) =>
         addressIndex: index
         isLastAddress: isLastAddress
 
+    onPressPhone: (phoneNumber) =>
+      Util.confirm "#{phoneNumber}로 전화 하시겠습니까?", =>
+        Linking.openURL "tel:#{phoneNumber}"
+
     render: =>
-      <WrappedComponent {...@props} onPressGetSignature={@onPressGetSignature} />
+      <WrappedComponent {...@props} onPressGetSignature={@onPressGetSignature} onPressPhone={@onPressPhone} />

@@ -10,7 +10,6 @@ import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
 import com.reactnative.ivpusic.imagepicker.PickerPackage;
 import com.agontuk.RNFusedLocation.RNFusedLocationPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
-import com.ocetnik.timer.BackgroundTimerPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -37,8 +36,7 @@ public class MainApplication extends Application implements ReactApplication {
             new ReactNativeOneSignalPackage(),
             new PickerPackage(),
             new RNFusedLocationPackage(),
-            new RNDeviceInfo(),
-            new BackgroundTimerPackage()
+            new RNDeviceInfo()
       );
     }
 

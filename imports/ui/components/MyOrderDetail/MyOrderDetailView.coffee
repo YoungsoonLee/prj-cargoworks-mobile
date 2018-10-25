@@ -12,6 +12,9 @@ export default observer class MyOrderDetailView extends Component
   onPressGetSignature: =>
     @props.onPressGetSignature()
 
+  onPressPhone: (phoneNumber) =>
+    @props.onPressPhone phoneNumber
+
   render: =>
     if @props.order.status isnt @props.ORDERS.STATUS.COMPLETED.VALUE
       isCompleted = false
@@ -29,9 +32,28 @@ export default observer class MyOrderDetailView extends Component
 
         isStart = index is 0
 
+    isExclusive = @props.order.consignor._id in @props.transporter.connectedExclusiveConsignorIds
+
     <View style={{ flex: 1 }}>
       <OrderDetailLayout order={@props.order} type="my order">
         <ScrollView>
+          <View style={{ backgroundColor: darkBlue, borderTopWidth: 1, borderTopColor: lightBlue, flexDirection: 'row', padding: 10 }}>
+            <View style={{ width: 75, borderRightWidth: 1, borderRightColor: '#a2aabf' }}>
+              <Text white bold size={18}>주문처</Text>
+            </View>
+            <View style={{ flex: 1, paddingLeft: 10 }}>
+              <Text white bold size={19}>
+                { @props.order.consignor.name }{ isExclusive and ' (전담거래처)' }{'\n'}
+                { @props.order.consignorPersonnel.name }
+              </Text>
+              <Text bold marginTop={2} size={14} color="#a2aabf">주문 수락 { moment(@props.order.dispatchedAt).format('YY.MM.DD HH:mm') }</Text>
+            </View>
+            <View style={{ width: 60, justifyContent: 'flex-end', alignItems: 'center' }}>
+              <Touchable onPress={=> @onPressPhone @props.order.consignor.phoneNumber}>
+                <Image source={require '../../../../images/order_phone_white.png'} style={{ width: 42, height: 42, marginRight: -15 }} />
+              </Touchable>
+            </View>
+          </View>
           <WayPoints type="my order" order={@props.order} transporter={@props.transporter} ORDERS={@props.ORDERS} TRANSPORTERS={@props.TRANSPORTERS} orderInfo={<OrderInfo type="my order" order={@props.order} TRANSPORTERS={@props.TRANSPORTERS} ORDERS={@props.ORDERS} />} />
         </ScrollView>
       </OrderDetailLayout>
