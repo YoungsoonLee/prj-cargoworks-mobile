@@ -115,7 +115,7 @@ export default observer class OrderInfoView extends Component
               <Text color="#444444" bold size={16}>탁송지정</Text>
             </View>
             <View style={{ flex: 1, justifyContent: 'center', paddingLeft: 10 }}>
-              <Text color={black} bold size={16}>{ @props.order.waypoints.expressBusConsignmentDestinationCity }</Text>
+              <Text color={black} bold size={16}>{ @props.order.waypoints.expressBusConsignmentDestinationCity } ({Util.getFormattedPrice @props.order.agentFare.expressBus})</Text>
             </View>
           </View>
         </View>
