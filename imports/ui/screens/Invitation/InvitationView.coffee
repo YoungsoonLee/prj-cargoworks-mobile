@@ -14,7 +14,7 @@ export default observer class InvitationView extends Component
           으로 초대되었습니다.
         </Text>
         <Text size={18} bold color="#666666" center marginTop={30}>
-          해당 운송사 소속기사로{'\n'}
+          해당 운송주선사 소속기사로{'\n'}
           활동하시겠습니까?
         </Text>
       </View>

@@ -8,7 +8,7 @@ getOrdersSelector = (props) =>
   # 1. status가 dispatching 중인 것들
   # 2. 최대 거리 (withProps에서 filter)
   # 3. 수신할 차량
-  # 4. 소속 운송사만 보기가 켜져있을 경우 소속 운송사의 배차만
+  # 4. 소속 운송주선사만 보기가 켜져있을 경우 소속 운송주선사의 배차만
   # 5. 지정배차는 가져오지 않는다
 
   # 1. status가 dispatching 중인 것들
@@ -49,7 +49,7 @@ getOrdersSelector = (props) =>
 
         selector.$or.push subSelector
 
-    # 4. 소속 운송사만 보기가 켜져있을 경우 소속 운송사의 배차만
+    # 4. 소속 운송주선사만 보기가 켜져있을 경우 소속 운송주선사의 배차만
     if orderFilterConfiguration.isOnlyMyAgentOrder
       _.extend selector,
         'agent._id': props.transporter.agentId

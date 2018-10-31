@@ -94,7 +94,7 @@ export default observer class OrderGetSettingView extends Component
           </View>
         </View>
         <View style={{ borderTopWidth: 1, borderTopColor: black, height: 40, backgroundColor: '#eeeeee', justifyContent: 'center', paddingLeft: 10 }}>
-          <Text bold size={15} color={black}>소속 운송사 주문만 보기</Text>
+          <Text bold size={15} color={black}>소속 운송주선사 주문만 보기</Text>
         </View>
         <View style={{ borderTopWidth: 1, borderTopColor: black, flexDirection: 'row', height: 55 }}>
           <View style={{ width: 70, alignItems: 'center', justifyContent: 'center' }}>

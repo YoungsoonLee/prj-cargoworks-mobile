@@ -10,7 +10,7 @@ export default observer class UploadFreightCertView extends Component
       <View style={{ height: 140, alignItems: 'center', justifyContent: 'center', backgroundColor: darkBlue, borderTopWidth: 1, borderTopColor: '#a2aabf' }}>
         <Text bold color={white} size={18}>화물 인수증을 업로드 합니다.</Text>
         <Text size={14} color="#fffae1">{ moment().format('YYYY.MM.DD a hh:mm') }</Text>
-        <Text bold center color={white} marginTop={10}>운송사와 함께 확인할 수 있습니다.</Text>
+        <Text bold center color={white} marginTop={10}>운송주선사 함께 확인할 수 있습니다.</Text>
       </View>
       <View style={{ padding: 10 }}>
         <ImageFrame aspectRatio={1.6} url={@props.state.freightCertImageUrl} onChange={@onChangeImageFrame} name="freightCertImageUrl" />

@@ -23,7 +23,7 @@ export default observer class SettingView extends Component
         <ListItem onPress={@onPressListItem} name="insurance">보험</ListItem>
         <ListItem onPress={@onPressListItem} name="UpdateBusinessCert">사업자등록 설정</ListItem>
         <ListItem onPress={@onPressListItem} name="UpdateBankAccount">환급계좌 및 현금영수증 설정</ListItem>
-        <ListItem isBorderBottomVisible={false} onPress={@onPressListItem} name="MyAgents">소속 운송사 설정</ListItem>
+        <ListItem isBorderBottomVisible={false} onPress={@onPressListItem} name="MyAgents">소속 운송주선사 설정</ListItem>
         <CwHeader>프로모션</CwHeader>
         <ListItem onPress={@onPressListItem} name="Events">이벤트</ListItem>
         <ListItem onPress={@onPressListItem} name="Notifications" isBorderBottomVisible={false}>푸쉬알림</ListItem>
