@@ -4,7 +4,7 @@ export default observer class UpdatePasswordView extends Component
 
   render: =>
     <Layout title="설정">
-      <View style={{ flex: 1, paddingHorizontal: 30 }}>
+      <ScrollView style={{ paddingHorizontal: 30 }} paddingBottom={400}>
         <View style={{ alignItems: 'center', marginTop: 40 }}>
           <Image source={require '../../../../images/update_password.png'} style={{ width: 80, height: 74 }} />
         </View>
@@ -18,6 +18,6 @@ export default observer class UpdatePasswordView extends Component
         <Error error={@props.validation.newPasswordConfirm.error}>
           <Input type="password" marginTop={5} placeholder="변경할 비밀번호 확인" state={@props.state} path="newPasswordConfirm" />
         </Error>
-      </View>
+      </ScrollView>
       <Button isDisabled={not @props.validation.isValid} borderRadius={0} height={75} color="light blue" onPress={@onPressConfirm}>비밀번호 변경하기</Button>
     </Layout>
