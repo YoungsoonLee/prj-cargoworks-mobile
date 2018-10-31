@@ -69,6 +69,8 @@ export default observer class Order extends Component
 
     isExpress = @props.order.agentFare.isExpress
 
+    isMixedFreight = @props.order.agentFare.isMixedFreight
+
     if @props.order.paymentMethod is @props.ORDERS.PAYMENT_METHODS.MONTHLY.VALUE
       paymentMethod = '신용'
 
@@ -186,6 +188,9 @@ export default observer class Order extends Component
                 <View style={{ borderRightWidth: 1, borderRightColor: '#cccccc', width: 37, alignItems: 'center', justifyContent: 'center' }}>
                   { if isExpress
                     <Badge badgeColor="#c12d3a">급송</Badge>
+                  }
+                  { if isMixedFreight
+                    <Badge badgeColor="#9f55ac">혼적</Badge>
                   }
                 </View>
                 <View style={{ width: 41, alignItems: 'center', justifyContent: 'center' }}>
