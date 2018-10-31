@@ -12,4 +12,14 @@ public class MainActivity extends ReactActivity {
     protected String getMainComponentName() {
         return "mobile_seed";
     }
+
+    /**
+     * Overrides onCreate in order to enable wakelock (by David)
+     */
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+      super.onCreate(savedInstanceState);
+      getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+    }
+
 }
