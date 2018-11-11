@@ -2,6 +2,26 @@ import deviceInfo from 'react-native-device-info'
 
 export default withProps = (WrappedComponent) =>
   observer class WithProps extends Component
+    constructor: (props) ->
+      super props
+
+      console.log 'withprops props: ', props
+      orderIds = props.orders.map (order) =>
+        order._id
+
+      console.log 'orderIds: ', orderIds
+
+      Meteor.call 'orders.update',
+        _id:
+          $in: orderIds
+      ,
+        $addToSet:
+          listViewTransporters: props.user.profile.transporterId
+      , (error, result) =>
+        if error
+          Util.alert error.reason
+          return
+
     render: =>
       orders = _.cloneDeep @props.orders
 

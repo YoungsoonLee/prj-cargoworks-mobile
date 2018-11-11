@@ -4,6 +4,8 @@ import withInterval from './withInterval.coffee'
 import withReaction from './withReaction.coffee'
 
 getSelector = (props) =>
+  console.log 'OrderDetail props: ', props
+
   _id: props.user.profile.transporterId
 
 getDefaultState = =>

@@ -6,7 +6,7 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "patch-info": "node ./js/imports/patch_info.js",
-    "build-android-cargoworks": "npm run patch-info && react-native bundle --dev false --platform android --entry-file index.js --bundle-output ./android/app/build/intermediates/assets/debug/index.android.bundle --assets-dest ./android/app/build/intermediates/res/merged/debug && cd android && ./gradlew assembleDebug",
+    "build-android-debug": "npm run patch-info && react-native bundle --dev false --platform android --entry-file index.js --bundle-output ./android/app/build/intermediates/assets/debug/index.android.bundle --assets-dest ./android/app/build/intermediates/res/merged/debug && cd android && ./gradlew assembleDebug",
     "build-android": "npm run patch-info && cd android && ./gradlew assembleRelease",
     "bundle-ios": "npm run patch-info && react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ./",
     "run-ios": "npm run patch-info && react-native run-ios",

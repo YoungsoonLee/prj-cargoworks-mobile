@@ -9,6 +9,22 @@ export default observer class OrderDetailView extends Component
   @defaultProps:
     order: {}
 
+  constructor: (props) ->
+    super props
+
+    console.log 'OrderDetailView props: ', props
+
+    Meteor.call 'orders.update',
+      _id: props.order._id
+    ,
+      $addToSet:
+        detailViewTransporters: props.user.profile.transporterId
+        listViewTransporters: props.user.profile.transporterId
+    , (error, result) =>
+      if error
+        Util.alert error.reason
+        return
+
   onPressOk: =>
     @props.onPressOk()
 

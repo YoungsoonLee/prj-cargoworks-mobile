@@ -14,6 +14,21 @@ export default withHandler = (WrappedComponent) =>
             "waypoints.addresses.#{@props.routeParam.addressIndex}.signedOffAt": new Date()
             "waypoints.addresses.#{@props.routeParam.addressIndex}.isActive": false
 
+        console.log '@props.routeParam: ', @props.routeParam
+        if @props.routeParam.addressIndex is 0
+          _.extend modifier.$set,
+            "waypoints.pickedUpAt": new Date()
+            status: @props.ORDERS.STATUS.DELIVERYING.VALUE
+
+          Meteor.call 'transporters.update',
+            _id: @props.routeParam.transporterId
+          , $set:
+            operationStatus: @props.TRANSPORTERS.OPERATION_STATUS.DELIVERYING.VALUE
+          , (error, result) =>
+            if error
+              Util.alert error.reason
+              return
+
         if not @props.routeParam.isLastAddress
           _.extend modifier.$set,
             "waypoints.addresses.#{@props.routeParam.addressIndex + 1}.isActive": true

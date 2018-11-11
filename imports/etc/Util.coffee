@@ -811,7 +811,9 @@ export default observer class Util extends Component
       _id: user._id
     ,
       $set:
-        'profile.isDeleted': true
+        # 'profile.isDeleted': true
+        'profile.isDroppedOut': true
+        'username': Meteor.user().username + "_deleted"
     , (error) =>
       if error
         callback error

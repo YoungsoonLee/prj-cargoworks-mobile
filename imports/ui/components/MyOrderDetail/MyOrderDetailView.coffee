@@ -25,14 +25,18 @@ export default observer class MyOrderDetailView extends Component
     activeWaypoint = null
 
     isStart = false
+    isLast = false
 
     @props.order.waypoints.addresses.forEach (waypoint, index) =>
       if waypoint.isActive
         activeWaypoint = waypoint
 
         isStart = index is 0
+        isLast = index is (@props.order.waypoints.addresses.length - 1)
 
     isExclusive = @props.order.consignor._id in @props.transporter.connectedExclusiveConsignorIds
+
+    signatureButtonDisabled = activeWaypoint and isLast and not activeWaypoint.isTransporterIn
 
     <View style={{ flex: 1 }}>
       <OrderDetailLayout order={@props.order} type="my order">
@@ -58,7 +62,8 @@ export default observer class MyOrderDetailView extends Component
         </ScrollView>
       </OrderDetailLayout>
       { if not isCompleted
-        <Button isDisabled={not activeWaypoint?.isTransporterIn} borderRadius={0} height={75} color="light blue" onPress={@onPressGetSignature}>
+        ### <Button isDisabled={not activeWaypoint?.isTransporterIn} borderRadius={0} height={75} color="light blue" onPress={@onPressGetSignature}> ###
+        <Button borderRadius={0} height={75} color="light blue" onPress={@onPressGetSignature}>
           <View style={{ flexDirection: 'row' }}>
             <Image source={require '../../../../images/pencil.png'} style={{ width: 18, height: 18 }} />
             <Text bold marginLeft={5} color={white} size={20}>서명받기{ not activeWaypoint?.isTransporterIn and isStart and ' (픽업지로 이동하세요)' } </Text>
